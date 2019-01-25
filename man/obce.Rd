@@ -3,7 +3,7 @@
 \docType{data}
 \name{obce}
 \alias{obce}
-\title{List of all settlements in Czech Republic}
+\title{data.frame of all settlements in Czech Republic}
 \format{A data frame with 6258 rows and 7 variables:
 \describe{
 \item{kod}{id of the settlement}

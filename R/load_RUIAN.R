@@ -1,7 +1,11 @@
 #' Extract data from RUIAN
 #'
-#' Extract specific layer from RUIAN for given settlement in Czech Republic. Checks are performed to
-#' find out if the provided \code{id} is valid for some settlement in Czech Republic.
+#' Extract specific layer, in form of spatial data, from RUIAN for given settlement in
+#' Czech Republic. Checks are performed to find out if the provided \code{id} is valid for some
+#' settlement in Czech Republic.
+#'
+#' In case of adress places (using ADRM_B or adresni mista as layer) are checked, the csv file with
+#' more attributes is also downloaded and linked to the spatial data layer.
 #'
 #' @param id id of settlement as character
 #' @param layer identification of data to extract as character, see details.
@@ -12,20 +16,27 @@
 #' The \code{layer} can have values from following set, the value in brackets is alias to full layer
 #' name:
 #' \enumerate{
-#'   \item ADRM_B (adresni mista)
-#'   \item CO_B (casti obce)
-#'   \item KU_P (katastralni uzemi)
-#'   \item OBEC_P (obec)
-#'   \item SO_B (stavebni objekty)
-#'   \item UL_L (ulice)
-#'   \item VO_P (volebni okrsky)
-#'   \item ZSJ_P (zakladni sidelni jednotky)
+#'   \item \code{"ADRM_B"} (\code{"adresni mista"})
+#'   \item \code{"CO_B"} (\code{"casti obce"})
+#'   \item \code{"KU_P"} (\code{"katastralni uzemi"})
+#'   \item \code{"OBEC_P"} (\code{"obec"})
+#'   \item \code{"SO_B"} (\code{"stavebni objekty"})
+#'   \item \code{"UL_L"} (\code{"ulice"})
+#'   \item \code{"VO_P"} (\code{"volebni okrsky"})
+#'   \item \code{"ZSJ_P"} (\code{"zakladni sidelni jednotky"})
+#'   \item \code{"MOMC_P"}
+#'   \item \code{"MOP_P"}
+#'   \item \code{"SOP_P"}
 #' }
 #' So the codes \code{layer = "CO_B"} and \code{layer = "casti obce"} are equal.
 #'
 #' The values of \code{id} follow general pattern of six number with first number being 5.
 #'
 #' @return \code{data.frame} with spatail objects (\code{\link[sf]{sf}}) of the specified layer
+#'
+#' @section Information about dataset:
+#'  More detailed information about data can be found at the provider website
+#'  \url{http://atom.cuzk.cz/}.
 #'
 #' @export
 #'
@@ -34,6 +45,8 @@
 #' @importFrom utils data download.file unzip
 #' @importFrom dplyr case_when
 #' @importFrom sf st_read st_transform
+#' @importFrom janitor clean_names
+#'
 #' @examples
 #' adresy_vyskov <- load_RUIAN_settlement("592889", layer = "adresni mista")
 
@@ -66,7 +79,7 @@ load_RUIAN_settlement <- function(id, layer = "obec", WGS84 = FALSE){
     layer == "OBEC_P" ~ "OBEC_P.shp",
     layer == "stavebni objekty" ~ "SO_B.shp",
     layer == "SO_B" ~ "SO_B.shp",
-    # UL_B is allways empty
+    # UL_B is always empty
     #layer == "UL_B" ~ "UL_B.shp",
     layer == "ulice" ~ "UL_L.shp",
     layer == "UL_L" ~ "UL_L.shp",
@@ -74,6 +87,10 @@ load_RUIAN_settlement <- function(id, layer = "obec", WGS84 = FALSE){
     layer == "VO_P" ~ "VO_P.shp",
     layer == "zakladni sidelni jednotky" ~ "ZSJ_P.shp",
     layer == "ZSJ_P" ~ "ZSJ_P.shp",
+    # not for every settlement
+    layer == "MOMC_P" ~ "MOMC_P.shp",
+    layer == "MOP_P" ~ "MOP_P.shp",
+    layer == "SOP_P" ~ "SOP_P.shp",
     TRUE ~ NA_character_
   )
 
@@ -97,8 +114,15 @@ load_RUIAN_settlement <- function(id, layer = "obec", WGS84 = FALSE){
 
   unzip(ruian_file, exdir = dir)
 
+  shp_file <- file.path(dir, id, shp_name)
 
-  data <- sf::st_read(file.path(dir, id, shp_name),
+  if (!file.exists(shp_file)) {
+    stop(glue::glue("There is no layer {layer} for settlement with id {id}. ",
+                    "Not all settlements have necessarily all the layers."))
+  }
+
+
+  data <- sf::st_read(shp_file,
                       stringsAsFactors = FALSE,
                       options = "ENCODING=Windows-1250",
                       quiet = TRUE)
@@ -106,6 +130,23 @@ load_RUIAN_settlement <- function(id, layer = "obec", WGS84 = FALSE){
   if (WGS84) {
     data <- data %>%
       sf::st_transform(4326)
+  }
+
+  data <- data %>%
+    janitor::clean_names()
+
+  if (layer == "adresni mista") {
+
+    url_adresni_mista <- glue::glue("http://vdp.cuzk.cz/vymenny_format/csv/20181130_OB_{id}_ADR.csv.gz")
+
+    adresni_mista <- readr::read_delim(url_adresni_mista,
+                                       ";", locale = readr::locale(encoding = "Windows-1250")) %>%
+      janitor::clean_names() %>%
+      dplyr::mutate(kod_adm = as.character(kod_adm)) %>%
+      dplyr::select(-kod_casti_obce, -kod_ulice)
+
+    data <- data %>%
+      dplyr::left_join(adresni_mista, by = c("ADRM_KOD" = "kod_adm"))
   }
 
   data

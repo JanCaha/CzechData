@@ -3,7 +3,7 @@
 \docType{data}
 \name{katastralni_uzemi}
 \alias{katastralni_uzemi}
-\title{List of all cadastral territories in Czech Republic}
+\title{data.frame of all cadastral territories in Czech Republic}
 \format{A data frame with 13078 rows and 9 variables:
 \describe{
 \item{kod}{id of the cadastral territory}

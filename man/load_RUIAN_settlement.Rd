@@ -18,26 +18,39 @@ Default value is \code{"obec"}}
 \code{data.frame} with spatail objects (\code{\link[sf]{sf}}) of the specified layer
 }
 \description{
-Extract specific layer from RUIAN for given settlement in Czech Republic. Checks are performed to
-find out if the provided \code{id} is valid for some settlement in Czech Republic.
+Extract specific layer, in form of spatial data, from RUIAN for given settlement in
+Czech Republic. Checks are performed to find out if the provided \code{id} is valid for some
+settlement in Czech Republic.
 }
 \details{
+In case of adress places (using ADRM_B or adresni mista as layer) are checked, the csv file with
+more attributes is also downloaded and linked to the spatial data layer.
+
 The \code{layer} can have values from following set, the value in brackets is alias to full layer
 name:
 \enumerate{
-\item ADRM_B (adresni mista)
-\item CO_B (casti obce)
-\item KU_P (katastralni uzemi)
-\item OBEC_P (obec)
-\item SO_B (stavebni objekty)
-\item UL_L (ulice)
-\item VO_P (volebni okrsky)
-\item ZSJ_P (zakladni sidelni jednotky)
+\item \code{"ADRM_B"} (\code{"adresni mista"})
+\item \code{"CO_B"} (\code{"casti obce"})
+\item \code{"KU_P"} (\code{"katastralni uzemi"})
+\item \code{"OBEC_P"} (\code{"obec"})
+\item \code{"SO_B"} (\code{"stavebni objekty"})
+\item \code{"UL_L"} (\code{"ulice"})
+\item \code{"VO_P"} (\code{"volebni okrsky"})
+\item \code{"ZSJ_P"} (\code{"zakladni sidelni jednotky"})
+\item \code{"MOMC_P"}
+\item \code{"MOP_P"}
+\item \code{"SOP_P"}
 }
 So the codes \code{layer = "CO_B"} and \code{layer = "casti obce"} are equal.
 
 The values of \code{id} follow general pattern of six number with first number being 5.
 }
+\section{Information about dataset}{
+
+More detailed information about data can be found at the provider website
+\url{http://atom.cuzk.cz/}.
+}
+
 \examples{
 adresy_vyskov <- load_RUIAN_settlement("592889", layer = "adresni mista")
 }

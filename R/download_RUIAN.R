@@ -3,6 +3,8 @@
 # unzipped folder
 .download_RUIAN <- function(){
 
+  warning("Downloading roughly 190 MB, this can take a while.")
+
   temp_dir <- tempdir()
 
   ruian_file <- file.path(temp_dir, "RUIAN.zip")

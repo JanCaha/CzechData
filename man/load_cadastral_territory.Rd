@@ -19,39 +19,45 @@ Default value is \code{"katastralni ĂşzemĂ­"}}
 \code{data.frame} with spatail objects (\code{\link[sf]{sf}}) of the specified layer
 }
 \description{
-Extract specific layer from cadastral map for given cadastral territory in Czech Republic.
-Checks are performed to find out if the provided \code{id} is valid for some cadastral territory
-in Czech Republic.
+Extract specific layer, in form of spatial data, from cadastral map for given cadastral
+territory in Czech Republic. Checks are performed to find out if the provided \code{id} is valid
+for some cadastral territory in Czech Republic.
 }
 \details{
 The \code{layer} can have values from following set, the value in brackets is alias to full layer
 name:
 \enumerate{
-\item BODOVE_POLE_B
-\item BODOVE_POLE_T
-\item BUDOVY_B (budovy body)
-\item BUDOVY_DEF
-\item BUDOVY_P (budovy)
-\item DALSI_PRVKY_MAPY_B
-\item DALSI_PRVKY_MAPY_L
-\item DALSI_PRVKY_MAPY_T
-\item HRANICE_PARCEL_L (hranice parcel)
-\item KATASTRALNI_UZEMI_DEF
-\item KATASTRALNI_UZEMI_L
-\item KATASTRALNI_UZEMI_P (katastralni uzemi)
-\item PARCELY_KN_B
-\item PARCELY_KN_DEF
-\item PARCELY_KN_L
-\item PARCELY_KN_P (parcely)
-\item PRVKY_ORIENT_MAPY_B
-\item PRVKY_ORIENT_MAPY_L
-\item PRVKY_ORIENT_MAPY_T
-\item VB_P
+\item \code{"BODOVE_POLE_B"}
+\item \code{"BODOVE_POLE_T"}
+\item \code{"BUDOVY_B"} (\code{"budovy body"})
+\item \code{"BUDOVY_DEF"}
+\item \code{"BUDOVY_P"} (\code{"budovy"})
+\item \code{"DALSI_PRVKY_MAPY_B"}
+\item \code{"DALSI_PRVKY_MAPY_L"}
+\item \code{"DALSI_PRVKY_MAPY_T"}
+\item \code{"HRANICE_PARCEL_L"} (\code{"hranice parcel"})
+\item \code{"KATASTRALNI_UZEMI_DEF"}
+\item \code{"KATASTRALNI_UZEMI_L"}
+\item \code{"KATASTRALNI_UZEMI_P"} (\code{"katastralni uzemi"})
+\item \code{"PARCELY_KN_B"}
+\item \code{"PARCELY_KN_DEF"}
+\item \code{"PARCELY_KN_L"}
+\item \code{"PARCELY_KN_P"} (\code{"parcely"})
+\item \code{"PRVKY_ORIENT_MAPY_B"}
+\item \code{"PRVKY_ORIENT_MAPY_L"}
+\item \code{"PRVKY_ORIENT_MAPY_T"}
+\item \code{"VB_P"}
 }
 So the codes \code{layer = "BUDOVY_B"} and \code{layer = "budovy body"} are equal.
 
 The values of \code{id} follow general pattern of six number with first number being 6,7 or 9.
 }
+\section{Information about dataset}{
+
+More detailed information about data can be found at the provider website
+\url{http://atom.cuzk.cz/}.
+}
+
 \examples{
 parcely_vyskov <- load_cadastral_territory("788571", layer = "parcely")
 }

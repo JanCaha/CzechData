@@ -16,27 +16,35 @@ Default value is \code{"stĂˇt"}}
 \code{data.frame} with spatail objects (\code{\link[sf]{sf}}) of the specified layer
 }
 \description{
-Extract specific layer from RUIAN for whole Czech Republic.
+Extract specific layer, in form of spatial data, from RUIAN for whole Czech Republic.
+The minor issue with these data is the size, the datasets that needs to be downloaded is roughly
+190 MB.
 }
 \details{
 The \code{layer} can have values from following set, the value in brackets is alias to full layer
 name:
 \enumerate{
-\item KATUZE_P (katastralni uzemi)
-\item OBCE_P (obce)
-\item OKRESY_P (okresy)
-\item ORP_P (orp)
-\item POU_P (pou)
-\item PRARES_P
-\item REGION_P (regiony)
-\item STATY_P (stat)
-\item STU_P (stavebni úrady)
-\item VO_P (volebni okrsky)
-\item VUSC_P.shp (kraje)
+\item \code{"KATUZE_P"} (\code{"katastralni uzemi"})
+\item \code{"OBCE_P"} (\code{"obce"})
+\item \code{"OKRESY_P"} (\code{"okresy"})
+\item \code{"ORP_P"} (\code{"orp"})
+\item \code{"POU_P"} (\code{"pou"})
+\item \code{"PRARES_P"}
+\item \code{"REGION_P"} (\code{"regiony"})
+\item \code{"STATY_P"} (\code{"stat"})
+\item \code{"STU_P"} (\code{"stavebni Ăşrady"})
+\item \code{"VO_P"} (\code{"volebni okrsky"})
+\item \code{"VUSC_P"} (\code{"kraje"})
 }
 
 So the codes \code{layer = "OKRESY_P"} and \code{layer = "okresy"} are equal.
 }
+\section{Information about dataset}{
+
+More detailed information about data can be found at the provider website
+\url{http://atom.cuzk.cz/}.
+}
+
 \examples{
 obce_CR <- load_RUIAN_state(layer = "obce")
 }
