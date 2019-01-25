@@ -1,4 +1,4 @@
-#' List of all cadastral territories in Czech Republic
+#' data.frame of all cadastral territories in Czech Republic
 #'
 #' A dataset containing the names and other attributes of all 13,078
 #'  cadastral territories in Czech Republic. The codes (every column with string kod in

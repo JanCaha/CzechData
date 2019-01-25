@@ -6,7 +6,7 @@ library(here)
 
 source(here::here("R", "download_RUIAN.R"))
 
-# set uu directory with ruian -----------------------------------------------------------------
+# set up directory with ruian -----------------------------------------------------------------
 
 ruian_dir <- .download_RUIAN()
 
@@ -35,3 +35,55 @@ katastralni_uzemi <- data %>%
   janitor::clean_names()
 
 usethis::use_data(katastralni_uzemi, overwrite = TRUE)
+
+
+# okresy --------------------------------------------------------------------------------------
+
+data <- st_read(file.path(ruian_dir, "OKRESY_P.shp"), stringsAsFactors = FALSE,
+                options = "ENCODING=Windows-1250", quiet = TRUE)
+
+st_geometry(data) <- NULL
+
+okresy <- data %>%
+  janitor::clean_names()
+
+usethis::use_data(okresy, overwrite = TRUE)
+
+
+# orp -----------------------------------------------------------------------------------------
+
+data <- st_read(file.path(ruian_dir, "ORP_P.shp"), stringsAsFactors = FALSE,
+                options = "ENCODING=Windows-1250", quiet = TRUE)
+
+st_geometry(data) <- NULL
+
+orp <- data %>%
+  janitor::clean_names()
+
+usethis::use_data(orp, overwrite = TRUE)
+
+# pou -----------------------------------------------------------------------------------------
+
+data <- st_read(file.path(ruian_dir, "POU_P.shp"), stringsAsFactors = FALSE,
+                options = "ENCODING=Windows-1250", quiet = TRUE)
+
+st_geometry(data) <- NULL
+
+pou <- data %>%
+  janitor::clean_names()
+
+usethis::use_data(pou, overwrite = TRUE)
+
+
+# VUSC_P --------------------------------------------------------------------------------------
+
+data <- st_read(file.path(ruian_dir, "VUSC_P.shp"), stringsAsFactors = FALSE,
+                options = "ENCODING=Windows-1250", quiet = TRUE)
+
+st_geometry(data) <- NULL
+
+kraje <- data %>%
+  janitor::clean_names()
+
+usethis::use_data(kraje, overwrite = TRUE)
+

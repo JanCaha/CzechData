@@ -1,4 +1,4 @@
-#' List of all settlements in Czech Republic
+#' data.frame of all settlements in Czech Republic
 #'
 #' A dataset containing the names and other attributes of all 6,258
 #'  settlements (villages and cities) in Czech Republic. The codes (every column with string kod in
