@@ -50,10 +50,11 @@ load_SLDB_2011 <- function(type = "obyvatelstvo", load_names = TRUE){
 
   sldb_file <- unzip(sldb_file_zip, exdir = temp_dir)
 
-  data <- readr::read_csv(sldb_file, locale = readr::locale(encoding = "Windows-1250"))
+  data <- readr::read_csv(sldb_file, locale = readr::locale(encoding = "Windows-1250")) %>%
+    mutate(uzkod = as.character(uzkod))
 
   if (load_names) {
-    col_names <- load_SLDB_2011_col_explanations()[[2]]
+    col_names <- load_SLDB_2011_col_explanations(type)[[2]]
 
     colnames(data) <- col_names
   }
@@ -75,6 +76,8 @@ load_SLDB_2011 <- function(type = "obyvatelstvo", load_names = TRUE){
 load_SLDB_2011_col_explanations <- function(type = "obyvatelstvo") {
 
   type_info <- .sldb_type_info()
+
+  index <- which(type_info$type == type)
 
   header_file <- file.path(tempdir(), "sldb2011_vou.xls")
 
