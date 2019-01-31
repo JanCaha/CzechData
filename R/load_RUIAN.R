@@ -35,7 +35,7 @@
 #' @return \code{data.frame} with spatail objects (\code{\link[sf]{sf}}) of the specified layer
 #'
 #' @section Information about dataset:
-#'  More detailed information about data can be found at the provider website
+#'  More detailed information about data can be found at the provider's website
 #'  \url{http://atom.cuzk.cz/}.
 #'
 #' @export

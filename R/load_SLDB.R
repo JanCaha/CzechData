@@ -19,6 +19,10 @@
 #'
 #' @describeIn load_SLDB_2011 Load the data
 #'
+#' @section Information about dataset:
+#'  More detailed information about data can be found at the provider's website
+#'  \url{https://www.czso.cz/csu/sldb}.
+#'
 #' @return data.frame containg the requested data
 #' @export
 #'

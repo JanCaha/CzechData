@@ -54,7 +54,7 @@ The values of \code{id} follow general pattern of six number with first number b
 }
 \section{Information about dataset}{
 
-More detailed information about data can be found at the provider website
+More detailed information about data can be found at the provider's website
 \url{http://atom.cuzk.cz/}.
 }
 

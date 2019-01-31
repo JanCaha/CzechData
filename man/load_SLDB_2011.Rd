@@ -39,6 +39,12 @@ Types of data that can be downloaded, and used as \code{type} parameter in the f
 \item \code{load_SLDB_2011_col_explanations}: Get names of columns for SLDB of specific type as data.frame
 }}
 
+\section{Information about dataset}{
+
+More detailed information about data can be found at the provider's website
+\url{https://www.czso.cz/csu/sldb}.
+}
+
 \examples{
 sldb <- load_SLDB_2011(type = "obyvatelstvo")
 }

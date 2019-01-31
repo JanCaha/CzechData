@@ -41,7 +41,7 @@ So the codes \code{layer = "OKRESY_P"} and \code{layer = "okresy"} are equal.
 }
 \section{Information about dataset}{
 
-More detailed information about data can be found at the provider website
+More detailed information about data can be found at the provider's website
 \url{http://atom.cuzk.cz/}.
 }
 
