@@ -14,7 +14,7 @@ remotes::install_github("JanCaha/CzechData")
 
 ## Example
 
-``` r
+```r
 # simple RUIAN data for whole state
 obce_CR <- load_RUIAN_state(layer = "obce)
 
@@ -24,6 +24,15 @@ adresy_vyskov <- load_RUIAN_settlement("592889", layer = "adresní místa")
 
 # cadastral data for single cadastral territory
 parcely_vyskov <- load_cadastral_territory("788571", layer = "parcely")
+
+# data SLDB
+sldb_data_obyvatele <- load_SLDB_2011(type = "obyvatelstvo")
+
+# population data for settlements
+population_2015 <- load_population(year = 2015)
+
+# population data by age category 
+population_2011_kraje <- load_population_age(year = 2011, area_type = "kraje")
 ```
 
 ## Data sources
@@ -35,6 +44,8 @@ Currently implemented data sources are:
 * RUIAN on the state level [described here](https://data.gov.cz/datov%C3%A1-sada?iri=https%3A%2F%2Fdata.gov.cz%2Fzdroj%2Fdatov%C3%A1-sada%2Fhttp---atom.cuzk.cz-api-3-action-package_show-id-cz-00025712-cuzk_ruian-staty-shp_1)
 * RUIAN on settlement level [example here](https://data.gov.cz/datov%C3%A1-sada?iri=https%3A%2F%2Fdata.gov.cz%2Fzdroj%2Fdatov%C3%A1-sada%2Fhttp---atom.cuzk.cz-api-3-action-package_show-id-cz-00025712-cuzk_ruian-obce-shp_554979)
 * Cadastral map for cadastral territory [example here](https://data.gov.cz/datov%C3%A1-sada?iri=https%3A%2F%2Fdata.gov.cz%2Fzdroj%2Fdatov%C3%A1-sada%2Fhttp---atom.cuzk.cz-api-3-action-package_show-id-cz-00025712-cuzk_km-ku-shp_600016)
+* SLDB (census) subsections [individual datasets here](https://data.gov.cz/datov%C3%A9-sady?dotaz=SLDB) 
+* yearly data about population by sex [for settlements](https://data.gov.cz/datov%C3%A1-sada?iri=https%3A%2F%2Fdata.gov.cz%2Fzdroj%2Fdatov%C3%A1-sada%2Fhttp---vdb.czso.cz-pll-eweb-package_show-id-130149) [by age categories](https://data.gov.cz/datov%C3%A1-sada?iri=https%3A%2F%2Fdata.gov.cz%2Fzdroj%2Fdatov%C3%A1-sada%2Fhttp---vdb.czso.cz-pll-eweb-package_show-id-130142)
 
 ### Details about datasets
 
