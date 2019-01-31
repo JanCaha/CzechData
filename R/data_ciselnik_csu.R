@@ -8,7 +8,7 @@
 #'   \item{typ}{type of spatail unit}
 #'   \item{kod_csu}{id of spatial unit used by csu}
 #'   \item{kod_ruian}{id of spatial unit used by ruian}
-#'   \item{nuts3_kod}
+#'   \item{nuts3_kod}{}
 #' }
 #' @source \url{https://www.czso.cz/csu/czso/ciselniky}
 "ciselnik_CSU"
