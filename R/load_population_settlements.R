@@ -21,23 +21,23 @@
 #' @examples
 #' # population for all years
 #' population <- load_population_settlements()
-#'
+#' 
 #' # population for year 2015
 #' population_2015 <- load_population_settlements(year = 2015)
-#'
-load_population_settlements <- function(year = NA){
-
+load_population_settlements <- function(year = NA) {
   year_valid <- FALSE
 
-  if ( !is.na(year)) {
+  if (!is.na(year)) {
     if (is.numeric(year)) {
       if (2000 <= year & year <= 2017) {
-       year_valid <- TRUE
-      }else{
-        stop(glue::glue("Year has to be from range 2000 - 2017. ",
-                        "{year} does not fall in this range."))
+        year_valid <- TRUE
+      } else {
+        stop(glue::glue(
+          "Year has to be from range 2000 - 2017. ",
+          "{year} does not fall in this range."
+        ))
       }
-    }else{
+    } else {
       stop(glue::glue("Variable year has to be numeric. It is {typeof(year)}."))
     }
   }
@@ -47,10 +47,10 @@ load_population_settlements <- function(year = NA){
   obyvatelstvo_file <- file.path(temp_dir, "obyvatelstvo_obce.zip")
 
   if (!file.exists(obyvatelstvo_file)) {
-
-    utils::download.file("https://www.czso.cz/documents/62353418/74123173/130149-18data051818.zip",
-                         obyvatelstvo_file)
-
+    utils::download.file(
+      "https://www.czso.cz/documents/62353418/74123173/130149-18data051818.zip",
+      obyvatelstvo_file
+    )
   }
 
   obyvatelstvo_file <- utils::unzip(obyvatelstvo_file, exdir = temp_dir)
@@ -69,12 +69,12 @@ load_population_settlements <- function(year = NA){
 #'
 #' @importFrom jsonlite fromJSON
 #'
-#'@export
+#' @export
 #'
-load_population_settlements_col_explanations <- function(){
+load_population_settlements_col_explanations <- function() {
   json_file <- jsonlite::fromJSON("https://www.czso.cz/documents/62353418/74123173/130149-18schema051818.json")
 
-  data <- json_file$tableSchema$columns[,c(2,3)]
+  data <- json_file$tableSchema$columns[, c(2, 3)]
 
   names(data) <- c("sloupec", "popis")
 

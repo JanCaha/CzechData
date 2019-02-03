@@ -37,8 +37,7 @@ load_SLDB_2011 <- function(type = "obyvatelstvo", load_names = TRUE) {
 
   if (!(type %in% type_info$type)) {
     stop(glue::glue(
-      "Unknown type of data requested - {type}. Please look at the documentation for ",
-      "allowed types."
+      "Unknown type of data requested - {type}. Please look at the documentation for allowed types."
     ))
   }
 

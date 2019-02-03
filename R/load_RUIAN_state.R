@@ -44,9 +44,7 @@
 #'
 #' @examples
 #' obce_CR <- load_RUIAN_state(layer = "obce")
-
 load_RUIAN_state <- function(layer = "stat", WGS84 = FALSE) {
-
   shp_name <- dplyr::case_when(
     layer == "katastralni uzemi" ~ "KATUZE_P.shp",
     layer == "KATUZE_P" ~ "KATUZE_P.shp",
@@ -74,16 +72,20 @@ load_RUIAN_state <- function(layer = "stat", WGS84 = FALSE) {
   )
 
   if (is.na(shp_name)) {
-    stop(glue::glue("Uknown layer name (or alias) - {layer}. Please look into documentation, ",
-                    "for allowed layer names."))
+    stop(glue::glue(
+      "Uknown layer name (or alias) - {layer}. Please look into documentation, ",
+      "for allowed layer names."
+    ))
   }
 
   dir <- .download_RUIAN()
 
-  data <- sf::st_read(file.path(dir, shp_name),
-                      stringsAsFactors = FALSE,
-                      options = "ENCODING=Windows-1250",
-                      quiet = TRUE)
+  data <- sf::st_read(
+    file.path(dir, shp_name),
+    stringsAsFactors = FALSE,
+    options = "ENCODING=Windows-1250",
+    quiet = TRUE
+  )
 
   if (WGS84) {
     data <- data %>%

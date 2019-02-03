@@ -2,8 +2,7 @@
 library(XML)
 library(tidyverse)
 
-get_xml_data <- function(url, file_name){
-
+get_xml_data <- function(url, file_name) {
   temp_dir <- tempdir()
 
   xml_file <- file.path(temp_dir, file_name)
@@ -20,8 +19,7 @@ url <- "https://apl.czso.cz/iSMS/cisexp.jsp?kodcis=100&typdat=0&cisjaz=203&forma
 
 xml_data <- get_xml_data(url, "ciselnik_kraje.xml")
 
-ciselnik_kraje <-  xml_data$DATA %>%
-{
+ciselnik_kraje <- xml_data$DATA %>% {
   tibble(
     typ = "kraj",
     kod_csu = map_chr(., "CHODNOTA"),
@@ -35,15 +33,14 @@ url <- "https://apl.czso.cz/iSMS/cisexp.jsp?kodcis=101&typdat=0&cisjaz=203&forma
 
 xml_data <- get_xml_data(url, "ciselnik_okresy.xml")
 
-ciselnik_okresy <-  xml_data$DATA %>%
-  {
-    tibble(
-      typ = "okres",
-      kod_csu = map_chr(., "CHODNOTA"),
-      kod_ruian = map(., "ATRIBUTY") %>% map(4) %>% map_chr(1)
-      # kod_ruian_cislo = as.numeric(kod_ruian)
-    )
-  }
+ciselnik_okresy <- xml_data$DATA %>% {
+  tibble(
+    typ = "okres",
+    kod_csu = map_chr(., "CHODNOTA"),
+    kod_ruian = map(., "ATRIBUTY") %>% map(4) %>% map_chr(1)
+    # kod_ruian_cislo = as.numeric(kod_ruian)
+  )
+}
 
 # orp -----------------------------------------------------------------------------------------
 
@@ -51,8 +48,7 @@ url <- "https://apl.czso.cz/iSMS/cisexp.jsp?kodcis=65&typdat=0&cisjaz=203&format
 
 xml_data <- get_xml_data(url, "ciselnik_orp.xml")
 
-ciselnik_orp <-  xml_data$DATA %>%
-{
+ciselnik_orp <- xml_data$DATA %>% {
   tibble(
     typ = "správní obvod ORP",
     kod_csu = map_chr(., "CHODNOTA"),

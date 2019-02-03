@@ -55,8 +55,7 @@
 #'
 #' @examples
 #' parcely_vyskov <- load_cadastral_territory("788571", layer = "parcely")
-
-load_cadastral_territory <- function(id, layer = "katastralni uzemi", WGS84 = FALSE){
+load_cadastral_territory <- function(id, layer = "katastralni uzemi", WGS84 = FALSE) {
 
 
   # verify and preprocess inputs ----------------------------------------------------------------
@@ -104,30 +103,32 @@ load_cadastral_territory <- function(id, layer = "katastralni uzemi", WGS84 = FA
   )
 
   if (is.na(shp_name)) {
-    stop(glue::glue("Uknown layer name (or alias) - {layer}. Please look into documentation, ",
-                    "for allowed layer names."))
+    stop(glue::glue(
+      "Uknown layer name (or alias) - {layer}. Please look into documentation, ",
+      "for allowed layer names."
+    ))
   }
-
 
   # download and select the data ----------------------------------------------------------------
 
   dir <- tempdir()
 
   url <- glue::glue("http://services.cuzk.cz/shp/ku/epsg-5514/{id}.zip")
+
   ku_file <- file.path(dir, glue::glue("{id}.zip"))
 
   if (!file.exists(ku_file)) {
-
     download.file(url, ku_file)
   }
 
   unzip(ku_file, exdir = dir)
 
-
-  data <- sf::st_read(file.path(dir, id, shp_name),
-                      stringsAsFactors = FALSE,
-                      options = "ENCODING=Windows-1250",
-                      quiet = TRUE)
+  data <- sf::st_read(
+    file.path(dir, id, shp_name),
+    stringsAsFactors = FALSE,
+    options = "ENCODING=Windows-1250",
+    quiet = TRUE
+  )
 
   if (WGS84) {
     data <- data %>%
