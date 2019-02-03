@@ -31,28 +31,31 @@
 #'
 #' @examples
 #' population_age <- load_population_age(area_type = "okresy")
-load_population_age <- function(year = NA, area_type = NA){
-
+load_population_age <- function(year = NA, area_type = NA) {
   area_types <- c("okresy", "kraje", "republika")
 
   if (!is.na(area_type)) {
     if (!area_type %in% area_types) {
-      stop(glue::glue("Unknow area_type - {area_type}. Allowed values are: ",
-                      glue::glue_collapse(area_types, sep = ", "), "."))
+      stop(glue::glue(
+        "Unknow area_type - {area_type}. Allowed values are: ",
+        glue::glue_collapse(area_types, sep = ", "), "."
+      ))
     }
   }
 
   year_valid <- FALSE
 
-  if ( !is.na(year)) {
+  if (!is.na(year)) {
     if (is.numeric(year)) {
       if (2010 <= year & year <= 2017) {
         year_valid <- TRUE
-      }else{
-        stop(glue::glue("Year has to be from range 2010 - 2017. ",
-                        "{year} does not fall in this range."))
+      } else {
+        stop(glue::glue(
+          "Year has to be from range 2010 - 2017. ",
+          "{year} does not fall in this range."
+        ))
       }
-    }else{
+    } else {
       stop(glue::glue("Variable year has to be numeric. It is {typeof(year)}."))
     }
   }
@@ -64,7 +67,8 @@ load_population_age <- function(year = NA, area_type = NA){
   )
 
   data <- readr::read_csv("https://www.czso.cz/documents/62353418/83879838/130142-18data051818.csv",
-                          col_types = cols())
+    col_types = cols()
+  )
 
   data <- data %>%
     dplyr::mutate(rok = lubridate::year(casref_do))
@@ -87,13 +91,12 @@ load_population_age <- function(year = NA, area_type = NA){
 #'
 #' @importFrom jsonlite fromJSON
 #'
-#'@export
+#' @export
 #'
-load_population_age_col_explanations <- function(){
-
+load_population_age_col_explanations <- function() {
   json_file <- jsonlite::fromJSON("https://www.czso.cz/documents/62353418/83879838/130142-18schema051818.json")
 
-  data <- json_file$tableSchema$columns[,c(2,3)]
+  data <- json_file$tableSchema$columns[, c(2, 3)]
 
   names(data) <- c("sloupec", "popis")
 

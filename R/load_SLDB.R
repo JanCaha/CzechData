@@ -32,14 +32,14 @@
 #'
 #' @examples
 #' sldb <- load_SLDB_2011(type = "obyvatelstvo")
-
-load_SLDB_2011 <- function(type = "obyvatelstvo", load_names = TRUE){
-
+load_SLDB_2011 <- function(type = "obyvatelstvo", load_names = TRUE) {
   type_info <- .sldb_type_info()
 
   if (!(type %in% type_info$type)) {
-    stop(glue::glue("Unknown type of data requested - {type}. Please look at the documentation for ",
-                    "allowed types."))
+    stop(glue::glue(
+      "Unknown type of data requested - {type}. Please look at the documentation for ",
+      "allowed types."
+    ))
   }
 
   index <- which(type_info$type == type)
@@ -78,7 +78,6 @@ load_SLDB_2011 <- function(type = "obyvatelstvo", load_names = TRUE){
 #'
 #' @export
 load_SLDB_2011_col_explanations <- function(type = "obyvatelstvo") {
-
   type_info <- .sldb_type_info()
 
   index <- which(type_info$type == type)
@@ -87,24 +86,29 @@ load_SLDB_2011_col_explanations <- function(type = "obyvatelstvo") {
 
   if (!file.exists(header_file)) {
     curl::curl_download("https://www.czso.cz/documents/10180/25233177/sldb2011_vou.xls",
-                        destfile = header_file)
+      destfile = header_file
+    )
   }
 
- readxl::read_xls(header_file, sheet = type_info$sheet[index],
-                  range = type_info$range[index]) %>%
-   janitor::clean_names() %>%
-   dplyr::mutate(polozka = stringr::str_to_lower(polozka))
+  readxl::read_xls(header_file,
+    sheet = type_info$sheet[index],
+    range = type_info$range[index]
+  ) %>%
+    janitor::clean_names() %>%
+    dplyr::mutate(polozka = stringr::str_to_lower(polozka))
 }
 
 
 #' @importFrom dplyr tibble
-.sldb_type_info <- function(){
+.sldb_type_info <- function() {
   dplyr::tibble(
     type = c("obyvatelstvo", "domy-byty", "domacnosti", "vyjizdka"),
-    url = c("https://www.czso.cz/documents/10180/25233177/sldb_obyvatelstvo.zip",
-            "https://www.czso.cz/documents/10180/25233177/sldb_domybyty.zip",
-            "https://www.czso.cz/documents/10180/25233177/sldb_domacnosti.zip",
-            "https://www.czso.cz/documents/10180/25233177/sldb_vyjizdka.zip"),
+    url = c(
+      "https://www.czso.cz/documents/10180/25233177/sldb_obyvatelstvo.zip",
+      "https://www.czso.cz/documents/10180/25233177/sldb_domybyty.zip",
+      "https://www.czso.cz/documents/10180/25233177/sldb_domacnosti.zip",
+      "https://www.czso.cz/documents/10180/25233177/sldb_vyjizdka.zip"
+    ),
     sheet = c("Obyvatelstvo", "DomyByty", "Domacnosti", "Vyjizdka"),
     range = c("A6:B181", "A6:B98", "A6:B19", "A6:B20")
   )
