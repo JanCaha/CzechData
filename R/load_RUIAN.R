@@ -46,15 +46,13 @@
 #' @importFrom dplyr case_when
 #' @importFrom sf st_read st_transform
 #' @importFrom janitor clean_names
+#' @importFrom curl curl_fetch_memory
 #'
 #' @examples
 #' adresy_vyskov <- load_RUIAN_settlement("592889", layer = "adresni mista")
-
-load_RUIAN_settlement <- function(id, layer = "obec", WGS84 = FALSE){
-
+load_RUIAN_settlement <- function(id, layer = "obec", WGS84 = FALSE) {
 
   # verify and preprocess inputs ----------------------------------------------------------------
-
 
   if (!is.character(id)) {
     stop("Variable id must be a character.")
@@ -80,7 +78,7 @@ load_RUIAN_settlement <- function(id, layer = "obec", WGS84 = FALSE){
     layer == "stavebni objekty" ~ "SO_B.shp",
     layer == "SO_B" ~ "SO_B.shp",
     # UL_B is always empty
-    #layer == "UL_B" ~ "UL_B.shp",
+    # layer == "UL_B" ~ "UL_B.shp",
     layer == "ulice" ~ "UL_L.shp",
     layer == "UL_L" ~ "UL_L.shp",
     layer == "volebni okrsky" ~ "VO_P.shp",
@@ -95,10 +93,11 @@ load_RUIAN_settlement <- function(id, layer = "obec", WGS84 = FALSE){
   )
 
   if (is.na(shp_name)) {
-    stop(glue::glue("Uknown layer name (or alias) - {layer}. Please look into documentation, ",
-                    "for allowed layer names."))
+    stop(glue::glue(
+      "Uknown layer name (or alias) - {layer}. Please look into documentation, ",
+      "for allowed layer names."
+    ))
   }
-
 
   # download and select the data ----------------------------------------------------------------
 
@@ -108,7 +107,6 @@ load_RUIAN_settlement <- function(id, layer = "obec", WGS84 = FALSE){
   ruian_file <- file.path(dir, glue::glue("{id}.zip"))
 
   if (!file.exists(ruian_file)) {
-
     download.file(url, ruian_file)
   }
 
@@ -117,15 +115,17 @@ load_RUIAN_settlement <- function(id, layer = "obec", WGS84 = FALSE){
   shp_file <- file.path(dir, id, shp_name)
 
   if (!file.exists(shp_file)) {
-    stop(glue::glue("There is no layer {layer} for settlement with id {id}. ",
-                    "Not all settlements have necessarily all the layers."))
+    stop(glue::glue(
+      "There is no layer {layer} for settlement with id {id}. ",
+      "Not all settlements have necessarily all the layers."
+    ))
   }
 
-
   data <- sf::st_read(shp_file,
-                      stringsAsFactors = FALSE,
-                      options = "ENCODING=Windows-1250",
-                      quiet = TRUE)
+    stringsAsFactors = FALSE,
+    options = "ENCODING=Windows-1250",
+    quiet = TRUE
+  )
 
   if (WGS84) {
     data <- data %>%
@@ -137,16 +137,32 @@ load_RUIAN_settlement <- function(id, layer = "obec", WGS84 = FALSE){
 
   if (layer == "adresni mista") {
 
-    url_adresni_mista <- glue::glue("http://vdp.cuzk.cz/vymenny_format/csv/20181130_OB_{id}_ADR.csv.gz")
+    url_adresni_mista <- glue::glue(
+      "http://vdp.cuzk.cz/vymenny_format/csv/20181130_OB_{id}_ADR.csv.gz"
+      )
 
-    adresni_mista <- readr::read_delim(url_adresni_mista,
-                                       ";", locale = readr::locale(encoding = "Windows-1250")) %>%
-      janitor::clean_names() %>%
-      dplyr::mutate(kod_adm = as.character(kod_adm)) %>%
-      dplyr::select(-kod_casti_obce, -kod_ulice)
+    if (curl::curl_fetch_memory(url_adresni_mista)$status_code == 200) {
 
-    data <- data %>%
-      dplyr::left_join(adresni_mista, by = c("ADRM_KOD" = "kod_adm"))
+      adresni_mista <- readr::read_delim(url_adresni_mista,
+                                         ";",
+                                         locale = readr::locale(encoding = "Windows-1250"),
+                                         col_types = cols()
+      ) %>%
+        janitor::clean_names() %>%
+        dplyr::mutate(kod_adm = as.character(kod_adm)) %>%
+        dplyr::select(-kod_casti_obce, -kod_ulice)
+
+      if (("psc" %in% names(data))) {
+        adresni_mista <- adresni_mista %>%
+          dplyr::select(-psc)
+      }else{
+        adresni_mista <- adresni_mista %>%
+          dplyr::mutate(psc = as.character(psc))
+      }
+
+      data <- data %>%
+        dplyr::left_join(adresni_mista, by = c("adrm_kod" = "kod_adm"))
+    }
   }
 
   data
