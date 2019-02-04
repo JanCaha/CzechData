@@ -118,7 +118,7 @@ load_cadastral_territory <- function(id, layer = "katastralni uzemi", WGS84 = FA
   ku_file <- file.path(dir, glue::glue("{id}.zip"))
 
   if (!file.exists(ku_file)) {
-    download.file(url, ku_file)
+    utils::download.file(url, ku_file, quiet = TRUE)
   }
 
   unzip(ku_file, exdir = dir)

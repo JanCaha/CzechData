@@ -9,7 +9,9 @@
   ruian_file <- file.path(temp_dir, "RUIAN.zip")
 
   if (!file.exists(ruian_file)) {
-    utils::download.file("http://services.cuzk.cz/shp/stat/epsg-5514/1.zip", ruian_file)
+    utils::download.file("http://services.cuzk.cz/shp/stat/epsg-5514/1.zip",
+                         ruian_file,
+                         quiet = TRUE)
   }
 
   utils::unzip(ruian_file, exdir = temp_dir)

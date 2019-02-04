@@ -37,7 +37,7 @@
 #'
 #' @importFrom glue glue
 #' @importFrom stringr str_detect
-#' @importFrom utils download.file unzip
+#' @importFrom utils unzip
 #' @importFrom dplyr case_when
 #' @importFrom sf st_read st_transform
 #' @importFrom janitor clean_names

@@ -29,6 +29,7 @@
 #' @importFrom glue glue
 #' @importFrom readr read_csv locale
 #' @importFrom janitor clean_names
+#' @importFrom utils download.file
 #'
 #' @examples
 #' sldb <- load_SLDB_2011(type = "obyvatelstvo")
@@ -48,7 +49,7 @@ load_SLDB_2011 <- function(type = "obyvatelstvo", load_names = TRUE) {
   sldb_file_zip <- file.path(temp_dir, glue::glue("{type}.zip"))
 
   if (!file.exists(sldb_file_zip)) {
-    download.file(type_info$url[index], sldb_file_zip)
+    utils::download.file(type_info$url[index], sldb_file_zip, quiet = TRUE)
   }
 
   sldb_file <- unzip(sldb_file_zip, exdir = temp_dir)

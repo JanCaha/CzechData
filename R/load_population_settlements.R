@@ -21,7 +21,7 @@
 #' @examples
 #' # population for all years
 #' population <- load_population_settlements()
-#' 
+#'
 #' # population for year 2015
 #' population_2015 <- load_population_settlements(year = 2015)
 load_population_settlements <- function(year = NA) {
@@ -49,7 +49,8 @@ load_population_settlements <- function(year = NA) {
   if (!file.exists(obyvatelstvo_file)) {
     utils::download.file(
       "https://www.czso.cz/documents/62353418/74123173/130149-18data051818.zip",
-      obyvatelstvo_file
+      obyvatelstvo_file,
+      quiet = TRUE
     )
   }
 

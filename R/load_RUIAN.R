@@ -107,7 +107,7 @@ load_RUIAN_settlement <- function(id, layer = "obec", WGS84 = FALSE) {
   ruian_file <- file.path(dir, glue::glue("{id}.zip"))
 
   if (!file.exists(ruian_file)) {
-    download.file(url, ruian_file)
+    utils::download.file(url, ruian_file, quiet = TRUE)
   }
 
   unzip(ruian_file, exdir = dir)
