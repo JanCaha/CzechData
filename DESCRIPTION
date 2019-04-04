@@ -1,7 +1,7 @@
 Package: CzechData
 Title: Download variaous datasets (including spatial data) for
     Czech Republic
-Version: 0.1.8
+Version: 0.2.0
 Authors@R: 
     person(given = "Jan",
            family = "Caha",
@@ -24,7 +24,9 @@ Imports:
     utils,
     tibble (>= 2.0.1),
     jsonlite (>= 1.6),
-    lubridate (>= 1.7.4)
+    lubridate (>= 1.7.4),
+    purrr (>= 0.3.2),
+    rlang (>= 0.3.3)
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
@@ -36,5 +38,7 @@ Suggests:
     leaflet (>= 2.0.2),
     RColorBrewer (>= 1.1.2),
     htmltools (>= 0.3.6),
-    rmapshaper (>= 0.4.1)
+    rmapshaper (>= 0.4.1),
+    htmlwidgets (>= 1.3),
+    tidyverse (>= 1.2.1)
 VignetteBuilder: knitr
