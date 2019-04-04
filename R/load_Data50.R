@@ -81,7 +81,7 @@
 #'
 #' @importFrom glue glue
 #' @importFrom utils data download.file unzip
-#' @importFrom sf st_read st_transform
+#' @importFrom sf st_read st_transform st_crs
 #'
 #' @export
 #'
@@ -123,6 +123,8 @@ load_Data50 <- function(layer, WGS84 = FALSE){
   data <- sf::st_read(shp_file,
                       stringsAsFactors = FALSE,
                       quiet = TRUE)
+
+  suppressWarnings(sf::st_crs(data) <- 5514)
 
   if (WGS84) {
     data <- data %>%
