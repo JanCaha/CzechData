@@ -30,9 +30,12 @@
 #' @importFrom readr read_csv locale
 #' @importFrom janitor clean_names
 #' @importFrom utils download.file
+#' @importFrom rlang .data
 #'
 #' @examples
-#' sldb <- load_SLDB_2011(type = "obyvatelstvo")
+#' \dontrun{
+#'     sldb <- load_SLDB_2011(type = "obyvatelstvo")
+#' }
 load_SLDB_2011 <- function(type = "obyvatelstvo", load_names = TRUE) {
   type_info <- .sldb_type_info()
 
@@ -55,7 +58,7 @@ load_SLDB_2011 <- function(type = "obyvatelstvo", load_names = TRUE) {
   sldb_file <- unzip(sldb_file_zip, exdir = temp_dir)
 
   data <- readr::read_csv(sldb_file, locale = readr::locale(encoding = "Windows-1250")) %>%
-    mutate(uzkod = as.character(uzkod))
+    mutate(uzkod = as.character(.data$uzkod))
 
   if (load_names) {
     col_names <- load_SLDB_2011_col_explanations(type)[[2]]
@@ -75,6 +78,7 @@ load_SLDB_2011 <- function(type = "obyvatelstvo", load_names = TRUE) {
 #' @importFrom janitor clean_names
 #' @importFrom dplyr mutate
 #' @importFrom stringr str_to_lower
+#' @importFrom rlang .data
 #'
 #' @export
 load_SLDB_2011_col_explanations <- function(type = "obyvatelstvo") {
@@ -95,7 +99,7 @@ load_SLDB_2011_col_explanations <- function(type = "obyvatelstvo") {
     range = type_info$range[index]
   ) %>%
     janitor::clean_names() %>%
-    dplyr::mutate(polozka = stringr::str_to_lower(polozka))
+    dplyr::mutate(polozka = stringr::str_to_lower(.data$polozka))
 }
 
 

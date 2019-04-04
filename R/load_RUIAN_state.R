@@ -43,7 +43,9 @@
 #' @importFrom janitor clean_names
 #'
 #' @examples
-#' obce_CR <- load_RUIAN_state(layer = "obce")
+#' \dontrun{
+#'     obce_CR <- load_RUIAN_state(layer = "obce")
+#' }
 load_RUIAN_state <- function(layer = "stat", WGS84 = FALSE) {
   shp_name <- dplyr::case_when(
     layer == "katastralni uzemi" ~ "KATUZE_P.shp",

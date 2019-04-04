@@ -26,11 +26,14 @@
 #'
 #' @importFrom glue glue glue_collapse
 #' @importFrom dplyr case_when mutate filter select
-#' @importFrom readr read_csv
+#' @importFrom readr read_csv cols
 #' @importFrom lubridate year
+#' @importFrom rlang .data
 #'
 #' @examples
-#' population_age <- load_population_age(area_type = "okresy")
+#' \dontrun{
+#'     population_age <- load_population_age(area_type = "okresy")
+#' }
 load_population_age <- function(year = NA, area_type = NA) {
   area_types <- c("okresy", "kraje", "republika")
 
@@ -67,24 +70,24 @@ load_population_age <- function(year = NA, area_type = NA) {
   )
 
   data <- readr::read_csv("https://www.czso.cz/documents/62353418/83879838/130142-18data051818.csv",
-    col_types = cols()
+    col_types = readr::cols()
   )
 
   data <- data %>%
-    dplyr::mutate(rok = lubridate::year(casref_do))
+    dplyr::mutate(rok = lubridate::year(.data$casref_do))
 
   if (!is.na(year_valid)) {
     data <- data %>%
-      dplyr::filter(rok == year)
+      dplyr::filter(.data$rok == year)
   }
 
   if (!is.na(area_type)) {
     data <- data %>%
-      dplyr::filter(vuzemi_cis == area_id)
+      dplyr::filter(.data$vuzemi_cis == area_id)
   }
 
   data %>%
-    dplyr::select(-rok)
+    dplyr::select(-.data$rok)
 }
 
 #' @describeIn load_population_age Load description for columns

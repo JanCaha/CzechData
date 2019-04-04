@@ -46,5 +46,7 @@ More detailed information about data can be found at the provider's website
 }
 
 \examples{
-obce_CR <- load_RUIAN_state(layer = "obce")
+\dontrun{
+    obce_CR <- load_RUIAN_state(layer = "obce")
+}
 }

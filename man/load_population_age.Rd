@@ -44,5 +44,7 @@ More detailed information about data can be found at the provider's website
 }
 
 \examples{
-population_age <- load_population_age(area_type = "okresy")
+\dontrun{
+    population_age <- load_population_age(area_type = "okresy")
+}
 }

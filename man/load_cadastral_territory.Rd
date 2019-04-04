@@ -59,5 +59,7 @@ More detailed information about data can be found at the provider's website
 }
 
 \examples{
-parcely_vyskov <- load_cadastral_territory("788571", layer = "parcely")
+\dontrun{
+    parcely_vyskov <- load_cadastral_territory("788571", layer = "parcely")
+}
 }

@@ -15,15 +15,18 @@
 #' @export
 #'
 #' @importFrom utils download.file unzip
-#' @importFrom readr read_csv
+#' @importFrom readr read_csv cols
 #' @importFrom glue glue
+#' @importFrom rlang .data
 #'
 #' @examples
-#' # population for all years
-#' population <- load_population_settlements()
+#' \dontrun{
+#'     # population for all years
+#'     population <- load_population_settlements()
 #'
-#' # population for year 2015
-#' population_2015 <- load_population_settlements(year = 2015)
+#'     # population for year 2015
+#'     population_2015 <- load_population_settlements(year = 2015)
+#' }
 load_population_settlements <- function(year = NA) {
   year_valid <- FALSE
 
@@ -56,11 +59,11 @@ load_population_settlements <- function(year = NA) {
 
   obyvatelstvo_file <- utils::unzip(obyvatelstvo_file, exdir = temp_dir)
 
-  obyvatelstvo <- readr::read_csv(obyvatelstvo_file, col_types = cols())
+  obyvatelstvo <- readr::read_csv(obyvatelstvo_file, col_types = readr::cols())
 
   if (year_valid) {
     obyvatelstvo <- obyvatelstvo %>%
-      filter(rok == year)
+      filter(.data$rok == year)
   }
 
   obyvatelstvo

@@ -31,19 +31,25 @@ library(sf)
 library(CzechData)
 library(leaflet)
 library(RColorBrewer)
-library(htmltools)
+library(htmlwidgets)
 library(rmapshaper)
 ```
 
 ```{r}
 data(obce)
-data(katastralni_uzemi)
+data(okresy)
 ```
 
 ```{r}
-obce %>% 
-  top_n(100) %>%
-  datatable()
+id_okresy_Brno <- okresy %>% 
+  filter(str_detect(nazev, "Brno")) %>% 
+  pull(lau1_kod)
+
+obce_obce <- obce %>% 
+  filter(lau1_kod %in% id_okresy_Brno) %>% 
+  datatable(options = list(scrollX = TRUE))
+
+# saveWidget(o, file = "tabulka.html", selfcontained = FALSE)
 ```
 
 ```{r}
@@ -59,7 +65,7 @@ volebni_okrsky <- volebni_okrsky %>%
   select(cislo) %>% 
   st_transform(4326) 
 
-volebni_okrsky <- ms_simplify(volebni_okrsky, keep = 0.2)
+volebni_okrsky <- ms_simplify(volebni_okrsky, keep = 0.1)
 
 names(st_geometry(volebni_okrsky)) <- NULL
 ```
@@ -75,10 +81,7 @@ l <- leaflet(data = volebni_okrsky, width = "100%") %>%
               highlight = highlightOptions(weight = 3,
                                            bringToFront = TRUE),
               label = labels)
-```
 
-```{r}
-library(htmlwidgets)
-saveWidget(l, file = "l.html", selfcontained = FALSE)
+# saveWidget(l, file = "mapa.html", selfcontained = FALSE)
 ```
 

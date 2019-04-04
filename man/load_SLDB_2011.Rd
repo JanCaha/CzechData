@@ -46,5 +46,7 @@ More detailed information about data can be found at the provider's website
 }
 
 \examples{
-sldb <- load_SLDB_2011(type = "obyvatelstvo")
+\dontrun{
+    sldb <- load_SLDB_2011(type = "obyvatelstvo")
+}
 }

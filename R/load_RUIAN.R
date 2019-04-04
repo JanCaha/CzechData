@@ -32,7 +32,7 @@
 #'
 #' The values of \code{id} follow general pattern of six number with first number being 5.
 #'
-#' @return \code{data.frame} with spatail objects (\code{\link[sf]{sf}}) of the specified layer
+#' @return \code{data.frame} with spatial objects (\code{\link[sf]{sf}}) of the specified layer
 #'
 #' @section Information about dataset:
 #'  More detailed information about data can be found at the provider's website
@@ -47,9 +47,13 @@
 #' @importFrom sf st_read st_transform
 #' @importFrom janitor clean_names
 #' @importFrom curl curl_fetch_memory
+#' @importFrom readr read_delim cols
+#' @importFrom rlang .data
 #'
 #' @examples
-#' adresy_vyskov <- load_RUIAN_settlement("592889", layer = "adresni mista")
+#' \dontrun{
+#'     adresy_vyskov <- load_RUIAN_settlement("592889", layer = "adresni mista")
+#' }
 load_RUIAN_settlement <- function(id, layer = "obec", WGS84 = FALSE) {
 
   # verify and preprocess inputs ----------------------------------------------------------------
@@ -146,18 +150,18 @@ load_RUIAN_settlement <- function(id, layer = "obec", WGS84 = FALSE) {
       adresni_mista <- readr::read_delim(url_adresni_mista,
                                          ";",
                                          locale = readr::locale(encoding = "Windows-1250"),
-                                         col_types = cols()
+                                         col_types = readr::cols()
       ) %>%
         janitor::clean_names() %>%
-        dplyr::mutate(kod_adm = as.character(kod_adm)) %>%
-        dplyr::select(-kod_casti_obce, -kod_ulice)
+        dplyr::mutate(kod_adm = as.character(.data$kod_adm)) %>%
+        dplyr::select(-.data$kod_casti_obce, -.data$kod_ulice)
 
       if (("psc" %in% names(data))) {
         adresni_mista <- adresni_mista %>%
-          dplyr::select(-psc)
+          dplyr::select(-.data$psc)
       }else{
         adresni_mista <- adresni_mista %>%
-          dplyr::mutate(psc = as.character(psc))
+          dplyr::mutate(psc = as.character(.data$psc))
       }
 
       data <- data %>%

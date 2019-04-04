@@ -15,7 +15,7 @@ Default value is \code{"obec"}}
 \item{WGS84}{convert data to WGS-84 coordinate system? Default \code{FALSE}.}
 }
 \value{
-\code{data.frame} with spatail objects (\code{\link[sf]{sf}}) of the specified layer
+\code{data.frame} with spatial objects (\code{\link[sf]{sf}}) of the specified layer
 }
 \description{
 Extract specific layer, in form of spatial data, from RUIAN for given settlement in
@@ -52,5 +52,7 @@ More detailed information about data can be found at the provider's website
 }
 
 \examples{
-adresy_vyskov <- load_RUIAN_settlement("592889", layer = "adresni mista")
+\dontrun{
+    adresy_vyskov <- load_RUIAN_settlement("592889", layer = "adresni mista")
+}
 }

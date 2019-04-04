@@ -33,9 +33,11 @@ More detailed information about data can be found at the provider's website
 }
 
 \examples{
-# population for all years
-population <- load_population_settlements()
+\dontrun{
+    # population for all years
+    population <- load_population_settlements()
 
-# population for year 2015
-population_2015 <- load_population_settlements(year = 2015)
+    # population for year 2015
+    population_2015 <- load_population_settlements(year = 2015)
+}
 }
