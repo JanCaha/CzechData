@@ -38,9 +38,9 @@ population_2011_kraje <- load_population_age(year = 2011, area_type = "kraje")
 rivers <- load_Data50(layer = "VodniTok")
 folder_communications <- save_Data50("~/data/coomunications", type = "komunikace")
 
-# load or save Data50
+# load or save Data200
 waterfalls <- load_Data200(layer = "Vodopad")
-folder_water_objects <- save_Data50("~/data/coomunications", type = "Vodopad")
+folder_water_objects <- save_Data200("~/data/water", type = "Vodopad")
 ```
 
 ## Data sources

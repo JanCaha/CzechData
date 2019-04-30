@@ -154,7 +154,7 @@ load_Data200 <- function(layer, WGS84 = FALSE){
 #'
 #' @examples
 #' \dontrun{
-#'     folder_water_objects <- save_Data50("~/data/coomunications", type = "Vodopad")
+#'     folder_water_objects <- save_Data200("~/data/water", type = "Vodopad")
 #' }
 save_Data200 <- function(path, layer = NULL, type = NULL){
 
