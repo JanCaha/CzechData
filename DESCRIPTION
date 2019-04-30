@@ -1,5 +1,5 @@
 Package: CzechData
-Title: Download variaous datasets (including spatial data) for
+Title: Download various datasets (including spatial data) for the
     Czech Republic
 Version: 0.2.2
 Authors@R: 
@@ -7,7 +7,7 @@ Authors@R:
            family = "Caha",
            role = c("aut", "cre"),
            email = "jan.caha@outlook.com")
-Description: Download variaous datasets (including spatial data) for Czech Republic.
+Description: Download various datasets (including spatial data) for the Czech Republic.
 License: MIT + file LICENSE
 Depends:
     R (>= 3.0),
