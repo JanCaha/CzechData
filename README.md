@@ -37,6 +37,10 @@ population_2011_kraje <- load_population_age(year = 2011, area_type = "kraje")
 # load or save Data50
 rivers <- load_Data50(layer = "VodniTok")
 folder_communications <- save_Data50("~/data/coomunications", type = "komunikace")
+
+# load or save Data50
+waterfalls <- load_Data200(layer = "Vodopad")
+folder_water_objects <- save_Data50("~/data/coomunications", type = "Vodopad")
 ```
 
 ## Data sources
@@ -50,7 +54,7 @@ Currently implemented data sources are:
 * Cadastral map for cadastral territory [example here](https://data.gov.cz/datov%C3%A1-sada?iri=https%3A%2F%2Fdata.gov.cz%2Fzdroj%2Fdatov%C3%A1-sada%2Fhttp---atom.cuzk.cz-api-3-action-package_show-id-cz-00025712-cuzk_km-ku-shp_600016)
 * SLDB (census) subsections [individual datasets here](https://data.gov.cz/datov%C3%A9-sady?dotaz=SLDB) 
 * yearly data about population by sex [for settlements](https://data.gov.cz/datov%C3%A1-sada?iri=https%3A%2F%2Fdata.gov.cz%2Fzdroj%2Fdatov%C3%A1-sada%2Fhttp---vdb.czso.cz-pll-eweb-package_show-id-130149), [by age categories](https://data.gov.cz/datov%C3%A1-sada?iri=https%3A%2F%2Fdata.gov.cz%2Fzdroj%2Fdatov%C3%A1-sada%2Fhttp---vdb.czso.cz-pll-eweb-package_show-id-130142)
-* [Data50](https://geoportal.cuzk.cz/(S(2ugpect2xdu0ksih3crtpxd0))/Default.aspx?lng=CZ&mode=TextMeta&text=dSady_mapyData50&side=mapy_data50&menu=2290&head_tab=sekce-02-gp)
+* [Data50 and Data200](https://geoportal.cuzk.cz/(S(2ugpect2xdu0ksih3crtpxd0))/Default.aspx?lng=CZ&mode=TextMeta&text=dSady_mapyData50&side=mapy_data50&menu=2290&head_tab=sekce-02-gp)
 
 ### Details about datasets
 

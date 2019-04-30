@@ -8,7 +8,7 @@ load_RUIAN_state(layer = "stat", WGS84 = FALSE)
 }
 \arguments{
 \item{layer}{identification of data to extract as character, see details.
-Default value is \code{"stĂˇt"}}
+Default value is \code{"stát"}}
 
 \item{WGS84}{convert data to WGS-84 coordinate system? Default \code{FALSE}.}
 }
@@ -32,7 +32,7 @@ name:
 \item \code{"PRARES_P"}
 \item \code{"REGION_P"} (\code{"regiony"})
 \item \code{"STATY_P"} (\code{"stat"})
-\item \code{"STU_P"} (\code{"stavebni Ăşrady"})
+\item \code{"STU_P"} (\code{"stavebni úrady"})
 \item \code{"VO_P"} (\code{"volebni okrsky"})
 \item \code{"VUSC_P"} (\code{"kraje"})
 }

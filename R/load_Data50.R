@@ -232,21 +232,24 @@ save_Data50 <- function(path, layer = NULL, type = NULL){
   }
 }
 
-#' Loads general info about Data50 dataset
+#' Loads general info about Data50 or Data200 dataset
 #'
-#' Some basic description of the dataset Data50. Most importantly names of layers and size of files
-#' that need to be downloaded.
+#' Some basic description of the dataset Data50 or Data200. Most importantly names of layers and sizes
+#' of files that need to be downloaded.
 #'
 #' @param english_names change the names of the columns to English. Default \code{FALSE}.
 #'
 #' @return
 #' \code{data.frame} with description of layers.
 #'
+#' @describeIn load_Data50 Load information about layers in Data50.
+#'
 #' @export
 #'
 #' @examples
 #' \dontrun{
 #'     info <- load_Data50_info(english_names = TRUE)
+#'     info <- load_Data200_info(english_names = TRUE)
 #'}
 load_Data50_info <- function(english_names = FALSE){
   d <- data50layers
@@ -260,16 +263,20 @@ load_Data50_info <- function(english_names = FALSE){
   d
 }
 
-#' Generate attribution for dataset Data50
+#' Generate attribution for dataset Data50 od Data200
 #'
 #' Create citation string as per terms of use (\url{https://geoportal.cuzk.cz/Dokumenty/Podminky_EN.pdf}).
 #' @importFrom glue glue
 #'
 #' @return \code{character} with citation.
+#'
+#' @describeIn generate_Data50_citation Generate citation for Data50 datasource.
+#'
 #' @export
 #'
 #' @examples
 #' generate_Data50_citation()
+#' generate_Data200_citation()
 #'
 generate_Data50_citation <- function(){
 

@@ -1,5 +1,8 @@
 library(tidyverse)
 
+
+# data50 --------------------------------------------------------------------------------------
+
 layers_sidla = dplyr::tibble(
   nazev = c("BlokBudov", "Budova", "Hrad", "Hrbitov", "ChatovaKolonie", "Kostel", "LyzarskyMustek", "RozhlednaVysilac", "Rozvalina", "Stadion", "UsazovaciNadrzOdkaliste", "VetrnyMotor", "VezovitaStavba", "VodojemVezovy", "Zamek", "Zricenina"),
   shpName = c("BlokBudov.shp", "Budova.shp", "Hrad.shp", "Hrbitov.shp", "ChatovaKolonie.shp", "Kostel.shp", "LyzarskyMustek.shp", "RozhlednaVysilac.shp", "Rozvalina.shp", "Stadion.shp", "UsazovaciNadrzOdkaliste.shp", "VetrnyMotor.shp", "VezovitaStavba.shp", "VodojemVezovy.shp", "Zamek.shp", "Zricenina.shp"),
@@ -69,5 +72,82 @@ data50layers <- bind_rows(layers_sidla, layers_komunikace, layers_produktovody,
                     layers_teren, layers_popis)
 
 
+# data200 -------------------------------------------------------------------------------------
 
-usethis::use_data(data50layers, overwrite = TRUE, internal = TRUE)
+layers_hranice = dplyr::tibble(
+  nazev = c("AdministrativniHraniceLinie", "AdministrativniUzemiCentroid", "AdministrativniUzemiUTJ", "AdministrativniUzemiObce", "AdministrativniUzemiOkresy", "AdministrativniUzemiKraje"),
+  shpName = c("PolbndL.shp", "PolbndP.shp", "PolbndDA.shp", "PolbndMunDA.shp", "PolbndDistDA.shp", "PolbndRegDA.shp"),
+  url = "http://geoportal.cuzk.cz/ZAKAZKY/Data200/BND.zip",
+  kategorie = "Hranice",
+  slozka = "BND",
+  size = "32 MB"
+)
+
+layers_vodstvo = dplyr::tibble(
+  nazev = c("HrazJezNad50m", "HrazJezPod50m", "JezeroRybnikVodniNadrz", "VodniTokPod50m", "VodniTokNad50m", "Ostrovy", "MokrinaBazina", "Vodopad", "Prameny1", "Prameny2"),
+  shpName = c("DamL.shp", "DamC.shp", "LakeresA.shp", "WatrcrsA.shp", "WatrcrsL.shp", "IslandA.shp", "SwampA.shp", "RapidsC.shp", "SpringC.shp", "SpringP.shp"),
+  url = "http://geoportal.cuzk.cz/ZAKAZKY/Data200/HYDRO.zip",
+  kategorie = "Vodstvo",
+  slozka = "HYDRO",
+  size = "7 MB"
+)
+
+layers_popis = dplyr::tibble(
+  nazev = c("OrografickeNazvy", "GeomorfologickeOblasti", "GeomorfologickeCelky", "GeomorfologickePodcelky"),
+  shpName = c("GNameT.shp", "GName5A.shp", "GName6A.shp", "GName7A.shp"),
+  url = "http://geoportal.cuzk.cz/ZAKAZKY/Data200/NAME.zip",
+  kategorie = "Popis",
+  slozka = "NAME",
+  size = "8 MB"
+)
+
+layers_ruzne = dplyr::tibble(
+  nazev = c("NarodniParkPrirodniRezervace", "Produktovod", "Vysilac", "VyznamneObjekty", "ProduktovodVyznamneBody", "Věž", "DulLom", "Budova", "ElektrickeVedeni", "Elektrarna"),
+  shpName = c("ParkA.shp", "IndprodP.shp", "CtowerP.shp", "LandmrkP.shp", "IndprodL.shp", "TowerP.shp", "ExtractP.shp", "BuildP.shp", "PowerL.shp", "PowerP.shp"),
+  url = "http://geoportal.cuzk.cz/ZAKAZKY/Data200/MISC.zip",
+  kategorie = "RuzneObjekty",
+  slozka = "MISC",
+  size = "1 MB"
+)
+
+layers_sidla = dplyr::tibble(
+  nazev = c("ObceBody", "ObcePolygony"),
+  shpName = c("BuiltupP.shp", "BuiltupA.shp"),
+  url = "http://geoportal.cuzk.cz/ZAKAZKY/Data200/POP.zip",
+  kategorie = "Sidla",
+  slozka = "POP",
+  size = "10 MB"
+)
+
+layers_doprava = dplyr::tibble(
+  nazev = c("Privoz", "PrivozStanice", "ZeleznicniPrejezd", "Heliport", "LanovaDraha", "DalnicniOdpocivka", "KrizovatkaMimourovnova", "LetisteNad40Ha", "LetisteNad40HaBod", "ZelezniceZastavky", "LetistePod40Ha", "LodniPristav", "PristavaciDraha", "Zeleznice", "Silnice"),
+  shpName = c("FerryL.shp", "FerryC.shp", "LevelcC.shp", "HeliP.shp", "CablecL.shp", "RestC.shp", "IntercC.shp", "AirfldA.shp", "AirfldC.shp", "RailrdC.shp", "AirfldP.shp", "HarborP.shp", "RunwayL.shp", "RailrdL.shp", "RoadL.shp"),
+  url = "http://geoportal.cuzk.cz/ZAKAZKY/Data200/TRANS.zip",
+  kategorie = "Doprava",
+  slozka = "TRANS",
+  size = "10 MB"
+)
+
+layers_vegetace = dplyr::tibble(
+  nazev = c("LesyPlantaze"),
+  shpName = c("VegA.shp"),
+  url = "http://geoportal.cuzk.cz/ZAKAZKY/Data200/VEG.zip",
+  kategorie = "Vegetace",
+  slozka = "VEG",
+  size = "7 MB"
+)
+
+layers_relief = dplyr::tibble(
+  nazev = c("KotovaneBody", "Vrstevnice", "SkalniStenaSraz", "Jeskyne" , "DMR", "DMRShaded"),
+  shpName = c("ElevP.shp", "ElevL.shp", "PhysL.shp", "PhysP.shp", "DigterR.tif", "HilshaR.tif"),
+  url = "http://geoportal.cuzk.cz/ZAKAZKY/Data200/REL.zip",
+  kategorie = "Relief",
+  slozka = "REL",
+  size = "231 MB"
+)
+
+data200layers <- bind_rows(layers_hranice, layers_vodstvo, layers_popis,
+                           layers_ruzne, layers_sidla, layers_doprava,
+                           layers_vegetace, layers_relief)
+
+usethis::use_data(data50layers, data200layers, overwrite = TRUE, internal = TRUE)

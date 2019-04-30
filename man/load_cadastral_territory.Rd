@@ -11,7 +11,7 @@ load_cadastral_territory(id, layer = "katastralni uzemi",
 \item{id}{id of cadastral territory as character}
 
 \item{layer}{identification of data to extract as character, see details.
-Default value is \code{"katastralni ĂşzemĂ­"}}
+Default value is \code{"katastralni území"}}
 
 \item{WGS84}{convert data to WGS-84 coordinate system? Default \code{FALSE}.}
 }
