@@ -11,7 +11,7 @@ load_population_age_col_explanations()
 }
 \arguments{
 \item{year}{for which the data should be obtained. Default value is \code{NA}, which means
-all the years. Values from range (including both limits) 2010 - 2017 are accepted.}
+all the years. Values from range (including both limits) 2010 - 2018 are accepted.}
 
 \item{area_type}{type of are for which the data should be obtained. Default value is \code{NA},
 which means all areas. Accepted values are in Description.}
@@ -20,7 +20,7 @@ which means all areas. Accepted values are in Description.}
 data.frame containg the requested data
 }
 \description{
-Load population by sex and five-year age categories for years 2010 to 2017.
+Load population by sex and five-year age categories for years 2010 to 2018.
 }
 \details{
 The \code{area_type} can have values from following set:
