@@ -11,13 +11,13 @@ load_population_settlements_col_explanations()
 }
 \arguments{
 \item{year}{year for which the data should be obtained. Default value is \code{NA}, which means
-all the years. Values from range (including both limits) 2000 - 2017 are accepted.}
+all the years. Values from range (including both limits) 2000 - 2018 are accepted.}
 }
 \value{
 data.frame containg the requested data
 }
 \description{
-Load population by sex for settlements for each years from 2000 to 2017.
+Load population by sex for settlements for each years from 2000 to 2018.
 }
 \section{Functions}{
 \itemize{

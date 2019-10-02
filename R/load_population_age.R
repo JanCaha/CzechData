@@ -1,9 +1,9 @@
 #' Load population by age
 #'
-#' Load population by sex and five-year age categories for years 2010 to 2017.
+#' Load population by sex and five-year age categories for years 2010 to 2018.
 #'
 #' @param year for which the data should be obtained. Default value is \code{NA}, which means
-#' all the years. Values from range (including both limits) 2010 - 2017 are accepted.
+#' all the years. Values from range (including both limits) 2010 - 2018 are accepted.
 #' @param area_type type of are for which the data should be obtained. Default value is \code{NA},
 #' which means all areas. Accepted values are in Description.
 #'
@@ -50,11 +50,11 @@ load_population_age <- function(year = NA, area_type = NA) {
 
   if (!is.na(year)) {
     if (is.numeric(year)) {
-      if (2010 <= year & year <= 2017) {
+      if (2010 <= year & year <= 2018) {
         year_valid <- TRUE
       } else {
         stop(glue::glue(
-          "Year has to be from range 2010 - 2017. ",
+          "Year has to be from range 2010 - 2018. ",
           "{year} does not fall in this range."
         ))
       }
@@ -69,7 +69,7 @@ load_population_age <- function(year = NA, area_type = NA) {
     area_type == "republika" ~ 97
   )
 
-  data <- readr::read_csv("https://www.czso.cz/documents/62353418/83879838/130142-18data051818.csv",
+  data <- readr::read_csv("https://www.czso.cz/documents/62353418/92011126/130142-19data051719.csv",
     col_types = readr::cols()
   )
 
@@ -97,7 +97,7 @@ load_population_age <- function(year = NA, area_type = NA) {
 #' @export
 #'
 load_population_age_col_explanations <- function() {
-  json_file <- jsonlite::fromJSON("https://www.czso.cz/documents/62353418/83879838/130142-18schema051818.json")
+  json_file <- jsonlite::fromJSON("https://www.czso.cz/documents/62353418/92011126/130142-19schema051719.json")
 
   data <- json_file$tableSchema$columns[, c(2, 3)]
 
