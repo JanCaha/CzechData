@@ -8,12 +8,14 @@ addons:
     sources:
       - sourceline: 'ppa:ubuntugis/ubuntugis-unstable'
     packages:
+      - libv8-3.14-dev
+      - libjq-dev
       - libudunits2-dev
       - libproj-dev
       - libgeos-dev
       - libspatialite-dev
       - libgdal-dev
-
+      - libjson-c-dev
 jobs:
   before_cache:
     - Rscript -e 'remotes::install_cran("pkgdown")'
