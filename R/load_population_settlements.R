@@ -1,9 +1,9 @@
 #' Load populations from settlements
 #'
-#' Load population by sex for settlements for each years from 2000 to 2017.
+#' Load population by sex for settlements for each years from 2000 to 2018.
 #'
 #' @param year year for which the data should be obtained. Default value is \code{NA}, which means
-#' all the years. Values from range (including both limits) 2000 - 2017 are accepted.
+#' all the years. Values from range (including both limits) 2000 - 2018 are accepted.
 #'
 #' @describeIn load_population_settlements Load the data
 #'
@@ -32,11 +32,11 @@ load_population_settlements <- function(year = NA) {
 
   if (!is.na(year)) {
     if (is.numeric(year)) {
-      if (2000 <= year & year <= 2017) {
+      if (2000 <= year & year <= 2018) {
         year_valid <- TRUE
       } else {
         stop(glue::glue(
-          "Year has to be from range 2000 - 2017. ",
+          "Year has to be from range 2000 - 2018. ",
           "{year} does not fall in this range."
         ))
       }
@@ -51,7 +51,7 @@ load_population_settlements <- function(year = NA) {
 
   if (!file.exists(obyvatelstvo_file)) {
     utils::download.file(
-      "https://www.czso.cz/documents/62353418/74123173/130149-18data051818.zip",
+      "https://www.czso.cz/documents/62353418/92010970/130149-19data051719.zip",
       obyvatelstvo_file,
       quiet = TRUE
     )
@@ -76,7 +76,7 @@ load_population_settlements <- function(year = NA) {
 #' @export
 #'
 load_population_settlements_col_explanations <- function() {
-  json_file <- jsonlite::fromJSON("https://www.czso.cz/documents/62353418/74123173/130149-18schema051818.json")
+  json_file <- jsonlite::fromJSON("https://www.czso.cz/documents/62353418/92010970/130149-19schema051719.json")
 
   data <- json_file$tableSchema$columns[, c(2, 3)]
 
