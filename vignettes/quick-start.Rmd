@@ -49,7 +49,7 @@ obce_obce <- obce %>%
   filter(lau1_kod %in% id_okresy_Brno) %>% 
   datatable(options = list(scrollX = TRUE))
 
-# saveWidget(o, file = "tabulka.html", selfcontained = FALSE)
+# saveWidget(obce_obce, file = "tabulka.html", selfcontained = FALSE)
 ```
 
 ```{r}
