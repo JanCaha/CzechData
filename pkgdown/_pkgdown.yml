@@ -1,0 +1,53 @@
+url: https://jancaha.github.io/czechdata
+
+home:
+  title: Download data
+
+reference:
+  - title: Datasets
+    desc:  Datasets packed within the package, most lists with codes.
+    contents:
+    - ciselnik_CSU
+    - katastralni_uzemi
+    - kraje
+    - obce
+    - okresy
+    - orp
+    - pou
+  - title: ČÚZK
+    desc: Functions related to datasets from State Administration of Land Surveying and Cadastre.
+    contents:
+    - load_Data200
+    - save_Data200
+    - load_Data200_info
+    - load_Data50
+    - save_Data50
+    - load_Data50_info
+    - generate_Data200_citation
+    - generate_Data50_citation
+    - load_RUIAN_settlement
+    - load_RUIAN_state
+    - load_cadastral_territory
+  - title: ČSÚ
+    desc: Functions related to datasets from Czech Statistical Office.
+    contents:
+    - load_SLDB_2011
+    - load_SLDB_2011_col_explanations
+    - load_population_age
+    - load_population_age_col_explanations
+    - load_population_settlements
+    - load_population_settlements_col_explanations
+
+navbar:
+  title: ~
+  type: default
+  left:
+    - text: Functions and data
+      href: reference/index.html
+    - text: Articles
+      menu:
+      #https://pkgdown.r-lib.org/reference/build_articles.html
+      - text: Quick start
+        href: articles/intro.html
+    - text: News
+      href: news/index.html
