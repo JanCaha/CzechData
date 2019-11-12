@@ -3,11 +3,14 @@
 \name{load_Data200}
 \alias{load_Data200}
 \alias{save_Data200}
+\alias{load_Data200_info}
 \title{Load or save from Data200}
 \usage{
 load_Data200(layer, WGS84 = FALSE)
 
 save_Data200(path, layer = NULL, type = NULL)
+
+load_Data200_info(english_names = FALSE)
 }
 \arguments{
 \item{layer}{identification of data to extract as character, see details.}
@@ -94,6 +97,8 @@ The \code{layer} can have values from following set, in the bracket is the name 
 \item \code{load_Data200}: Loads single dataset
 
 \item \code{save_Data200}: Download and store layer (and zipped general category) or complete category
+
+\item \code{load_Data200_info}: Load information about layers in Data200.
 }}
 
 \examples{
@@ -101,6 +106,6 @@ The \code{layer} can have values from following set, in the bracket is the name 
     waterfalls <- load_Data200(layer = "Vodopad")
 }
 \dontrun{
-    folder_water_objects <- save_Data50("~/data/coomunications", type = "Vodopad")
+    folder_water_objects <- save_Data200("~/data/water", type = "Vodopad")
 }
 }

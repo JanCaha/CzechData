@@ -253,7 +253,7 @@ save_Data200 <- function(path, layer = NULL, type = NULL){
   }
 }
 
-#' @describeIn load_Data50 Load information about layers in Data200.
+#' @describeIn load_Data200 Load information about layers in Data200.
 #' @export
 load_Data200_info <- function(english_names = FALSE){
   d <- data200layers

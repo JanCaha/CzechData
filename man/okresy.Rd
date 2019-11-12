@@ -3,7 +3,7 @@
 \docType{data}
 \name{okresy}
 \alias{okresy}
-\title{data.frame of all districts in Czech Republic}
+\title{data.frame of all districts (LAU1) in Czech Republic}
 \format{A data frame with 77 rows and 5 variables:
 \describe{
 \item{kod}{id of the district}

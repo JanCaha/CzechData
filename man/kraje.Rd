@@ -3,7 +3,7 @@
 \docType{data}
 \name{kraje}
 \alias{kraje}
-\title{data.frame of all regions in Czech Republic}
+\title{data.frame of all regions(NUTS3) in Czech Republic}
 \format{A data frame with 14 rows and 4 variables:
 \describe{
 \item{kod}{id of the region}

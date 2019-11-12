@@ -1,4 +1,4 @@
-#' data.frame of all regions in Czech Republic
+#' data.frame of all regions(NUTS3) in Czech Republic
 #'
 #' A dataset containing the names and other attributes of all 14
 #' regions in Czech Republic. The codes (every column with string kod in
