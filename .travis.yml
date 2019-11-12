@@ -3,6 +3,17 @@
 language: R
 cache: packages
 
+addons:
+   apt:
+    sources:
+      - sourceline: 'ppa:ubuntugis/ubuntugis-unstable'
+    packages:
+      - libudunits2-dev
+      - libproj-dev
+      - libgeos-dev
+      - libspatialite-dev
+      - libgdal-dev
+
 jobs:
   before_cache:
     - Rscript -e 'remotes::install_cran("pkgdown")'
