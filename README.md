@@ -1,5 +1,9 @@
 # CzechData
 
+<!-- badges: start -->
+  [![Travis build status](https://travis-ci.org/JanCaha/CzechData.svg?branch=master)](https://travis-ci.org/JanCaha/CzechData)
+  <!-- badges: end -->
+
 The aim of the package is to provide interface from R to download various data relevant to Czech Republic directly into R. The data will be classic tabular as well as other types (e.g. spatial data). 
 
 Unfortunately, it is unlikely that the data will make sense for you, unless you speak Czech or are highly familiar with Czech data sources.
@@ -16,7 +20,7 @@ remotes::install_github("JanCaha/CzechData")
 
 ```r
 # simple RUIAN data for whole state
-obce_CR <- load_RUIAN_state(layer = "obce)
+obce_CR <- load_RUIAN_state(layer = "obce")
 
 # RUIAN data for single settlement
 adresy_vyskov <- load_RUIAN_settlement("592889", layer = "adresní místa")
