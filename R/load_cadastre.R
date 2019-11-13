@@ -57,6 +57,7 @@
 #' \dontrun{
 #'     parcely_vyskov <- load_cadastral_territory("788571", layer = "parcely")
 #' }
+
 load_cadastral_territory <- function(id, layer = "katastralni uzemi", WGS84 = FALSE) {
 
 
