@@ -34,6 +34,7 @@
 #' \dontrun{
 #'     population_age <- load_population_age(area_type = "okresy")
 #' }
+
 load_population_age <- function(year = NA, area_type = NA) {
   area_types <- c("okresy", "kraje", "republika")
 
@@ -95,7 +96,7 @@ load_population_age <- function(year = NA, area_type = NA) {
 #' @importFrom jsonlite fromJSON
 #'
 #' @export
-#'
+
 load_population_age_col_explanations <- function() {
   json_file <- jsonlite::fromJSON("https://www.czso.cz/documents/62353418/92011126/130142-19schema051719.json")
 
