@@ -1,8 +1,5 @@
 # CzechData
 
-<!-- badges: start -->
-  [![Travis build status](https://travis-ci.org/JanCaha/CzechData.svg?branch=master)](https://travis-ci.org/JanCaha/CzechData)
-  <!-- badges: end -->
 
 The aim of the package is to provide interface from R to download various data relevant to Czech Republic directly into R. The data will be classic tabular as well as other types (e.g. spatial data). 
 
@@ -15,6 +12,10 @@ You can install the current version of the package from GitHub using package rem
 ``` r
 remotes::install_github("JanCaha/CzechData")
 ```
+
+## Website
+
+[Available here.](https://jancaha.github.io/CzechData/index.html)
 
 ## Example
 
