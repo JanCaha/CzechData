@@ -3,6 +3,7 @@
 # simple function that downloads large zipped RUIAN file, extracts it and returns the path to the
 #
 # unzipped folder
+
 .download_RUIAN <- function() {
 
   temp_dir <- tempdir()
