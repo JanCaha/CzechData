@@ -20,6 +20,8 @@ load_Data200_info(english_names = FALSE)
 \item{path}{\code{character} path to store the files to.}
 
 \item{type}{\code{character} type of layers to save. See details, types are listed in brackets.}
+
+\item{english_names}{change the names of the columns to English. Default \code{FALSE}.}
 }
 \value{
 \code{"load_Data200"} - \code{data.frame} with spatial objects (\code{\link[sf]{sf}}) of the specified layer.
