@@ -4,6 +4,6 @@ pkgdown_sha: 732fb5b9ccc0ef87a73dfd0772ae661a4039b2a8
 articles:
   quick-start: quick-start.html
 urls:
-  reference: https://jancaha.github.io/czechdata/reference
-  article: https://jancaha.github.io/czechdata/articles
+  reference: https://jancaha.github.io/CzechData/reference
+  article: https://jancaha.github.io/CzechData/articles
 

@@ -1,60 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://jancaha.github.io/czechdata/index.html</loc>
+    <loc>https://jancaha.github.io/CzechData/index.html</loc>
   </url>
   <url>
-    <loc>https://jancaha.github.io/czechdata/reference/ciselnik_CSU.html</loc>
+    <loc>https://jancaha.github.io/CzechData/reference/ciselnik_CSU.html</loc>
   </url>
   <url>
-    <loc>https://jancaha.github.io/czechdata/reference/generate_Data50_citation.html</loc>
+    <loc>https://jancaha.github.io/CzechData/reference/generate_Data50_citation.html</loc>
   </url>
   <url>
-    <loc>https://jancaha.github.io/czechdata/reference/katastralni_uzemi.html</loc>
+    <loc>https://jancaha.github.io/CzechData/reference/katastralni_uzemi.html</loc>
   </url>
   <url>
-    <loc>https://jancaha.github.io/czechdata/reference/kraje.html</loc>
+    <loc>https://jancaha.github.io/CzechData/reference/kraje.html</loc>
   </url>
   <url>
-    <loc>https://jancaha.github.io/czechdata/reference/load_Data200.html</loc>
+    <loc>https://jancaha.github.io/CzechData/reference/load_Data200.html</loc>
   </url>
   <url>
-    <loc>https://jancaha.github.io/czechdata/reference/load_Data50.html</loc>
+    <loc>https://jancaha.github.io/CzechData/reference/load_Data50.html</loc>
   </url>
   <url>
-    <loc>https://jancaha.github.io/czechdata/reference/load_RUIAN_settlement.html</loc>
+    <loc>https://jancaha.github.io/CzechData/reference/load_RUIAN_settlement.html</loc>
   </url>
   <url>
-    <loc>https://jancaha.github.io/czechdata/reference/load_RUIAN_state.html</loc>
+    <loc>https://jancaha.github.io/CzechData/reference/load_RUIAN_state.html</loc>
   </url>
   <url>
-    <loc>https://jancaha.github.io/czechdata/reference/load_SLDB_2011.html</loc>
+    <loc>https://jancaha.github.io/CzechData/reference/load_SLDB_2011.html</loc>
   </url>
   <url>
-    <loc>https://jancaha.github.io/czechdata/reference/load_cadastral_territory.html</loc>
+    <loc>https://jancaha.github.io/CzechData/reference/load_cadastral_territory.html</loc>
   </url>
   <url>
-    <loc>https://jancaha.github.io/czechdata/reference/load_population_age.html</loc>
+    <loc>https://jancaha.github.io/CzechData/reference/load_population_age.html</loc>
   </url>
   <url>
-    <loc>https://jancaha.github.io/czechdata/reference/load_population_settlements.html</loc>
+    <loc>https://jancaha.github.io/CzechData/reference/load_population_settlements.html</loc>
   </url>
   <url>
-    <loc>https://jancaha.github.io/czechdata/reference/obce.html</loc>
+    <loc>https://jancaha.github.io/CzechData/reference/obce.html</loc>
   </url>
   <url>
-    <loc>https://jancaha.github.io/czechdata/reference/okresy.html</loc>
+    <loc>https://jancaha.github.io/CzechData/reference/okresy.html</loc>
   </url>
   <url>
-    <loc>https://jancaha.github.io/czechdata/reference/orp.html</loc>
+    <loc>https://jancaha.github.io/CzechData/reference/orp.html</loc>
   </url>
   <url>
-    <loc>https://jancaha.github.io/czechdata/reference/pipe.html</loc>
+    <loc>https://jancaha.github.io/CzechData/reference/pipe.html</loc>
   </url>
   <url>
-    <loc>https://jancaha.github.io/czechdata/reference/pou.html</loc>
+    <loc>https://jancaha.github.io/CzechData/reference/pou.html</loc>
   </url>
   <url>
-    <loc>https://jancaha.github.io/czechdata/articles/quick-start.html</loc>
+    <loc>https://jancaha.github.io/CzechData/articles/quick-start.html</loc>
   </url>
 </urlset>
