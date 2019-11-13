@@ -20,9 +20,11 @@ addons:
       - libgdal-dev
       - libjson-c-dev
 jobs:
-  before_cache:
-    - Rscript -e 'remotes::install_cran("pkgdown")'
-  deploy:
-      provider: script
-      script: Rscript -e 'pkgdown::deploy_site_github(verbose = TRUE)'
-      skip_cleanup: true
+  include:
+    - r: release
+      before_cache:
+        - Rscript -e 'remotes::install_cran("pkgdown")'
+      deploy:
+          provider: script
+          script: Rscript -e 'pkgdown::deploy_site_github(verbose = TRUE)'
+          skip_cleanup: true
