@@ -5,3 +5,4 @@
 ^\.travis\.yml$
 ^pkgdown$
 ^docs$
+^\.github/workflows/R-CMD-check\.yaml$
