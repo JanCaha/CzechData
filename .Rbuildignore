@@ -2,7 +2,7 @@
 ^LICENSE\.md$
 ^.*\.Rproj$
 ^\.Rproj\.user$
-^\.travis\.yml$
 ^pkgdown$
 ^docs$
 ^\.github/workflows/R-CMD-check\.yaml$
+^\.github/workflows/Pkgdown\.yaml$
