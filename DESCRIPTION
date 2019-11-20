@@ -2,6 +2,7 @@ Package: CzechData
 Title: Download various datasets (including spatial data) for the
     Czech Republic
 Version: 0.3.0
+URL: https://jancaha.github.io/CzechData/index.html, https://github.com/JanCaha/CzechData
 Authors@R: 
     person(given = "Jan",
            family = "Caha",
