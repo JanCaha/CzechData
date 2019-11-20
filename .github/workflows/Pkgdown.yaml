@@ -13,9 +13,9 @@ jobs:
       - uses: r-lib/actions/setup-pandoc@master
       - name: Install dependencies
         run: |
-          Rscript -e 'install.packages(c("remotes", "devtools))' \
-                  -e 'remotes::install_deps(dependencies = TRUE)' \
-                  -e 'remotes::install_github("jimhester/pkgdown@github-actions-deploy")'
+          Rscript -e 'install.packages(c("remotes", "devtools))'
+          Rscript -e 'remotes::install_deps(dependencies = TRUE)'
+          Rscript -e 'remotes::install_github("jimhester/pkgdown@github-actions-deploy")'
       - name: Install package
         run: R CMD INSTALL .
       - name: Deploy package
