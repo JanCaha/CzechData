@@ -14,8 +14,8 @@ jobs:
       - name: Install dependencies
         run: |
           Rscript -e 'install.packages(c("remotes", "devtools))'
-          Rscript -e 'remotes::install_deps(dependencies = TRUE)'
           Rscript -e 'remotes::install_github("jimhester/pkgdown@github-actions-deploy")'
+          Rscript -e 'remotes::install_deps(dependencies = TRUE)'
       - name: Install package
         run: R CMD INSTALL .
       - name: Deploy package
