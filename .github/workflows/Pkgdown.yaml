@@ -1,8 +1,12 @@
+name: Pkgdown
+
 on:
   push:
-    branches: master
-
-name: Pkgdown
+    paths:
+      - R/**
+      - DESCRIPTION
+      - NEWS.md
+      - .github/workflows/Pkgdown.yaml
 
 jobs:
   pkgdown:
@@ -11,14 +15,44 @@ jobs:
       - uses: actions/checkout@master
       - uses: r-lib/actions/setup-r@master
       - uses: r-lib/actions/setup-pandoc@master
+
+      - name: Cache R packages
+        uses: actions/cache@v1
+        if: runner.os != 'Windows'
+        with:
+          path: ${{ env.R_LIBS_USER }}
+          key: ${{ runner.os }}-r-${{ hashFiles('DESCRIPTION', 'NAMESPACE', 'NEWS.md') }}
+
       - name: Install dependencies
         run: |
-          Rscript -e 'install.packages(c("remotes", "devtools"))'
-          Rscript -e 'remotes::install_github("jimhester/pkgdown@github-actions-deploy")'
+          Rscript -e 'install.packages(c("remotes", "devtools", "pkgdown"))'
           Rscript -e 'remotes::install_deps(dependencies = TRUE)'
+
       - name: Install package
         run: R CMD INSTALL .
-      - name: Deploy package
+
+       - name: Set GIT
+        run: |
+          git config --global user.email "action@github.com"
+          git config --global user.name "Github Action"
+
+      - name: Document Package
         run: |
           Rscript -e "devtools::document(roclets = c('rd', 'collate', 'namespace'))"
-          Rscript -e "pkgdown:::deploy_local(new_process = FALSE, remote_url = 'https://x-access-token:${{secrets.GITHUB_TOKEN}}@github.com/${{github.repository}}.git')"
+          git commit --allow-empty -m "update docs" -a
+
+      - name: Push documentation
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build package website
+        run: |
+          Rscript -e "pkgdown::build_site()"
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v2.5.0
+        env:
+          ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: ./docs
