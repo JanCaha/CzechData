@@ -4,8 +4,7 @@
 \alias{load_cadastral_territory}
 \title{Extract data from Cadastral map}
 \usage{
-load_cadastral_territory(id, layer = "katastralni uzemi",
-  WGS84 = FALSE)
+load_cadastral_territory(id, layer = "katastralni uzemi", WGS84 = FALSE)
 }
 \arguments{
 \item{id}{id of cadastral territory as character}
