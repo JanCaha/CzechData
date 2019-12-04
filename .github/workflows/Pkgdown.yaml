@@ -31,7 +31,7 @@ jobs:
       - name: Install package
         run: R CMD INSTALL .
 
-       - name: Set GIT
+      - name: Set GIT
         run: |
           git config --global user.email "action@github.com"
           git config --global user.name "Github Action"
