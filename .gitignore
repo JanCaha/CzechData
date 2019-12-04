@@ -1,6 +1,4 @@
+inst/doc
 .Rproj.user
-.Rhistory
-.RData
-.Ruserdata
-/data-raw/adresni_mista
+/.Rhistory
 /docs
