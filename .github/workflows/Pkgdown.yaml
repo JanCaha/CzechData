@@ -25,6 +25,7 @@ jobs:
 
       - name: Install dependencies
         run: |
+          sudo apt-get install libcurl4-openssl-dev
           Rscript -e 'install.packages(c("remotes", "devtools", "pkgdown"))'
           Rscript -e 'remotes::install_deps(dependencies = TRUE)'
 
