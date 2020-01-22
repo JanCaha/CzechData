@@ -25,6 +25,7 @@ jobs:
 
       - name: Install dependencies
         run: |
+          sudo apt-get install curl
           Rscript -e 'install.packages(c("remotes", "devtools", "pkgdown"))'
 
       - name: Set GIT
