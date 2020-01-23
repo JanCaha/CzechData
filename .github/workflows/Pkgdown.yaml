@@ -25,8 +25,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-          Rscript -e 'install.packages("roxygen2")'
-          Rscript -e 'install.packages("pkgdown")'
+          Rscript -e "install.packages(c('remotes', 'rcmdcheck', 'devtools', 'pkgdown'))"
+          Rscript -e "remotes::install_deps(dependencies = TRUE)"
 
       - name: Set GIT
         run: |
@@ -35,7 +35,7 @@ jobs:
 
       - name: Document Package
         run: |
-          Rscript -e "roxygen2::roxygenize(load_code = c())"
+          Rscript -e "devtools::document()"
           git commit --allow-empty -m "update docs" -a
 
       - name: Push documentation
