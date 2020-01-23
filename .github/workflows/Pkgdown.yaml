@@ -21,7 +21,7 @@ jobs:
         if: runner.os != 'Windows'
         with:
           path: ${{ env.R_LIBS_USER }}
-          key: ${{ runner.os }}-r-${{ hashFiles('NAMESPACE') }}
+          key: ${{ runner.os }}-r-${{ hashFiles('DESCRIPTION') }}
 
       - name: Install Linux libraries
         run: |
