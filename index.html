@@ -101,31 +101,31 @@
 <h2 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h2>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># simple RUIAN data for whole state</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a>obce_CR &lt;-<span class="st"> </span><span class="kw"><a href="reference/load_RUIAN_state.html">load_RUIAN_state</a></span>(<span class="dt">layer =</span> <span class="st">"obce"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2"></a>obce_CR &lt;-<span class="st"> </span><span class="kw">load_RUIAN_state</span>(<span class="dt">layer =</span> <span class="st">"obce"</span>)</span>
 <span id="cb2-3"><a href="#cb2-3"></a></span>
 <span id="cb2-4"><a href="#cb2-4"></a><span class="co"># RUIAN data for single settlement</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a>adresy_vyskov &lt;-<span class="st"> </span><span class="kw"><a href="reference/load_RUIAN_settlement.html">load_RUIAN_settlement</a></span>(<span class="st">"592889"</span>, <span class="dt">layer =</span> <span class="st">"adresní místa"</span>)</span>
+<span id="cb2-5"><a href="#cb2-5"></a>adresy_vyskov &lt;-<span class="st"> </span><span class="kw">load_RUIAN_settlement</span>(<span class="st">"592889"</span>, <span class="dt">layer =</span> <span class="st">"adresní místa"</span>)</span>
 <span id="cb2-6"><a href="#cb2-6"></a></span>
 <span id="cb2-7"><a href="#cb2-7"></a></span>
 <span id="cb2-8"><a href="#cb2-8"></a><span class="co"># cadastral data for single cadastral territory</span></span>
-<span id="cb2-9"><a href="#cb2-9"></a>parcely_vyskov &lt;-<span class="st"> </span><span class="kw"><a href="reference/load_cadastral_territory.html">load_cadastral_territory</a></span>(<span class="st">"788571"</span>, <span class="dt">layer =</span> <span class="st">"parcely"</span>)</span>
+<span id="cb2-9"><a href="#cb2-9"></a>parcely_vyskov &lt;-<span class="st"> </span><span class="kw">load_cadastral_territory</span>(<span class="st">"788571"</span>, <span class="dt">layer =</span> <span class="st">"parcely"</span>)</span>
 <span id="cb2-10"><a href="#cb2-10"></a></span>
 <span id="cb2-11"><a href="#cb2-11"></a><span class="co"># data SLDB</span></span>
-<span id="cb2-12"><a href="#cb2-12"></a>sldb_data_obyvatele &lt;-<span class="st"> </span><span class="kw"><a href="reference/load_SLDB_2011.html">load_SLDB_2011</a></span>(<span class="dt">type =</span> <span class="st">"obyvatelstvo"</span>)</span>
+<span id="cb2-12"><a href="#cb2-12"></a>sldb_data_obyvatele &lt;-<span class="st"> </span><span class="kw">load_SLDB_2011</span>(<span class="dt">type =</span> <span class="st">"obyvatelstvo"</span>)</span>
 <span id="cb2-13"><a href="#cb2-13"></a></span>
 <span id="cb2-14"><a href="#cb2-14"></a><span class="co"># population data for settlements</span></span>
 <span id="cb2-15"><a href="#cb2-15"></a>population_<span class="dv">2015</span> &lt;-<span class="st"> </span><span class="kw">load_population</span>(<span class="dt">year =</span> <span class="dv">2015</span>)</span>
 <span id="cb2-16"><a href="#cb2-16"></a></span>
 <span id="cb2-17"><a href="#cb2-17"></a><span class="co"># population data by age category </span></span>
-<span id="cb2-18"><a href="#cb2-18"></a>population_<span class="dv">2011</span>_kraje &lt;-<span class="st"> </span><span class="kw"><a href="reference/load_population_age.html">load_population_age</a></span>(<span class="dt">year =</span> <span class="dv">2011</span>, <span class="dt">area_type =</span> <span class="st">"kraje"</span>)</span>
+<span id="cb2-18"><a href="#cb2-18"></a>population_<span class="dv">2011</span>_kraje &lt;-<span class="st"> </span><span class="kw">load_population_age</span>(<span class="dt">year =</span> <span class="dv">2011</span>, <span class="dt">area_type =</span> <span class="st">"kraje"</span>)</span>
 <span id="cb2-19"><a href="#cb2-19"></a></span>
 <span id="cb2-20"><a href="#cb2-20"></a><span class="co"># load or save Data50</span></span>
-<span id="cb2-21"><a href="#cb2-21"></a>rivers &lt;-<span class="st"> </span><span class="kw"><a href="reference/load_Data50.html">load_Data50</a></span>(<span class="dt">layer =</span> <span class="st">"VodniTok"</span>)</span>
-<span id="cb2-22"><a href="#cb2-22"></a>folder_communications &lt;-<span class="st"> </span><span class="kw"><a href="reference/load_Data50.html">save_Data50</a></span>(<span class="st">"~/data/coomunications"</span>, <span class="dt">type =</span> <span class="st">"komunikace"</span>)</span>
+<span id="cb2-21"><a href="#cb2-21"></a>rivers &lt;-<span class="st"> </span><span class="kw">load_Data50</span>(<span class="dt">layer =</span> <span class="st">"VodniTok"</span>)</span>
+<span id="cb2-22"><a href="#cb2-22"></a>folder_communications &lt;-<span class="st"> </span><span class="kw">save_Data50</span>(<span class="st">"~/data/coomunications"</span>, <span class="dt">type =</span> <span class="st">"komunikace"</span>)</span>
 <span id="cb2-23"><a href="#cb2-23"></a></span>
 <span id="cb2-24"><a href="#cb2-24"></a><span class="co"># load or save Data200</span></span>
-<span id="cb2-25"><a href="#cb2-25"></a>waterfalls &lt;-<span class="st"> </span><span class="kw"><a href="reference/load_Data200.html">load_Data200</a></span>(<span class="dt">layer =</span> <span class="st">"Vodopad"</span>)</span>
-<span id="cb2-26"><a href="#cb2-26"></a>folder_water_objects &lt;-<span class="st"> </span><span class="kw"><a href="reference/load_Data200.html">save_Data200</a></span>(<span class="st">"~/data/water"</span>, <span class="dt">type =</span> <span class="st">"Vodopad"</span>)</span></code></pre></div>
+<span id="cb2-25"><a href="#cb2-25"></a>waterfalls &lt;-<span class="st"> </span><span class="kw">load_Data200</span>(<span class="dt">layer =</span> <span class="st">"Vodopad"</span>)</span>
+<span id="cb2-26"><a href="#cb2-26"></a>folder_water_objects &lt;-<span class="st"> </span><span class="kw">save_Data200</span>(<span class="st">"~/data/water"</span>, <span class="dt">type =</span> <span class="st">"Vodopad"</span>)</span></code></pre></div>
 </div>
 <div id="data-sources" class="section level2">
 <h2 class="hasAnchor">
@@ -186,7 +186,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
 
       </footer>
