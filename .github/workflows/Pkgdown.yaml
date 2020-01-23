@@ -25,7 +25,6 @@ jobs:
 
       - name: Install dependencies
         run: |
-          sudo apt-get install curl
           Rscript -e install.packages("roxygen2")'
           Rscript -e 'install.packages("pkgdown")'
 
