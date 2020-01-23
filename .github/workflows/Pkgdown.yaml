@@ -26,7 +26,8 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get install curl
-          Rscript -e 'install.packages(c("devtools", "pkgdown"))'
+          Rscript -e install.packages("roxygen2")'
+          Rscript -e 'install.packages("pkgdown")'
 
       - name: Set GIT
         run: |
@@ -35,7 +36,7 @@ jobs:
 
       - name: Document Package
         run: |
-          Rscript -e "devtools::document(roclets = c('rd', 'collate', 'namespace'))"
+          Rscript -e "roxygen2::roxygenize(load_code = c())"
           git commit --allow-empty -m "update docs" -a
 
       - name: Push documentation
