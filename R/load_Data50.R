@@ -116,9 +116,9 @@ load_Data50 <- function(layer, WGS84 = FALSE){
                          quiet = TRUE)
   }
 
-  unzip(file_zip, exdir = temp_dir)
+  dlfiles <- unzip(file_zip, exdir = temp_dir)
 
-  shp_file <- file.path(temp_dir, data50_layers$kategorie[index], data50_layers$shpName[index])
+  shp_file <- dlfiles[stringr::str_detect(dlfiles, stringr::str_c(data50_layers$shpName[index], "$"))]
 
   data <- sf::st_read(shp_file,
                       stringsAsFactors = FALSE,
