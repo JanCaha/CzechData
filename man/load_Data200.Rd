@@ -105,9 +105,9 @@ The \code{layer} can have values from following set, in the bracket is the name 
 
 \examples{
 \dontrun{
-    waterfalls <- load_Data200(layer = "Vodopad")
+waterfalls <- load_Data200(layer = "Vodopad")
 }
 \dontrun{
-    folder_water_objects <- save_Data200("~/data/water", type = "Vodopad")
+folder_water_objects <- save_Data200("~/data/water", type = "Vodopad")
 }
 }

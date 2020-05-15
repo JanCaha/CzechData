@@ -4,13 +4,15 @@
 \name{orp}
 \alias{orp}
 \title{data.frame of all settlements of type III (orp) in Czech Republic}
-\format{A data frame with 206 rows and 4 variables:
+\format{
+A data frame with 206 rows and 4 variables:
 \describe{
 \item{kod}{id of the settlements of type III (orp)}
 \item{nazev}{name of the settlements of type III (orp)}
 \item{vusc_kod}{}
 \item{nuts3_kod}{}
-}}
+}
+}
 \source{
 \url{http://services.cuzk.cz/shp/stat/epsg-5514/1.zip}
 }

@@ -4,14 +4,16 @@
 \name{okresy}
 \alias{okresy}
 \title{data.frame of all districts (LAU1) in Czech Republic}
-\format{A data frame with 77 rows and 5 variables:
+\format{
+A data frame with 77 rows and 5 variables:
 \describe{
 \item{kod}{id of the district}
 \item{nazev}{name of the district}
 \item{lau1_kod}{}
 \item{vusc_kod}{}
 \item{nuts3_kod}{}
-}}
+}
+}
 \source{
 \url{http://services.cuzk.cz/shp/stat/epsg-5514/1.zip}
 }

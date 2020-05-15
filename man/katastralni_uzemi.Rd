@@ -4,7 +4,8 @@
 \name{katastralni_uzemi}
 \alias{katastralni_uzemi}
 \title{data.frame of all cadastral territories in Czech Republic}
-\format{A data frame with 13078 rows and 9 variables:
+\format{
+A data frame with 13078 rows and 9 variables:
 \describe{
 \item{kod}{id of the cadastral territory}
 \item{nazev}{name of the cadastral territory}
@@ -15,7 +16,8 @@
 \item{lau1_kod}{}
 \item{vusc_kod}{}
 \item{prares_kod}{}
-}}
+}
+}
 \source{
 \url{http://services.cuzk.cz/shp/stat/epsg-5514/1.zip}
 }

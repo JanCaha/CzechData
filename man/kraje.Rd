@@ -4,13 +4,15 @@
 \name{kraje}
 \alias{kraje}
 \title{data.frame of all regions(NUTS3) in Czech Republic}
-\format{A data frame with 14 rows and 4 variables:
+\format{
+A data frame with 14 rows and 4 variables:
 \describe{
 \item{kod}{id of the region}
 \item{nazev}{name of the region}
 \item{sou_kod}{}
 \item{nuts3_kod}{}
-}}
+}
+}
 \source{
 \url{http://services.cuzk.cz/shp/stat/epsg-5514/1.zip}
 }

@@ -4,12 +4,14 @@
 \name{ciselnik_CSU}
 \alias{ciselnik_CSU}
 \title{data.frame linking codes of CSU to RUIAN codes}
-\format{A data frame with 206 rows and 4 variables:
+\format{
+A data frame with 206 rows and 4 variables:
 \describe{
 \item{typ}{type of spatail unit}
 \item{kod_csu}{id of spatial unit used by csu}
 \item{kod_ruian}{id of spatial unit used by ruian}
-}}
+}
+}
 \source{
 \url{https://www.czso.cz/csu/czso/ciselniky}
 }
