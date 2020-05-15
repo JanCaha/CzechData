@@ -27,6 +27,9 @@ ciselnik_kraje <- xml_data$DATA %>% {
   )
 }
 
+ciselnik_kraje <- ciselnik_kraje %>%
+  slice(-1)
+
 # okresy --------------------------------------------------------------------------------------
 
 url <- "https://apl.czso.cz/iSMS/cisexp.jsp?kodcis=101&typdat=0&cisjaz=203&format=0"
@@ -42,6 +45,9 @@ ciselnik_okresy <- xml_data$DATA %>% {
   )
 }
 
+ciselnik_okresy <- ciselnik_okresy %>%
+  slice(-1)
+
 # orp -----------------------------------------------------------------------------------------
 
 url <- "https://apl.czso.cz/iSMS/cisexp.jsp?kodcis=65&typdat=0&cisjaz=203&format=0"
@@ -56,7 +62,8 @@ ciselnik_orp <- xml_data$DATA %>% {
   )
 }
 
-
+ciselnik_orp <- ciselnik_orp %>%
+  slice(-1)
 
 # slozeni seznamu -----------------------------------------------------------------------------
 
@@ -70,3 +77,4 @@ ciselnik_CSU <- ciselnik_CSU %>%
   select(-kod_valid)
 
 usethis::use_data(ciselnik_CSU, overwrite = TRUE)
+
