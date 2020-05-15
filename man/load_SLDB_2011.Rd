@@ -3,7 +3,7 @@
 \name{load_SLDB_2011}
 \alias{load_SLDB_2011}
 \alias{load_SLDB_2011_col_explanations}
-\title{Get information from Czech census in 2011}
+\title{Deprecated: Get information from Czech census in 2011}
 \usage{
 load_SLDB_2011(type = "obyvatelstvo", load_names = TRUE)
 
@@ -20,8 +20,15 @@ Default TRUE as the column names do no make any sense otherwise.}
 data.frame containg the requested data
 }
 \description{
+\lifecycle{soft-deprecated}
+
 Data from Czech census in year 2011 by four main topics. The data are provided at various
 aggregation levels that can be filtered.
+
+Use package \code{czso} and specifically function \code{czso::czso_get_table(dataset_id)}
+to obtain the data and \code{czso::czso_get_table_schema(dataset_id)} to get the columns
+description. The values for specific datasets of census are
+\code{"SLDB-VYBER", "sldbdomy", "sldbdomac", "sldbvyjizdka"}.
 }
 \details{
 Types of data that can be downloaded, and used as \code{type} parameter in the function call:

@@ -1,6 +1,14 @@
-#' Load population by age
+#' Defunct: Load population by age
+#'
+#' @description
+#'
+#' \lifecycle{defunct}
 #'
 #' Load population by sex and five-year age categories for years 2010 to 2018.
+#'
+#' Use package \code{czso} and specifically function \code{czso::czso_get_table(dataset_id = "130142")}
+#' to obtain the data and \code{czso::czso_get_table_schema(dataset_id = "130142")} to get the columns
+#' description.
 #'
 #' @param year for which the data should be obtained. Default value is \code{NA}, which means
 #' all the years. Values from range (including both limits) 2010 - 2018 are accepted.
@@ -24,85 +32,27 @@
 #' @return data.frame containg the requested data
 #' @export
 #'
-#' @importFrom glue glue glue_collapse
-#' @importFrom dplyr case_when mutate filter select
-#' @importFrom readr read_csv cols
-#' @importFrom lubridate year
-#' @importFrom rlang .data
+#' @importFrom lifecycle deprecate_stop
 #'
-#' @examples
-#' \dontrun{
-#'     population_age <- load_population_age(area_type = "okresy")
-#' }
-
 load_population_age <- function(year = NA, area_type = NA) {
-  area_types <- c("okresy", "kraje", "republika")
 
-  if (!is.na(area_type)) {
-    if (!area_type %in% area_types) {
-      stop(glue::glue(
-        "Unknow area_type - {area_type}. Allowed values are: ",
-        glue::glue_collapse(area_types, sep = ", "), "."
-      ))
-    }
-  }
+  lifecycle::deprecate_stop("0.4.0",
+                            "load_population_age()",
+                            details = 'Use package `czso` and specifically function `czso::czso_get_table(dataset_id = "130142")` to obtain the data.')
 
-  year_valid <- FALSE
-
-  if (!is.na(year)) {
-    if (is.numeric(year)) {
-      if (2010 <= year & year <= 2018) {
-        year_valid <- TRUE
-      } else {
-        stop(glue::glue(
-          "Year has to be from range 2010 - 2018. ",
-          "{year} does not fall in this range."
-        ))
-      }
-    } else {
-      stop(glue::glue("Variable year has to be numeric. It is {typeof(year)}."))
-    }
-  }
-
-  area_id <- dplyr::case_when(
-    area_type == "okresy" ~ 101,
-    area_type == "kraje" ~ 100,
-    area_type == "republika" ~ 97
-  )
-
-  data <- readr::read_csv("https://www.czso.cz/documents/62353418/92011126/130142-19data051719.csv",
-    col_types = readr::cols()
-  )
-
-  data <- data %>%
-    dplyr::mutate(rok = lubridate::year(.data$casref_do))
-
-  if (!is.na(year_valid)) {
-    data <- data %>%
-      dplyr::filter(.data$rok == year)
-  }
-
-  if (!is.na(area_type)) {
-    data <- data %>%
-      dplyr::filter(.data$vuzemi_cis == area_id)
-  }
-
-  data %>%
-    dplyr::select(-.data$rok)
 }
 
 #' @describeIn load_population_age Load description for columns
 #'
-#' @importFrom jsonlite fromJSON
+#' @importFrom lifecycle deprecate_stop
 #'
 #' @export
 
 load_population_age_col_explanations <- function() {
-  json_file <- jsonlite::fromJSON("https://www.czso.cz/documents/62353418/92011126/130142-19schema051719.json")
 
-  data <- json_file$tableSchema$columns[, c(2, 3)]
+  lifecycle::deprecate_stop("0.4.0",
+                            "load_population_age_col_explanations()",
+                            details = 'Use package `czso` and specifically function `czso::czso_get_table_schema(dataset_id = "130142")` to obtain the data.')
 
-  names(data) <- c("sloupec", "popis")
 
-  data
 }

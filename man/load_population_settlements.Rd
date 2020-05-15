@@ -3,7 +3,7 @@
 \name{load_population_settlements}
 \alias{load_population_settlements}
 \alias{load_population_settlements_col_explanations}
-\title{Load populations from settlements}
+\title{Defunct: Load populations from settlements}
 \usage{
 load_population_settlements(year = NA)
 
@@ -17,7 +17,13 @@ all the years. Values from range (including both limits) 2000 - 2018 are accepte
 data.frame containg the requested data
 }
 \description{
+\lifecycle{defunct}
+
 Load population by sex for settlements for each years from 2000 to 2018.
+
+Use package \code{czso} and specifically function \code{czso::czso_get_table(dataset_id = "130149")}
+to obtain the data and \code{czso::czso_get_table_schema(dataset_id = "130149")} to get the columns
+description.
 }
 \section{Functions}{
 \itemize{
@@ -32,12 +38,3 @@ More detailed information about data can be found at the provider's website
 \url{https://www.czso.cz/csu/czso/obyvatelstvo-podle-petiletych-vekovych-skupin-a-pohlavi-v-krajich-a-okresech}.
 }
 
-\examples{
-\dontrun{
-    # population for all years
-    population <- load_population_settlements()
-
-    # population for year 2015
-    population_2015 <- load_population_settlements(year = 2015)
-}
-}

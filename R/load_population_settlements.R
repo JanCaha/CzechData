@@ -1,6 +1,14 @@
-#' Load populations from settlements
+#' Defunct: Load populations from settlements
+#'
+#' @description
+#'
+#' \lifecycle{defunct}
 #'
 #' Load population by sex for settlements for each years from 2000 to 2018.
+#'
+#' Use package \code{czso} and specifically function \code{czso::czso_get_table(dataset_id = "130149")}
+#' to obtain the data and \code{czso::czso_get_table_schema(dataset_id = "130149")} to get the columns
+#' description.
 #'
 #' @param year year for which the data should be obtained. Default value is \code{NA}, which means
 #' all the years. Values from range (including both limits) 2000 - 2018 are accepted.
@@ -14,73 +22,26 @@
 #' @return data.frame containg the requested data
 #' @export
 #'
-#' @importFrom utils download.file unzip
-#' @importFrom readr read_csv cols
-#' @importFrom glue glue
-#' @importFrom rlang .data
+#' @importFrom lifecycle deprecate_stop
 #'
-#' @examples
-#' \dontrun{
-#'     # population for all years
-#'     population <- load_population_settlements()
-#'
-#'     # population for year 2015
-#'     population_2015 <- load_population_settlements(year = 2015)
-#' }
 load_population_settlements <- function(year = NA) {
-  year_valid <- FALSE
 
-  if (!is.na(year)) {
-    if (is.numeric(year)) {
-      if (2000 <= year & year <= 2018) {
-        year_valid <- TRUE
-      } else {
-        stop(glue::glue(
-          "Year has to be from range 2000 - 2018. ",
-          "{year} does not fall in this range."
-        ))
-      }
-    } else {
-      stop(glue::glue("Variable year has to be numeric. It is {typeof(year)}."))
-    }
-  }
+  lifecycle::deprecate_stop("0.4.0",
+                            "load_population_settlements()",
+                            details = 'Use package `czso` and specifically function `czso::czso_get_table(dataset_id = "130149")` to obtain the data.')
 
-  temp_dir <- tempdir()
-
-  obyvatelstvo_file <- file.path(temp_dir, "obyvatelstvo_obce.zip")
-
-  if (!file.exists(obyvatelstvo_file)) {
-    utils::download.file(
-      "https://www.czso.cz/documents/62353418/92010970/130149-19data051719.zip",
-      obyvatelstvo_file,
-      quiet = TRUE
-    )
-  }
-
-  obyvatelstvo_file <- utils::unzip(obyvatelstvo_file, exdir = temp_dir)
-
-  obyvatelstvo <- readr::read_csv(obyvatelstvo_file, col_types = readr::cols())
-
-  if (year_valid) {
-    obyvatelstvo <- obyvatelstvo %>%
-      filter(.data$rok == year)
-  }
-
-  obyvatelstvo
 }
 
 #' @describeIn load_population_settlements Load description for columns
 #'
-#' @importFrom jsonlite fromJSON
+#' @importFrom lifecycle deprecate_stop
 #'
 #' @export
 #'
 load_population_settlements_col_explanations <- function() {
-  json_file <- jsonlite::fromJSON("https://www.czso.cz/documents/62353418/92010970/130149-19schema051719.json")
 
-  data <- json_file$tableSchema$columns[, c(2, 3)]
+  lifecycle::deprecate_stop("0.4.0",
+                            "load_population_settlements_col_explanations()",
+                            details = 'Use package `czso` and specifically function `czso::czso_get_table_schema(dataset_id = "130149")` to obtain the data.')
 
-  names(data) <- c("sloupec", "popis")
-
-  data
 }

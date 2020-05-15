@@ -3,7 +3,7 @@
 \name{load_population_age}
 \alias{load_population_age}
 \alias{load_population_age_col_explanations}
-\title{Load population by age}
+\title{Defunct: Load population by age}
 \usage{
 load_population_age(year = NA, area_type = NA)
 
@@ -20,7 +20,13 @@ which means all areas. Accepted values are in Description.}
 data.frame containg the requested data
 }
 \description{
+\lifecycle{defunct}
+
 Load population by sex and five-year age categories for years 2010 to 2018.
+
+Use package \code{czso} and specifically function \code{czso::czso_get_table(dataset_id = "130142")}
+to obtain the data and \code{czso::czso_get_table_schema(dataset_id = "130142")} to get the columns
+description.
 }
 \details{
 The \code{area_type} can have values from following set:
@@ -43,8 +49,3 @@ More detailed information about data can be found at the provider's website
 \url{https://www.czso.cz/csu/czso/obyvatelstvo-k-3112-podle-pohlavi-v-obcich}.
 }
 
-\examples{
-\dontrun{
-    population_age <- load_population_age(area_type = "okresy")
-}
-}

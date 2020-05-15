@@ -1,39 +1,39 @@
-a <- read_csv("https://www.czso.cz/documents/62353418/92011130/050101-19data011420.csv/8c4b94b2-911e-4f41-8f7f-7cbdfc16f288?version=1.1")
-
-#' Load financial indicators for specific spatial units
+#' Defunct: Load financial indicators for specific spatial units
+#'
+#' @description
+#'
+#' \lifecycle{defunct}
 #'
 #' Load financial indicators for specific spatial units (NUTS2 and NUTS3) for years 1995 to 2018.
+#'
+#' Use package \code{czso} and specifically function \code{czso::czso_get_table(dataset_id = "050101")}
+#' to obtain the data and \code{czso::czso_get_table_schema(dataset_id = "050101")} to get the columns
+#' description.
 #'
 #' @return data.frame containg the requested data
 #' @export
 #'
-#' @importFrom readr read_csv cols
-#' @importFrom janitor clean_names
-#' @importFrom rlang .data
+#' @importFrom lifecycle deprecate_stop
 #'
-#' @examples
-#' \dontrun{
-#'     average_salary <- load_average_salary()
-#' }
 load_financial_indicators <- function(){
-  data <- readr::read_csv("https://www.czso.cz/documents/62353418/92011130/050101-19data011420.csv/8c4b94b2-911e-4f41-8f7f-7cbdfc16f288?version=1.1",
-                          col_types = readr::cols()) %>%
-    janitor::clean_names()
 
-  data
+  lifecycle::deprecate_stop("0.4.0",
+                            "load_financial_indicators()",
+                            details = 'Use package `czso` and specifically function `czso::czso_get_table(dataset_id = "050101")` to obtain the data.')
+
 }
 
 #' @describeIn load_financial_indicators Load description for columns
 #'
-#' @importFrom jsonlite fromJSON
+#' @importFrom lifecycle deprecate_stop
 #'
 #' @export
+#'
 load_financial_indicators_col_explanations <- function() {
-  json_file <- jsonlite::fromJSON("https://www.czso.cz/documents/62353418/92011130/050101-19schema011420.json/d1d86ec7-2e8d-4319-ac74-f291c5283bbe?version=1.1")
 
-  data <- json_file$tableSchema$columns[, c(2, 3)]
+  lifecycle::deprecate_stop("0.4.0",
+                            "load_financial_indicators_col_explanations()",
+                            details = 'Use package `czso` and specifically function `czso::czso_get_table_schema(dataset_id = "050101")` to obtain the data.')
 
-  names(data) <- c("sloupec", "popis")
 
-  data
 }
