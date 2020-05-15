@@ -30,15 +30,6 @@ adresy_vyskov <- load_RUIAN_settlement("592889", layer = "adresní místa")
 # cadastral data for single cadastral territory
 parcely_vyskov <- load_cadastral_territory("788571", layer = "parcely")
 
-# data SLDB
-sldb_data_obyvatele <- load_SLDB_2011(type = "obyvatelstvo")
-
-# population data for settlements
-population_2015 <- load_population(year = 2015)
-
-# population data by age category 
-population_2011_kraje <- load_population_age(year = 2011, area_type = "kraje")
-
 # load or save Data50
 rivers <- load_Data50(layer = "VodniTok")
 folder_communications <- save_Data50("~/data/coomunications", type = "komunikace")
@@ -58,9 +49,10 @@ Currently implemented data sources are:
 * RUIAN on settlement level [example here](https://data.gov.cz/datov%C3%A1-sada?iri=https%3A%2F%2Fdata.gov.cz%2Fzdroj%2Fdatov%C3%A1-sada%2Fhttp---atom.cuzk.cz-api-3-action-package_show-id-cz-00025712-cuzk_ruian-obce-shp_554979)
 * Cadastral map for cadastral territory [example here](https://data.gov.cz/datov%C3%A1-sada?iri=https%3A%2F%2Fdata.gov.cz%2Fzdroj%2Fdatov%C3%A1-sada%2Fhttp---atom.cuzk.cz-api-3-action-package_show-id-cz-00025712-cuzk_km-ku-shp_600016)
 * SLDB (census) subsections [individual datasets here](https://data.gov.cz/datov%C3%A9-sady?dotaz=SLDB) 
-* yearly data about population by sex [for settlements](https://data.gov.cz/datov%C3%A1-sada?iri=https%3A%2F%2Fdata.gov.cz%2Fzdroj%2Fdatov%C3%A1-sada%2Fhttp---vdb.czso.cz-pll-eweb-package_show-id-130149), [by age categories](https://data.gov.cz/datov%C3%A1-sada?iri=https%3A%2F%2Fdata.gov.cz%2Fzdroj%2Fdatov%C3%A1-sada%2Fhttp---vdb.czso.cz-pll-eweb-package_show-id-130142)
 * [Data50](https://geoportal.cuzk.cz/(S(2ugpect2xdu0ksih3crtpxd0))/Default.aspx?lng=CZ&mode=TextMeta&text=dSady_mapyData50&side=mapy_data50&menu=2290&head_tab=sekce-02-gp)
 * [Data200](https://geoportal.cuzk.cz/(S(ijginumejzilvacbfijkylwj))/Default.aspx?mode=TextMeta&side=mapy_data200&text=dSady_mapyData200&head_tab=sekce-02-gp&menu=229)
+
+For data from Czech Statistical Office it is best to use the [czso](https://github.com/petrbouchal/czso) (also available on CRAN) which does much better job than the functions that were implemented here. 
 
 ### Details about datasets
 
