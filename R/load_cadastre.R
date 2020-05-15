@@ -52,6 +52,7 @@
 #' @importFrom dplyr case_when
 #' @importFrom sf st_read st_transform
 #' @importFrom janitor clean_names
+#' @importFrom usethis ui_done
 #'
 #' @examples
 #' \dontrun{
@@ -60,6 +61,7 @@
 
 load_cadastral_territory <- function(id, layer = "katastralni uzemi", WGS84 = FALSE) {
 
+  .check_internet()
 
   # verify and preprocess inputs ----------------------------------------------------------------
 
@@ -125,6 +127,8 @@ load_cadastral_territory <- function(id, layer = "katastralni uzemi", WGS84 = FA
   }
 
   unzip(ku_file, exdir = dir)
+
+  usethis::ui_done("Data downloaded and unpacked.")
 
   data <- sf::st_read(
     file.path(dir, id, shp_name),

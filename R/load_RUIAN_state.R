@@ -47,6 +47,9 @@
 #'     obce_CR <- load_RUIAN_state(layer = "obce")
 #' }
 load_RUIAN_state <- function(layer = "stat", WGS84 = FALSE) {
+
+  .check_internet()
+
   shp_name <- dplyr::case_when(
     layer == "katastralni uzemi" ~ "KATUZE_P.shp",
     layer == "KATUZE_P" ~ "KATUZE_P.shp",

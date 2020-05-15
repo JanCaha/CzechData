@@ -49,12 +49,15 @@
 #' @importFrom curl curl_fetch_memory
 #' @importFrom readr read_delim cols
 #' @importFrom rlang .data
+#' @importFrom usethis ui_info
 #'
 #' @examples
 #' \dontrun{
 #'     adresy_vyskov <- load_RUIAN_settlement("592889", layer = "adresni mista")
 #' }
 load_RUIAN_settlement <- function(id, layer = "obec", WGS84 = FALSE) {
+
+  .check_internet()
 
   # verify and preprocess inputs ----------------------------------------------------------------
 
@@ -114,7 +117,9 @@ load_RUIAN_settlement <- function(id, layer = "obec", WGS84 = FALSE) {
     utils::download.file(url, ruian_file, quiet = TRUE)
   }
 
-  unzip(ruian_file, exdir = dir)
+  utils::unzip(ruian_file, exdir = dir)
+
+  usethis::ui_done("Data downloaded and unpacked.")
 
   shp_file <- file.path(dir, id, shp_name)
 

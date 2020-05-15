@@ -82,6 +82,7 @@
 #' @importFrom glue glue
 #' @importFrom utils data download.file unzip
 #' @importFrom sf st_read st_transform st_crs
+#' @importFrom usethis ui_info ui_done
 #'
 #' @export
 #'
@@ -90,6 +91,8 @@
 #'     rivers <- load_Data50(layer = "VodniTok")
 #'}
 load_Data50 <- function(layer, WGS84 = FALSE){
+
+  .check_internet()
 
   data50_layers <- data50layers # load_Data50_info()
 
@@ -107,7 +110,7 @@ load_Data50 <- function(layer, WGS84 = FALSE){
 
   if (!file.exists(file_zip)) {
 
-    message(glue::glue(
+    usethis::ui_info(glue::glue(
       "Downloading roughly {data50_layers$size[index]}, this can take a while."
       ))
 
@@ -116,7 +119,9 @@ load_Data50 <- function(layer, WGS84 = FALSE){
                          quiet = TRUE)
   }
 
-  unzip(file_zip, exdir = temp_dir)
+  utils::unzip(file_zip, exdir = temp_dir)
+
+  usethis::ui_done("Data downloaded and unpacked.")
 
   shp_file <- file.path(temp_dir, data50_layers$kategorie[index], data50_layers$shpName[index])
 
@@ -141,6 +146,7 @@ load_Data50 <- function(layer, WGS84 = FALSE){
 #' @param type \code{character} type of layers to save. See details, types are listed in brackets.
 #'
 #' @importFrom purrr map_chr
+#' @importFrom usethis ui_info ui_done ui_warn
 #'
 #' @export
 #'
@@ -149,6 +155,8 @@ load_Data50 <- function(layer, WGS84 = FALSE){
 #'     folder_communications <- save_Data50("~/data/coomunications", type = "komunikace")
 #' }
 save_Data50 <- function(path, layer = NULL, type = NULL){
+
+  .check_internet()
 
   data50_layers <- data50layers # load_Data50_info()
 
@@ -175,7 +183,7 @@ save_Data50 <- function(path, layer = NULL, type = NULL){
   }
 
   if (!is.null(layer) & !is.null(type)) {
-    warning(glue::glue(
+    usethis::ui_warn(glue::glue(
       "Both layer ({layer}) and type ({type}) specified. Type will be used to obtain the data."
     ))
   }
@@ -192,7 +200,7 @@ save_Data50 <- function(path, layer = NULL, type = NULL){
 
     if (!file.exists(file_zip)) {
 
-      message(glue::glue(
+      usethis::ui_info(glue::glue(
         "Downloading roughly {data50_layers$size[index]}, this can take a while."
         ))
 
@@ -201,7 +209,10 @@ save_Data50 <- function(path, layer = NULL, type = NULL){
                            quiet = TRUE)
     }
 
-    unzip(file_zip, exdir = path)
+    utils::unzip(file_zip, exdir = path)
+
+    usethis::ui_done("Data downloaded and unpacked.")
+
     return(file.path(path, data50_layers$kategorie[index]))
 
   } else {
@@ -212,7 +223,7 @@ save_Data50 <- function(path, layer = NULL, type = NULL){
 
     if (!file.exists(file_zip)) {
 
-      message(glue::glue(
+      usethis::ui_info(glue::glue(
         "Downloading roughly {data50_layers$size[index]}, this can take a while."
         ))
 
@@ -225,8 +236,10 @@ save_Data50 <- function(path, layer = NULL, type = NULL){
 
     files_unzip <- purrr::map_chr(exts, ~ glue::glue("{data50_layers$kategorie[index]}/{layer}{.x}"))
 
-    files_return <- purrr::map_chr(files_unzip, ~unzip(file_zip, files = .x,
-                                                       exdir = path, junkpaths = TRUE))
+    files_return <- purrr::map_chr(files_unzip, ~utils::unzip(file_zip, files = .x,
+                                                              exdir = path, junkpaths = TRUE))
+
+    usethis::ui_done("Data downloaded and unpacked.")
 
     return(files_return)
   }

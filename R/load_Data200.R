@@ -80,14 +80,17 @@
 #' @importFrom sf st_read st_transform st_crs
 #' @importFrom stringr str_detect str_replace
 #' @importFrom raster raster projectRaster
+#' @importFrom usethis ui_info ui_done
 #'
 #' @export
 #'
 #' @examples
 #' \dontrun{
-#'     waterfalls <- load_Data200(layer = "Vodopad")
-#'}
-load_Data200 <- function(layer, WGS84 = FALSE){
+#' waterfalls <- load_Data200(layer = "Vodopad")
+#' }
+load_Data200 <- function(layer, WGS84 = FALSE) {
+
+  .check_internet()
 
   data200_layers <- data200layers
 
@@ -104,17 +107,19 @@ load_Data200 <- function(layer, WGS84 = FALSE){
   file_zip <- file.path(temp_dir, glue::glue("{data200_layers$slozka[index]}.zip"))
 
   if (!file.exists(file_zip)) {
-
-    message(glue::glue(
+    usethis::ui_info(glue::glue(
       "Downloading roughly {data200_layers$size[index]}, this can take a while."
     ))
 
     utils::download.file(data200_layers$url[index],
-                         file_zip,
-                         quiet = TRUE)
+      file_zip,
+      quiet = TRUE
+    )
   }
 
   utils::unzip(file_zip, exdir = temp_dir)
+
+  usethis::ui_done("Data downloaded and unpacked.")
 
   shp_file <- file.path(temp_dir, data200_layers$slozka[index], data200_layers$shpName[index])
 
@@ -126,11 +131,11 @@ load_Data200 <- function(layer, WGS84 = FALSE){
     if (WGS84) {
       data <- raster::projectRaster(shp_file, csr = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs")
     }
-
-  }else{
+  } else {
     data <- sf::st_read(shp_file,
-                        stringsAsFactors = FALSE,
-                        quiet = TRUE)
+      stringsAsFactors = FALSE,
+      quiet = TRUE
+    )
 
     suppressWarnings(sf::st_crs(data) <- 5514)
 
@@ -149,14 +154,17 @@ load_Data200 <- function(layer, WGS84 = FALSE){
 #' @param type \code{character} type of layers to save. See details, types are listed in brackets.
 #'
 #' @importFrom purrr map_chr
+#' @importFrom usethis ui_info ui_done ui_warn
 #'
 #' @export
 #'
 #' @examples
 #' \dontrun{
-#'     folder_water_objects <- save_Data200("~/data/water", type = "Vodopad")
+#' folder_water_objects <- save_Data200("~/data/water", type = "Vodopad")
 #' }
-save_Data200 <- function(path, layer = NULL, type = NULL){
+save_Data200 <- function(path, layer = NULL, type = NULL) {
+
+  .check_internet()
 
   data200_layers <- data200layers
 
@@ -183,7 +191,7 @@ save_Data200 <- function(path, layer = NULL, type = NULL){
   }
 
   if (!is.null(layer) & !is.null(type)) {
-    warning(glue::glue(
+    usethis::ui_warn(glue::glue(
       "Both layer ({layer}) and type ({type}) specified. Type will be used to obtain the data."
     ))
   }
@@ -199,17 +207,20 @@ save_Data200 <- function(path, layer = NULL, type = NULL){
     file_zip <- file.path(path, glue::glue("{data200_layers$slozka[index]}.zip"))
 
     if (!file.exists(file_zip)) {
-
-      message(glue::glue(
+      usethis::ui_info(glue::glue(
         "Downloading roughly {data200_layers$size[index]}, this can take a while."
       ))
 
       utils::download.file(data200_layers$url[index],
-                           file_zip,
-                           quiet = TRUE)
+        file_zip,
+        quiet = TRUE
+      )
     }
 
     utils::unzip(file_zip, exdir = path)
+
+    usethis::ui_done("Data downloaded and unpacked.")
+
     return(file.path(path, data200_layers$slozka[index]))
 
   } else {
@@ -219,35 +230,36 @@ save_Data200 <- function(path, layer = NULL, type = NULL){
     file_zip <- file.path(path, glue::glue("{data200_layers$slozka[index]}.zip"))
 
     if (!file.exists(file_zip)) {
-
-      message(glue::glue(
+      usethis::ui_info(glue::glue(
         "Downloading roughly {data200_layers$size[index]}, this can take a while."
       ))
 
       utils::download.file(data200_layers$url[index],
-                           file_zip,
-                           quiet = TRUE)
+        file_zip,
+        quiet = TRUE
+      )
     }
 
     is_raster <- stringr::str_detect(data200_layers$shpName[index], "\\.tif")
 
     if (is_raster) {
-
       files_unzip <- glue::glue("{data200_layers$slozka[index]}/{data200_layers$shpName[index]}")
 
       files_return <- utils::unzip(file_zip, files = files_unzip, exdir = path, junkpaths = TRUE)
-
-    }else{
-
+    } else {
       exts <- list(".cpg", ".dbf", ".prj", ".sbn", ".sbx", ".shp", ".shp.xml", ".shx")
 
       files_name <- stringr::str_replace(data200_layers$shpName[index], "\\.shp", "")
 
-      files_unzip <- purrr::map_chr(exts, ~glue::glue("{data200_layers$slozka[index]}/{files_name}{.x}"))
+      files_unzip <- purrr::map_chr(exts, ~ glue::glue("{data200_layers$slozka[index]}/{files_name}{.x}"))
 
-      files_return <- purrr::map_chr(files_unzip, ~utils::unzip(file_zip, files = .x,
-                                                         exdir = path, junkpaths = TRUE))
+      files_return <- purrr::map_chr(files_unzip, ~ utils::unzip(file_zip,
+        files = .x,
+        exdir = path, junkpaths = TRUE
+      ))
     }
+
+    usethis::ui_done("Data downloaded and unpacked.")
 
     return(files_return)
   }
@@ -256,12 +268,12 @@ save_Data200 <- function(path, layer = NULL, type = NULL){
 #' @describeIn load_Data200 Load information about layers in Data200.
 #' @inheritParams load_Data50_info
 #' @export
-load_Data200_info <- function(english_names = FALSE){
+load_Data200_info <- function(english_names = FALSE) {
   d <- data200layers
 
   if (english_names) {
     names(d) <- c("layer", "shp_name", "url", "category", "folder", "size")
-  }else {
+  } else {
     names(d) <- c("vrstva", "shp_nazev", "url", "kategorie", "slozka", "velikost")
   }
 
@@ -270,9 +282,8 @@ load_Data200_info <- function(english_names = FALSE){
 
 #' @describeIn generate_Data50_citation Generate citation for Data200 datasource.
 #' @export
-generate_Data200_citation <- function(){
-
+generate_Data200_citation <- function() {
   year <- lubridate::year(lubridate::now())
 
-  glue::glue('\u201eMapov\u00fd podklad \u2013 Data200, {year} \u00a9 \u010cesk\u00fd \u00fa\u0159ad zem\u011bm\u011b\u0159ick\u00fd a katastr\u00e1ln\u00ed, www.cuzk.cz.\u201c')
+  glue::glue("\u201eMapov\u00fd podklad \u2013 Data200, {year} \u00a9 \u010cesk\u00fd \u00fa\u0159ad zem\u011bm\u011b\u0159ick\u00fd a katastr\u00e1ln\u00ed, www.cuzk.cz.\u201c")
 }
