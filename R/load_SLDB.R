@@ -1,7 +1,16 @@
-#' Get information from Czech census in 2011
+#' Deprecated: Get information from Czech census in 2011
+#'
+#' @description
+#'
+#' \lifecycle{soft-deprecated}
 #'
 #' Data from Czech census in year 2011 by four main topics. The data are provided at various
 #' aggregation levels that can be filtered.
+#'
+#' Use package \code{czso} and specifically function \code{czso::czso_get_table(dataset_id)}
+#' to obtain the data and \code{czso::czso_get_table_schema(dataset_id)} to get the columns
+#' description. The values for specific datasets of census are
+#' \code{"SLDB-VYBER", "sldbdomy", "sldbdomac", "sldbvyjizdka"}.
 #'
 #' @param type type of requested information as character. Default value is "obyvatelstvo".
 #' See details for more.
@@ -31,13 +40,16 @@
 #' @importFrom janitor clean_names
 #' @importFrom utils download.file
 #' @importFrom rlang .data
+#' @importFrom lifecycle deprecate_stop
 #'
 #' @examples
 #' \dontrun{
 #'     sldb <- load_SLDB_2011(type = "obyvatelstvo")
 #' }
 load_SLDB_2011 <- function(type = "obyvatelstvo", load_names = TRUE) {
+
   type_info <- .sldb_type_info()
+
 
   if (!(type %in% type_info$type)) {
     stop(glue::glue(
@@ -46,6 +58,18 @@ load_SLDB_2011 <- function(type = "obyvatelstvo", load_names = TRUE) {
   }
 
   index <- which(type_info$type == type)
+
+
+  # soft depreced -----------------------------------------------------------
+
+  meessage <- glue::glue('Use package `czso` and specifically function `czso::czso_get_table(dataset_id = "{type_info$id[index]}")` to obtain the data.')
+
+  lifecycle::deprecate_warn("0.4.0",
+                            "load_population_settlements()",
+                            details = meessage)
+
+
+  # -------------------------------------------------------------------------
 
   temp_dir <- tempdir()
 
@@ -79,12 +103,24 @@ load_SLDB_2011 <- function(type = "obyvatelstvo", load_names = TRUE) {
 #' @importFrom dplyr mutate
 #' @importFrom stringr str_to_lower
 #' @importFrom rlang .data
+#' @importFrom lifecycle deprecate_stop
 #'
 #' @export
 load_SLDB_2011_col_explanations <- function(type = "obyvatelstvo") {
   type_info <- .sldb_type_info()
 
   index <- which(type_info$type == type)
+
+  # soft depreced -----------------------------------------------------------
+
+  meessage <- glue::glue('Use package `czso` and specifically function `czso::czso_get_table_schema(dataset_id = "{type_info$id[index]}")` to obtain the data.')
+
+  lifecycle::deprecate_warn("0.4.0",
+                            "load_population_settlements()",
+                            details = meessage)
+
+
+  # -------------------------------------------------------------------------
 
   header_file <- file.path(tempdir(), "sldb2011_vou.xls")
 
@@ -114,6 +150,7 @@ load_SLDB_2011_col_explanations <- function(type = "obyvatelstvo") {
       "https://www.czso.cz/documents/10180/25233177/sldb_vyjizdka.zip"
     ),
     sheet = c("Obyvatelstvo", "DomyByty", "Domacnosti", "Vyjizdka"),
-    range = c("A6:B181", "A6:B98", "A6:B19", "A6:B20")
+    range = c("A6:B181", "A6:B98", "A6:B19", "A6:B20"),
+    id = c("SLDB-VYBER", "sldbdomy", "sldbdomac", "sldbvyjizdka")
   )
 }
