@@ -121,7 +121,7 @@ load_Data200 <- function(layer, WGS84 = FALSE) {
 
   usethis::ui_done("Data downloaded and unpacked.")
 
-  shp_file <- file.path(temp_dir, data200_layers$slozka[index], data200_layers$shpName[index])
+  shp_file <- file.path(temp_dir, data200_layers$shpName[index])
 
   is_raster <- stringr::str_detect(shp_file, "\\.tif")
 
