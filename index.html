@@ -111,15 +111,6 @@
 <span class="co"># cadastral data for single cadastral territory</span>
 <span class="no">parcely_vyskov</span> <span class="kw">&lt;-</span> <span class="fu">load_cadastral_territory</span>(<span class="st">"788571"</span>, <span class="kw">layer</span> <span class="kw">=</span> <span class="st">"parcely"</span>)
 
-<span class="co"># data SLDB</span>
-<span class="no">sldb_data_obyvatele</span> <span class="kw">&lt;-</span> <span class="fu">load_SLDB_2011</span>(<span class="kw">type</span> <span class="kw">=</span> <span class="st">"obyvatelstvo"</span>)
-
-<span class="co"># population data for settlements</span>
-<span class="no">population_2015</span> <span class="kw">&lt;-</span> <span class="fu">load_population</span>(<span class="kw">year</span> <span class="kw">=</span> <span class="fl">2015</span>)
-
-<span class="co"># population data by age category </span>
-<span class="no">population_2011_kraje</span> <span class="kw">&lt;-</span> <span class="fu">load_population_age</span>(<span class="kw">year</span> <span class="kw">=</span> <span class="fl">2011</span>, <span class="kw">area_type</span> <span class="kw">=</span> <span class="st">"kraje"</span>)
-
 <span class="co"># load or save Data50</span>
 <span class="no">rivers</span> <span class="kw">&lt;-</span> <span class="fu">load_Data50</span>(<span class="kw">layer</span> <span class="kw">=</span> <span class="st">"VodniTok"</span>)
 <span class="no">folder_communications</span> <span class="kw">&lt;-</span> <span class="fu">save_Data50</span>(<span class="st">"~/data/coomunications"</span>, <span class="kw">type</span> <span class="kw">=</span> <span class="st">"komunikace"</span>)
@@ -142,11 +133,10 @@
 </li>
 <li>SLDB (census) subsections <a href="https://data.gov.cz/datov%C3%A9-sady?dotaz=SLDB">individual datasets here</a>
 </li>
-<li>yearly data about population by sex <a href="https://data.gov.cz/datov%C3%A1-sada?iri=https%3A%2F%2Fdata.gov.cz%2Fzdroj%2Fdatov%C3%A1-sada%2Fhttp---vdb.czso.cz-pll-eweb-package_show-id-130149">for settlements</a>, <a href="https://data.gov.cz/datov%C3%A1-sada?iri=https%3A%2F%2Fdata.gov.cz%2Fzdroj%2Fdatov%C3%A1-sada%2Fhttp---vdb.czso.cz-pll-eweb-package_show-id-130142">by age categories</a>
-</li>
 <li><a href="https://geoportal.cuzk.cz/(S(2ugpect2xdu0ksih3crtpxd0))/Default.aspx?lng=CZ&amp;mode=TextMeta&amp;text=dSady_mapyData50&amp;side=mapy_data50&amp;menu=2290&amp;head_tab=sekce-02-gp">Data50</a></li>
 <li><a href="https://geoportal.cuzk.cz/(S(ijginumejzilvacbfijkylwj))/Default.aspx?mode=TextMeta&amp;side=mapy_data200&amp;text=dSady_mapyData200&amp;head_tab=sekce-02-gp&amp;menu=229">Data200</a></li>
 </ul>
+<p>For data from Czech Statistical Office it is best to use the <a href="https://github.com/petrbouchal/czso">czso</a> (also available on CRAN) which does much better job than the functions that were implemented here.</p>
 <div id="details-about-datasets" class="section level3">
 <h3 class="hasAnchor">
 <a href="#details-about-datasets" class="anchor"></a>Details about datasets</h3>
