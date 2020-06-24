@@ -1,6 +1,8 @@
 on:
   push:
-    paths: R/*
+    paths:
+    - R/*
+    - tests/*
 
 name: R-CMD-check
 
