@@ -16,5 +16,3 @@ for (layer in layers) {
 test_that("Load Data 200 - wrong layer", {
   expect_error(load_Data200("spatna vrstva", "Unknown layer requested"))
 })
-
-
