@@ -42,7 +42,8 @@ Suggests:
     RColorBrewer (>= 1.1.2),
     rmapshaper (>= 0.4.1),
     rmarkdown (>= 1.11),
-    tidyverse (>= 1.2.1)
+    tidyverse (>= 1.2.1),
+    testthat
 VignetteBuilder: 
     knitr
 Encoding: UTF-8
