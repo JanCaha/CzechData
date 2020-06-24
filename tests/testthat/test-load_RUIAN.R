@@ -2,8 +2,8 @@ library(glue)
 
 ids <- c("534048", "568457", "587788", "546593", "587443")
 
-layers <- c("adresni mista", "casti obce", "katastralni uzemi", "obec",
-            "stavebni objekty", "ulice", "volebni okrsky", "zakladni sidelni jednotky",)
+layers <- c("adresni mista", "casti obce", "obec",
+            "stavebni objekty", "ulice", "volebni okrsky", "zakladni sidelni jednotky")
 
 for (id in ids) {
   for (layer in layers) {
