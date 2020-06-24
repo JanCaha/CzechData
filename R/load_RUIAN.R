@@ -144,35 +144,45 @@ load_RUIAN_settlement <- function(id, layer = "obec", WGS84 = FALSE) {
   data <- data %>%
     janitor::clean_names()
 
-  # if (layer == "adresni mista") {
-  #
-  #   url_adresni_mista <- glue::glue(
-  #     "http://vdp.cuzk.cz/vymenny_format/csv/20200531_OB_{id}_ADR.csv.gz"
-  #     )
-  #
-  #   if (curl::curl_fetch_memory(url_adresni_mista)$status_code == 200) {
-  #
-  #     adresni_mista <- readr::read_delim(url_adresni_mista,
-  #                                        ";",
-  #                                        locale = readr::locale(encoding = "Windows-1250"),
-  #                                        col_types = readr::cols()
-  #     ) %>%
-  #       janitor::clean_names() %>%
-  #       dplyr::mutate(kod_adm = as.character(.data$kod_adm)) %>%
-  #       dplyr::select(-.data$kod_casti_obce, -.data$kod_ulice)
-  #
-  #     if (("psc" %in% names(data))) {
-  #       adresni_mista <- adresni_mista %>%
-  #         dplyr::select(-.data$psc)
-  #     }else{
-  #       adresni_mista <- adresni_mista %>%
-  #         dplyr::mutate(psc = as.character(.data$psc))
-  #     }
-  #
-  #     data <- data %>%
-  #       dplyr::left_join(adresni_mista, by = c("adrm_kod" = "kod_adm"))
-  #   }
-  # }
+  if (layer == "adresni mista") {
+
+    date <- {lubridate::floor_date(lubridate::today(), unit = "month") - lubridate::days(1)} %>%
+      as.character() %>%
+      stringr::str_replace_all("-", "")
+
+    url_adresni_mista <- glue::glue(
+      "http://vdp.cuzk.cz/vymenny_format/csv/{date}_OB_{id}_ADR.csv.zip"
+      )
+
+    adresni_mista_file <- file.path(dir, glue::glue("{date}_OB_{id}_ADR.csv.zip"))
+
+    utils::download.file(url_adresni_mista, adresni_mista_file, quiet = TRUE)
+
+    utils::unzip(adresni_mista_file, exdir = dir)
+
+    adresni_mista <- readr::read_delim(adresni_mista_file %>%
+                                         stringr::str_replace(".zip", ""),
+                                       ";",
+                                       locale = readr::locale(encoding = "Windows-1250",
+                                                              decimal_mark = "."),
+                                       col_types = readr::cols()) %>%
+      janitor::clean_names() %>%
+      dplyr::select(-souradnice_y, -souradnice_x) %>%
+      dplyr::mutate(kod_adm = as.character(.data$kod_adm)) %>%
+      dplyr::select(-.data$kod_casti_obce, -.data$kod_ulice)
+
+    if (("psc" %in% names(data))) {
+      adresni_mista <- adresni_mista %>%
+        dplyr::select(-.data$psc)
+    }else{
+      adresni_mista <- adresni_mista %>%
+        dplyr::mutate(psc = as.character(.data$psc))
+    }
+
+    data <- data %>%
+      dplyr::left_join(adresni_mista, by = c("kod" = "kod_adm"))
+
+  }
 
   data
 }
