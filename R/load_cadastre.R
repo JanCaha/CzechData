@@ -71,11 +71,11 @@ load_cadastral_territory <- function(id, layer = "katastralni uzemi", WGS84 = FA
   }
 
   if (!stringr::str_detect(id, "^[6|7|9][[:digit:]]{5}")) {
-    stop("Variable id must follow the general pattern of 6 digits and starting with 5.")
+    stop("Variable id must follow the general pattern of 6 digits and starting with 6,7 or 9.")
   }
 
   if (!(id %in% CzechData::katastralni_uzemi$kod)) {
-    stop(glue::glue("There is no settlement in Czech Republic with code {id}."))
+    stop(glue::glue("There is no cadastral territory in Czech Republic with code {id}."))
   }
 
   shp_name <- dplyr::case_when(
