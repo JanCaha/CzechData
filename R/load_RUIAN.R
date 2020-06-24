@@ -144,35 +144,35 @@ load_RUIAN_settlement <- function(id, layer = "obec", WGS84 = FALSE) {
   data <- data %>%
     janitor::clean_names()
 
-  if (layer == "adresni mista") {
-
-    url_adresni_mista <- glue::glue(
-      "http://vdp.cuzk.cz/vymenny_format/csv/20181130_OB_{id}_ADR.csv.gz"
-      )
-
-    if (curl::curl_fetch_memory(url_adresni_mista)$status_code == 200) {
-
-      adresni_mista <- readr::read_delim(url_adresni_mista,
-                                         ";",
-                                         locale = readr::locale(encoding = "Windows-1250"),
-                                         col_types = readr::cols()
-      ) %>%
-        janitor::clean_names() %>%
-        dplyr::mutate(kod_adm = as.character(.data$kod_adm)) %>%
-        dplyr::select(-.data$kod_casti_obce, -.data$kod_ulice)
-
-      if (("psc" %in% names(data))) {
-        adresni_mista <- adresni_mista %>%
-          dplyr::select(-.data$psc)
-      }else{
-        adresni_mista <- adresni_mista %>%
-          dplyr::mutate(psc = as.character(.data$psc))
-      }
-
-      data <- data %>%
-        dplyr::left_join(adresni_mista, by = c("adrm_kod" = "kod_adm"))
-    }
-  }
+  # if (layer == "adresni mista") {
+  #
+  #   url_adresni_mista <- glue::glue(
+  #     "http://vdp.cuzk.cz/vymenny_format/csv/20200531_OB_{id}_ADR.csv.gz"
+  #     )
+  #
+  #   if (curl::curl_fetch_memory(url_adresni_mista)$status_code == 200) {
+  #
+  #     adresni_mista <- readr::read_delim(url_adresni_mista,
+  #                                        ";",
+  #                                        locale = readr::locale(encoding = "Windows-1250"),
+  #                                        col_types = readr::cols()
+  #     ) %>%
+  #       janitor::clean_names() %>%
+  #       dplyr::mutate(kod_adm = as.character(.data$kod_adm)) %>%
+  #       dplyr::select(-.data$kod_casti_obce, -.data$kod_ulice)
+  #
+  #     if (("psc" %in% names(data))) {
+  #       adresni_mista <- adresni_mista %>%
+  #         dplyr::select(-.data$psc)
+  #     }else{
+  #       adresni_mista <- adresni_mista %>%
+  #         dplyr::mutate(psc = as.character(.data$psc))
+  #     }
+  #
+  #     data <- data %>%
+  #       dplyr::left_join(adresni_mista, by = c("adrm_kod" = "kod_adm"))
+  #   }
+  # }
 
   data
 }
