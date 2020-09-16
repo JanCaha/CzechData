@@ -58,6 +58,7 @@
 #' \dontrun{
 #'     parcely_vyskov <- load_cadastral_territory("788571", layer = "parcely")
 #' }
+
 load_cadastral_territory <- function(id, layer = "katastralni uzemi", WGS84 = FALSE) {
 
   .check_internet()
@@ -122,7 +123,8 @@ load_cadastral_territory <- function(id, layer = "katastralni uzemi", WGS84 = FA
   ku_file <- file.path(dir, glue::glue("{id}.zip"))
 
   if (!file.exists(ku_file)) {
-    utils::download.file(url, ku_file, quiet = TRUE)
+    m_GET(url) %>%
+      write_zip_file(ku_file)
   }
 
   unzip(ku_file, exdir = dir)

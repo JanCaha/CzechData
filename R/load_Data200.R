@@ -111,10 +111,8 @@ load_Data200 <- function(layer, WGS84 = FALSE) {
       "Downloading roughly {data200_layers$size[index]}, this can take a while."
     ))
 
-    utils::download.file(data200_layers$url[index],
-      file_zip,
-      quiet = TRUE
-    )
+    m_GET(data200_layers$url[index]) %>%
+      write_zip_file(file_zip)
   }
 
   utils::unzip(file_zip, exdir = temp_dir)
@@ -211,10 +209,8 @@ save_Data200 <- function(path, layer = NULL, type = NULL) {
         "Downloading roughly {data200_layers$size[index]}, this can take a while."
       ))
 
-      utils::download.file(data200_layers$url[index],
-        file_zip,
-        quiet = TRUE
-      )
+      m_GET(data200_layers$url[index]) %>%
+        write_zip_file(file_zip)
     }
 
     utils::unzip(file_zip, exdir = path)
@@ -234,10 +230,8 @@ save_Data200 <- function(path, layer = NULL, type = NULL) {
         "Downloading roughly {data200_layers$size[index]}, this can take a while."
       ))
 
-      utils::download.file(data200_layers$url[index],
-        file_zip,
-        quiet = TRUE
-      )
+      m_GET(data200_layers$url[index]) %>%
+        write_zip_file(file_zip)
     }
 
     is_raster <- stringr::str_detect(data200_layers$shpName[index], "\\.tif")

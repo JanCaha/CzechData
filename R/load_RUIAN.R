@@ -114,7 +114,8 @@ load_RUIAN_settlement <- function(id, layer = "obec", WGS84 = FALSE) {
   ruian_file <- file.path(dir, glue::glue("{id}.zip"))
 
   if (!file.exists(ruian_file)) {
-    utils::download.file(url, ruian_file, quiet = TRUE)
+    m_GET(url) %>%
+      write_zip_file(ruian_file)
   }
 
   utils::unzip(ruian_file, exdir = dir)
@@ -167,7 +168,7 @@ load_RUIAN_settlement <- function(id, layer = "obec", WGS84 = FALSE) {
                                                               decimal_mark = "."),
                                        col_types = readr::cols()) %>%
       janitor::clean_names() %>%
-      dplyr::select(-souradnice_y, -souradnice_x) %>%
+      dplyr::select(-.data$souradnice_y, -.data$souradnice_x) %>%
       dplyr::mutate(kod_adm = as.character(.data$kod_adm)) %>%
       dplyr::select(-.data$kod_casti_obce, -.data$kod_ulice)
 

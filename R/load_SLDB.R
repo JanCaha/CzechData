@@ -76,7 +76,8 @@ load_SLDB_2011 <- function(type = "obyvatelstvo", load_names = TRUE) {
   sldb_file_zip <- file.path(temp_dir, glue::glue("{type}.zip"))
 
   if (!file.exists(sldb_file_zip)) {
-    utils::download.file(type_info$url[index], sldb_file_zip, quiet = TRUE)
+    m_GET(type_info$url[index]) %>%
+      write_zip_file(sldb_file_zip)
   }
 
   sldb_file <- unzip(sldb_file_zip, exdir = temp_dir)

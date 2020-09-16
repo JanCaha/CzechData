@@ -12,11 +12,10 @@
   ruian_file <- file.path(temp_dir, "RUIAN.zip")
 
   if (!file.exists(ruian_file)) {
-    usethis::ui_info("Downloading roughly 190 MB, this can take a while.")
+    usethis::ui_info("Downloading roughly 243 MB, this can take a while.")
 
-    utils::download.file("http://services.cuzk.cz/shp/stat/epsg-5514/1.zip",
-                         ruian_file,
-                         quiet = TRUE)
+    m_GET("http://services.cuzk.cz/shp/stat/epsg-5514/1.zip") %>%
+      write_zip_file(ruian_file)
   }
 
   utils::unzip(ruian_file, exdir = temp_dir)

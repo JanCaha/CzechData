@@ -114,9 +114,8 @@ load_Data50 <- function(layer, WGS84 = FALSE){
       "Downloading roughly {data50_layers$size[index]}, this can take a while."
       ))
 
-    utils::download.file(data50_layers$url[index],
-                         file_zip,
-                         quiet = TRUE)
+    m_GET(data50_layers$url[index]) %>%
+      write_zip_file(file_zip)
   }
 
   utils::unzip(file_zip, exdir = temp_dir)
@@ -204,9 +203,8 @@ save_Data50 <- function(path, layer = NULL, type = NULL){
         "Downloading roughly {data50_layers$size[index]}, this can take a while."
         ))
 
-      utils::download.file(data50_layers$url[index],
-                           file_zip,
-                           quiet = TRUE)
+      m_GET(data50_layers$url[index]) %>%
+        write_zip_file(file_zip)
     }
 
     utils::unzip(file_zip, exdir = path)
@@ -227,9 +225,8 @@ save_Data50 <- function(path, layer = NULL, type = NULL){
         "Downloading roughly {data50_layers$size[index]}, this can take a while."
         ))
 
-      utils::download.file(data50_layers$url[index],
-                           file_zip,
-                           quiet = TRUE)
+      m_GET(data50_layers$url[index]) %>%
+        write_zip_file(file_zip)
     }
 
     exts <- list(".cpg", ".dbf", ".prj", ".sbn", ".sbx", ".shp", ".shp.xml", ".shx")
