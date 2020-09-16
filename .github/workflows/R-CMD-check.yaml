@@ -10,18 +10,11 @@ jobs:
       - uses: actions/checkout@v1
       - uses: r-lib/actions/setup-r@master
 
-      - name: Test paths
-        run: Rscript -e "tempdir()"
-
-      - name: Test paths
-        run: Rscript -e "file.path(tempdir(), '..', '.GeoCzechCache')"
-
-      - name: Test paths
-        run: Rscript -e "dir.create(file.path(tempdir(), '..', '.GeoCzechCache'))"
-
       - name: Install dependencies
         run: Rscript -e "install.packages(c('remotes', 'rcmdcheck', 'devtools'))" -e "remotes::install_deps(dependencies = TRUE)"
-      - name: Check
-        run: Rscript -e "rcmdcheck::rcmdcheck(args = '--no-manual', error_on = 'error')"
+
       - name: Test
         run: Rscript -e "devtools::test()"
+
+      - name: Check
+        run: Rscript -e "rcmdcheck::rcmdcheck(args = '--no-manual', error_on = 'error')"
