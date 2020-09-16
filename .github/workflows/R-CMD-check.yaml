@@ -14,8 +14,6 @@ jobs:
         run: Rscript -e "tempdir()"
 
       - name: Test paths
-        run: Rscript -e "file.path(tempdir(), "..", '.GeoCzechCache')"
-      - name: Test paths
         run: Rscript -e "file.path(tempdir(), '..', '.GeoCzechCache')"
 
       - name: Install dependencies
