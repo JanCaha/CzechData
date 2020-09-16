@@ -7,8 +7,18 @@
   }
 }
 
+cache_path <- function(){
+  path <- file.path(tempdir(), "..", ".GeoCzechCache")
+
+  if (!dir.exists(path)){
+    dir.create(path)
+  }
+
+  path
+}
+
 #' @importFrom memoise cache_filesystem
-cache_CzechData <- memoise::cache_filesystem(file.path(tempdir(), "..", ".GeoCzechCache"))
+cache_CzechData <- memoise::cache_filesystem(cache_path())
 
 cache_length <- 7 * 24 * 60 * 60 # cache time set to 7 days
 
