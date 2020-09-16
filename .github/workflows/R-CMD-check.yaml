@@ -16,6 +16,9 @@ jobs:
       - name: Test paths
         run: Rscript -e "file.path(tempdir(), '..', '.GeoCzechCache')"
 
+      - name: Test paths
+        run: Rscript -e "dir.create(file.path(tempdir(), '..', '.GeoCzechCache'))"
+
       - name: Install dependencies
         run: Rscript -e "install.packages(c('remotes', 'rcmdcheck', 'devtools'))" -e "remotes::install_deps(dependencies = TRUE)"
       - name: Check
