@@ -6,3 +6,4 @@
 ^docs$
 ^\.github/workflows/R-CMD-check\.yaml$
 ^\.github/workflows/Pkgdown\.yaml$
+^.lintr$
