@@ -1,9 +1,6 @@
 on:
-  push:
-    paths:
-    - R/*
-    - tests/**
-
+  push
+  
 name: R-CMD-check
 
 jobs:

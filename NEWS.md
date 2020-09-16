@@ -1,3 +1,9 @@
+# CzechData 0.5.0
+
+* download of files solved using httr::GET
+
+* caching downloaded files using memoise package (caching for 7 days)
+
 # CzechData 0.4.0
 
 * deprecate functions for data from Czech Statistical Office in favor of package `czso`, which does a better job
