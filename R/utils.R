@@ -10,6 +10,8 @@
 cache_path <- function(){
   path <- file.path(tempdir(), "..", ".GeoCzechCache")
 
+  path <- normalizePath(path)
+
   if (!dir.exists(path)){
     dir.create(path)
   }
