@@ -3,6 +3,7 @@
 export("%>%")
 export(generate_Data200_citation)
 export(generate_Data50_citation)
+export(get_cache_length)
 export(load_Data200)
 export(load_Data200_info)
 export(load_Data50)

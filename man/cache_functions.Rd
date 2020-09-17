@@ -13,9 +13,7 @@ get_cache_length()
 \item{length}{\code{numeric} time in seconds how long the cache is valid.}
 }
 \value{
-\code{numeric} length of cache validity (default value is 7 days)
-
-@export
+\code{get_cache_length()} \code{numeric} length of cache validity (default value is 7 days)
 }
 \description{
 Set and get how long the cache is valid and the files are downloaded only once and then returned from the cache.
