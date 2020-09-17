@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Extract data from RUIAN for whole Czech Republic — load_RUIAN_state • CzechData</title>
+<title>Set and get cache validity time — set_cache_length • CzechData</title>
 
 
 <!-- jquery -->
@@ -39,10 +39,8 @@
 
 
 
-<meta property="og:title" content="Extract data from RUIAN for whole Czech Republic — load_RUIAN_state" />
-<meta property="og:description" content="Extract specific layer, in form of spatial data, from RUIAN for whole Czech Republic.
-The minor issue with these data is the size, the datasets that needs to be downloaded is roughly
-190 MB." />
+<meta property="og:title" content="Set and get cache validity time — set_cache_length" />
+<meta property="og:description" content="Set and get how long the cache is valid and the files are downloaded only once and then returned from the cache." />
 
 
 
@@ -125,66 +123,39 @@ The minor issue with these data is the size, the datasets that needs to be downl
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Extract data from RUIAN for whole Czech Republic</h1>
-    <small class="dont-index">Source: <a href='https://github.com/JanCaha/CzechData/blob/master/R/load_RUIAN_state.R'><code>R/load_RUIAN_state.R</code></a></small>
-    <div class="hidden name"><code>load_RUIAN_state.Rd</code></div>
+    <h1>Set and get cache validity time</h1>
+    <small class="dont-index">Source: <a href='https://github.com/JanCaha/CzechData/blob/master/R/cache_settings.R'><code>R/cache_settings.R</code></a></small>
+    <div class="hidden name"><code>cache_functions.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Extract specific layer, in form of spatial data, from RUIAN for whole Czech Republic.
-The minor issue with these data is the size, the datasets that needs to be downloaded is roughly
-190 MB.</p>
+    <p>Set and get how long the cache is valid and the files are downloaded only once and then returned from the cache.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>load_RUIAN_state</span>(layer = <span class='st'>"stat"</span>, WGS84 = <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>set_cache_length</span>(<span class='kw'>length</span>)
+
+<span class='fu'>get_cache_length</span>()</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>layer</th>
-      <td><p>identification of data to extract as character, see details.
-Default value is <code>"stát"</code></p></td>
-    </tr>
-    <tr>
-      <th>WGS84</th>
-      <td><p>convert data to WGS-84 coordinate system? Default <code>FALSE</code>.</p></td>
+      <th>length</th>
+      <td><p><code>numeric</code> time in seconds how long the cache is valid.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>data.frame</code> with spatail objects (<code><a href='https://rdrr.io/pkg/sf/man/sf.html'>sf</a></code>) of the specified layer</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>The <code>layer</code> can have values from following set, the value in brackets is alias to full layer
-name:</p><ol>
-<li><p><code>"KATUZE_P"</code> (<code>"katastralni uzemi"</code>)</p></li>
-<li><p><code>"OBCE_P"</code> (<code>"obce"</code>)</p></li>
-<li><p><code>"OKRESY_P"</code> (<code>"okresy"</code>)</p></li>
-<li><p><code>"ORP_P"</code> (<code>"orp"</code>)</p></li>
-<li><p><code>"POU_P"</code> (<code>"pou"</code>)</p></li>
-<li><p><code>"PRARES_P"</code></p></li>
-<li><p><code>"REGION_P"</code> (<code>"regiony"</code>)</p></li>
-<li><p><code>"STATY_P"</code> (<code>"stat"</code>)</p></li>
-<li><p><code>"STU_P"</code> (<code>"stavebni úrady"</code>)</p></li>
-<li><p><code>"VO_P"</code> (<code>"volebni okrsky"</code>)</p></li>
-<li><p><code>"VUSC_P"</code> (<code>"kraje"</code>)</p></li>
-</ol>
-
-<p>So the codes <code>layer = "OKRESY_P"</code> and <code>layer = "okresy"</code> are equal.</p>
-    <h2 class="hasAnchor" id="information-about-dataset"><a class="anchor" href="#information-about-dataset"></a>Information about dataset</h2>
+    <p><code>get_cache_length()</code> <code>numeric</code> length of cache validity (default value is 7 days)</p>
+    <h2 class="hasAnchor" id="functions"><a class="anchor" href="#functions"></a>Functions</h2>
 
     
+<ul>
+<li><p><code>set_cache_length</code>: Set cache length</p></li>
+<li><p><code>get_cache_length</code>: Get cache length</p></li>
+</ul>
 
-<p>More detailed information about data can be found at the provider's website
-<a href='http://atom.cuzk.cz/'>http://atom.cuzk.cz/</a>.</p>
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'>if</span> (<span class='fl'>FALSE</span>) {
-    <span class='kw'>obce_CR</span> <span class='op'>&lt;-</span> <span class='fu'>load_RUIAN_state</span>(layer = <span class='st'>"obce"</span>)
-}
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
