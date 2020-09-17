@@ -2,6 +2,7 @@ package_env <- new.env(parent = emptyenv())
 
 # default cache_length
 cache_length_default <- 7 * 24 * 60 * 60 # cache time set to 7 days
+cache_length <- cache_length_default
 
 cache_path <- function(){
   path <- file.path(tempdir(), "..", ".CzechDataPackageCache")
