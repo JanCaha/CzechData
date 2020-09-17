@@ -32,7 +32,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">CzechData</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -46,18 +46,6 @@
 </li>
 <li>
   <a href="reference/index.html">Reference</a>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li>
-      <a href="articles/quick-start.html">Quick start</a>
-    </li>
-  </ul>
 </li>
 <li>
   <a href="news/index.html">Changelog</a>
@@ -91,7 +79,9 @@
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>You can install the current version of the package from GitHub using package remotes:</p>
-<div class="sourceCode" id="cb1"><pre class="r"><span class="kw pkg">remotes</span><span class="kw ns">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"JanCaha/CzechData"</span>)</pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="kw">remotes</span>::<span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"JanCaha/CzechData"</span>)
+</pre></div>
 </div>
 <div id="website" class="section level2">
 <h2 class="hasAnchor">
@@ -101,23 +91,25 @@
 <div id="example" class="section level2">
 <h2 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h2>
-<div class="sourceCode" id="cb2"><pre class="r"><span class="co"># simple RUIAN data for whole state</span>
-<span class="no">obce_CR</span> <span class="kw">&lt;-</span> <span class="fu">load_RUIAN_state</span>(<span class="kw">layer</span> <span class="kw">=</span> <span class="st">"obce"</span>)
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="co"># simple RUIAN data for whole state</span>
+<span class="kw">obce_CR</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/load_RUIAN_state.html">load_RUIAN_state</a></span>(layer = <span class="st">"obce"</span>)
 
 <span class="co"># RUIAN data for single settlement</span>
-<span class="no">adresy_vyskov</span> <span class="kw">&lt;-</span> <span class="fu">load_RUIAN_settlement</span>(<span class="st">"592889"</span>, <span class="kw">layer</span> <span class="kw">=</span> <span class="st">"adresní místa"</span>)
+<span class="kw">adresy_vyskov</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/load_RUIAN_settlement.html">load_RUIAN_settlement</a></span>(<span class="st">"592889"</span>, layer = <span class="st">"adresní místa"</span>)
 
 
 <span class="co"># cadastral data for single cadastral territory</span>
-<span class="no">parcely_vyskov</span> <span class="kw">&lt;-</span> <span class="fu">load_cadastral_territory</span>(<span class="st">"788571"</span>, <span class="kw">layer</span> <span class="kw">=</span> <span class="st">"parcely"</span>)
+<span class="kw">parcely_vyskov</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/load_cadastral_territory.html">load_cadastral_territory</a></span>(<span class="st">"788571"</span>, layer = <span class="st">"parcely"</span>)
 
 <span class="co"># load or save Data50</span>
-<span class="no">rivers</span> <span class="kw">&lt;-</span> <span class="fu">load_Data50</span>(<span class="kw">layer</span> <span class="kw">=</span> <span class="st">"VodniTok"</span>)
-<span class="no">folder_communications</span> <span class="kw">&lt;-</span> <span class="fu">save_Data50</span>(<span class="st">"~/data/coomunications"</span>, <span class="kw">type</span> <span class="kw">=</span> <span class="st">"komunikace"</span>)
+<span class="kw">rivers</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/load_Data50.html">load_Data50</a></span>(layer = <span class="st">"VodniTok"</span>)
+<span class="kw">folder_communications</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/load_Data50.html">save_Data50</a></span>(<span class="st">"~/data/coomunications"</span>, type = <span class="st">"komunikace"</span>)
 
 <span class="co"># load or save Data200</span>
-<span class="no">waterfalls</span> <span class="kw">&lt;-</span> <span class="fu">load_Data200</span>(<span class="kw">layer</span> <span class="kw">=</span> <span class="st">"Vodopad"</span>)
-<span class="no">folder_water_objects</span> <span class="kw">&lt;-</span> <span class="fu">save_Data200</span>(<span class="st">"~/data/water"</span>, <span class="kw">type</span> <span class="kw">=</span> <span class="st">"Vodopad"</span>)</pre></div>
+<span class="kw">waterfalls</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/load_Data200.html">load_Data200</a></span>(layer = <span class="st">"Vodopad"</span>)
+<span class="kw">folder_water_objects</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/load_Data200.html">save_Data200</a></span>(<span class="st">"~/data/water"</span>, type = <span class="st">"Vodopad"</span>)
+</pre></div>
 </div>
 <div id="data-sources" class="section level2">
 <h2 class="hasAnchor">
@@ -177,7 +169,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
