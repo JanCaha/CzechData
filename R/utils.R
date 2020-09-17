@@ -8,7 +8,7 @@
 }
 
 cache_path <- function(){
-  path <- file.path(tempdir(), "..", ".GeoCzechCache")
+  path <- file.path(tempdir(), "..", ".CzechDataPackageCache")
 
   path <- normalizePath(path)
 
