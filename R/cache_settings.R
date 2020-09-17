@@ -21,7 +21,7 @@ cache_CzechData <- memoise::cache_filesystem(cache_path())
 #' @importFrom httr GET
 #' @importFrom memoise memoise timeout
 m_GET <- memoise::memoise(httr::GET,
-                          ~ memoise::timeout(cache_length),
+                          ~ memoise::timeout(get_cache_length()),
                           cache = cache_CzechData)
 
 #' @importFrom httr content
