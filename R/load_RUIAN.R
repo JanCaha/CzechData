@@ -48,8 +48,9 @@
 #' @importFrom janitor clean_names
 #' @importFrom curl curl_fetch_memory
 #' @importFrom readr read_delim cols
-#' @importFrom rlang .data
+#' @importFrom rlang .data set_names call2 eval_bare
 #' @importFrom usethis ui_info
+#' @importFrom purrr map list_modify
 #'
 #' @examples
 #' \dontrun{
@@ -161,12 +162,24 @@ load_RUIAN_settlement <- function(id, layer = "obec", WGS84 = FALSE) {
 
     utils::unzip(adresni_mista_file, exdir = dir)
 
+    names_cols <- c("Název obce", "Název MOMC", "Název MOP", "Název části obce", "Název ulice",
+                    "Kód ulice")
+
+    cols_types <- purrr::map(rlang::set_names(names_cols),
+                             function(x) rlang::call2("col_character", .ns = "readr"))
+
+    cols_types <- purrr::list_modify(cols_types, .default = rlang::call2("col_guess", .ns = "readr"))
+
+    function_call <- rlang::call2("cols", !!!cols_types, .ns = "readr")
+
+    cols_function <- rlang::eval_bare(function_call)
+
     adresni_mista <- readr::read_delim(adresni_mista_file %>%
                                          stringr::str_replace(".zip", ""),
                                        ";",
                                        locale = readr::locale(encoding = "Windows-1250",
                                                               decimal_mark = "."),
-                                       col_types = readr::cols()) %>%
+                                       col_types = cols_function) %>%
       janitor::clean_names() %>%
       dplyr::select(-.data$souradnice_y, -.data$souradnice_x) %>%
       dplyr::mutate(kod_adm = as.character(.data$kod_adm)) %>%
