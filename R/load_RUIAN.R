@@ -18,7 +18,7 @@
 #' \enumerate{
 #'   \item \code{"ADRM_B"} (\code{"adresni mista"})
 #'   \item \code{"CO_B"} (\code{"casti obce"})
-#'   \item \code{"KU_P"} (\code{"katastralni uzemi"})
+#'   \item \code{"KATUZE_P"} (\code{"katastralni uzemi"})
 #'   \item \code{"OBEC_P"} (\code{"obec"})
 #'   \item \code{"SO_B"} (\code{"stavebni objekty"})
 #'   \item \code{"UL_L"} (\code{"ulice"})
@@ -43,7 +43,7 @@
 #' @importFrom glue glue
 #' @importFrom stringr str_detect
 #' @importFrom utils data download.file unzip
-#' @importFrom dplyr case_when
+#' @importFrom dplyr pull filter
 #' @importFrom sf st_read st_transform
 #' @importFrom janitor clean_names
 #' @importFrom curl curl_fetch_memory
@@ -74,33 +74,11 @@ load_RUIAN_settlement <- function(id, layer = "obec", WGS84 = FALSE) {
     stop(glue::glue("There is no settlement in Czech Republic with code {id}."))
   }
 
-  shp_name <- dplyr::case_when(
-    layer == "adresni mista" ~ "ADRM_B.shp",
-    layer == "ADRM_B" ~ "ADRM_B.shp",
-    layer == "casti obce" ~ "CO_B.shp",
-    layer == "CO_B" ~ "CO_B.shp",
-    layer == "katastralni uzemi" ~ "KU_P.shp",
-    layer == "KU_P" ~ "KU_P.shp",
-    layer == "obec" ~ "OBEC_P.shp",
-    layer == "OBEC_P" ~ "OBEC_P.shp",
-    layer == "stavebni objekty" ~ "SO_B.shp",
-    layer == "SO_B" ~ "SO_B.shp",
-    # UL_B is always empty
-    # layer == "UL_B" ~ "UL_B.shp",
-    layer == "ulice" ~ "UL_L.shp",
-    layer == "UL_L" ~ "UL_L.shp",
-    layer == "volebni okrsky" ~ "VO_P.shp",
-    layer == "VO_P" ~ "VO_P.shp",
-    layer == "zakladni sidelni jednotky" ~ "ZSJ_P.shp",
-    layer == "ZSJ_P" ~ "ZSJ_P.shp",
-    # not for every settlement
-    layer == "MOMC_P" ~ "MOMC_P.shp",
-    layer == "MOP_P" ~ "MOP_P.shp",
-    layer == "SOP_P" ~ "SOP_P.shp",
-    TRUE ~ NA_character_
-  )
+  shp_name <- .settlement_RUIAN_layers() %>%
+    dplyr::filter(alias == layer) %>%
+    dplyr::pull(shpName)
 
-  if (is.na(shp_name)) {
+  if (length(shp_name) == 0) {
     stop(glue::glue(
       "Uknown layer name (or alias) - {layer}. Please look into documentation, ",
       "for allowed layer names."
@@ -200,3 +178,31 @@ load_RUIAN_settlement <- function(id, layer = "obec", WGS84 = FALSE) {
 
   data
 }
+
+#' @importFrom dplyr tribble
+.settlement_RUIAN_layers <- function(){
+  dplyr::tribble(
+    ~alias, ~shpName,
+    "adresni mista", "ADRM_B.shp",
+    "ADRM_B", "ADRM_B.shp",
+    "casti obce", "CO_B.shp",
+    "CO_B", "CO_B.shp",
+    "katastralni uzemi", "KATUZE_P.shp",
+    "KATUZE_P", "KATUZE_P.shp",
+    "obec", "OBEC_P.shp",
+    "OBEC_P", "OBEC_P.shp",
+    "stavebni objekty", "SO_B.shp",
+    "SO_B", "SO_B.shp",
+    "UL_B", "UL_B.shp",
+    "ulice", "UL_L.shp",
+    "UL_L", "UL_L.shp",
+    "volebni okrsky", "VO_P.shp",
+    "VO_P", "VO_P.shp",
+    "zakladni sidelni jednotky", "ZSJ_P.shp",
+    "ZSJ_P", "ZSJ_P.shp",
+    "MOMC_P", "MOMC_P.shp",
+    "MOP_P", "MOP_P.shp",
+    "SOP_P", "SOP_P.shp"
+    )
+}
+
