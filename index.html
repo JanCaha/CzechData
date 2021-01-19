@@ -32,7 +32,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">CzechData</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.6</span>
       </span>
     </div>
 
@@ -40,7 +40,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -66,7 +66,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/JanCaha/CzechData/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -85,15 +85,15 @@
 <div id="czechdata" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#czechdata" class="anchor"></a>CzechData</h1></div>
+<p><img src="https://github.com/JanCaha/CzechData/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></p>
 <p>The aim of the package is to provide interface from R to download various data relevant to Czech Republic directly into R. The data will be classic tabular as well as other types (e.g. spatial data).</p>
 <p>Unfortunately, it is unlikely that the data will make sense for you, unless you speak Czech or are highly familiar with Czech data sources.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>You can install the current version of the package from GitHub using package remotes:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="kw">remotes</span>::<span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"JanCaha/CzechData"</span>)
-</pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"JanCaha/CzechData"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="website" class="section level2">
 <h2 class="hasAnchor">
@@ -103,25 +103,24 @@
 <div id="example" class="section level2">
 <h2 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h2>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="co"># simple RUIAN data for whole state</span>
-<span class="kw">obce_CR</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/load_RUIAN_state.html">load_RUIAN_state</a></span>(layer = <span class="st">"obce"</span>)
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># simple RUIAN data for whole state</span>
+<span class="va">obce_CR</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/load_RUIAN_state.html">load_RUIAN_state</a></span><span class="op">(</span>layer <span class="op">=</span> <span class="st">"obce"</span><span class="op">)</span>
 
 <span class="co"># RUIAN data for single settlement</span>
-<span class="kw">adresy_vyskov</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/load_RUIAN_settlement.html">load_RUIAN_settlement</a></span>(<span class="st">"592889"</span>, layer = <span class="st">"adresní místa"</span>)
+<span class="va">adresy_vyskov</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/load_RUIAN_settlement.html">load_RUIAN_settlement</a></span><span class="op">(</span><span class="st">"592889"</span>, layer <span class="op">=</span> <span class="st">"adresní místa"</span><span class="op">)</span>
 
 
 <span class="co"># cadastral data for single cadastral territory</span>
-<span class="kw">parcely_vyskov</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/load_cadastral_territory.html">load_cadastral_territory</a></span>(<span class="st">"788571"</span>, layer = <span class="st">"parcely"</span>)
+<span class="va">parcely_vyskov</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/load_cadastral_territory.html">load_cadastral_territory</a></span><span class="op">(</span><span class="st">"788571"</span>, layer <span class="op">=</span> <span class="st">"parcely"</span><span class="op">)</span>
 
 <span class="co"># load or save Data50</span>
-<span class="kw">rivers</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/load_Data50.html">load_Data50</a></span>(layer = <span class="st">"VodniTok"</span>)
-<span class="kw">folder_communications</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/load_Data50.html">save_Data50</a></span>(<span class="st">"~/data/coomunications"</span>, type = <span class="st">"komunikace"</span>)
+<span class="va">rivers</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/load_Data50.html">load_Data50</a></span><span class="op">(</span>layer <span class="op">=</span> <span class="st">"VodniTok"</span><span class="op">)</span>
+<span class="va">folder_communications</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/load_Data50.html">save_Data50</a></span><span class="op">(</span><span class="st">"~/data/coomunications"</span>, type <span class="op">=</span> <span class="st">"komunikace"</span><span class="op">)</span>
 
 <span class="co"># load or save Data200</span>
-<span class="kw">waterfalls</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/load_Data200.html">load_Data200</a></span>(layer = <span class="st">"Vodopad"</span>)
-<span class="kw">folder_water_objects</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/load_Data200.html">save_Data200</a></span>(<span class="st">"~/data/water"</span>, type = <span class="st">"Vodopad"</span>)
-</pre></div>
+<span class="va">waterfalls</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/load_Data200.html">load_Data200</a></span><span class="op">(</span>layer <span class="op">=</span> <span class="st">"Vodopad"</span><span class="op">)</span>
+<span class="va">folder_water_objects</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/load_Data200.html">save_Data200</a></span><span class="op">(</span><span class="st">"~/data/water"</span>, type <span class="op">=</span> <span class="st">"Vodopad"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="data-sources" class="section level2">
 <h2 class="hasAnchor">
