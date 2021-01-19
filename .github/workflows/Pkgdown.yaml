@@ -12,8 +12,11 @@ jobs:
   pkgdown:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+
+      - uses: actions/checkout@v2
+
       - uses: r-lib/actions/setup-r@master
+
       - uses: r-lib/actions/setup-pandoc@master
 
       - name: Cache R packages
@@ -35,29 +38,23 @@ jobs:
           Rscript -e "install.packages(c('remotes', 'rcmdcheck', 'devtools', 'pkgdown'))"
           Rscript -e "remotes::install_deps(dependencies = TRUE)"
 
-      - name: Set GIT
-        run: |
-          git config --global user.email "action@github.com"
-          git config --global user.name "Github Action"
-          git pull
-
       - name: Document Package
         run: |
           Rscript -e "devtools::document()"
-          git commit --allow-empty -m "update docs" -a
 
-      - name: Push documentation
-        uses: ad-m/github-push-action@master
+      - uses: EndBug/add-and-commit@v7
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          author_name: github-actions
+          author_email: github-actions@github.com
+          message: "current documentation update"
 
       - name: Build package website
         run: |
           Rscript -e "pkgdown::build_site()"
 
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v2.5.0
-        env:
-          ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-          PUBLISH_BRANCH: gh-pages
-          PUBLISH_DIR: ./docs
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          publish_branch: gh-pages
+          publish_dir: ./docs
