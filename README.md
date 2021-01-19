@@ -1,5 +1,7 @@
 # CzechData
 
+![R-CMD-check](https://github.com/JanCaha/CzechData/workflows/R-CMD-check/badge.svg)
+
 
 The aim of the package is to provide interface from R to download various data relevant to Czech Republic directly into R. The data will be classic tabular as well as other types (e.g. spatial data). 
 
