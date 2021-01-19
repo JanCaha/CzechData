@@ -1,5 +1,9 @@
 on:
   push:
+    paths:
+      - R/**
+      - DESCRIPTION
+      - .github/workflows/R-CMD-check.yaml
   schedule:
     - cron: "0 0 * * 1"
 
