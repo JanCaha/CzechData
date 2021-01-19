@@ -1,4 +1,4 @@
-name: Pkgdown
+name: Build and Publish Website
 
 on:
   push:
