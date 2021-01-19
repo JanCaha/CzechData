@@ -4,6 +4,7 @@ on:
       - R/**
       - DESCRIPTION
       - .github/workflows/R-CMD-check.yaml
+      - README.md
   schedule:
     - cron: "0 0 * * 1"
 
