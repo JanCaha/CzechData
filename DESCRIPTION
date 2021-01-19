@@ -20,7 +20,6 @@ Imports:
     dplyr (>= 0.7.8),
     glue (>= 1.3.0),
     janitor (>= 1.1.1),
-    jsonlite (>= 1.6),
     lifecycle,
     lubridate (>= 1.7.4),
     magrittr (>= 1.5),
