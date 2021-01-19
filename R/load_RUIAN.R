@@ -75,8 +75,8 @@ load_RUIAN_settlement <- function(id, layer = "obec", WGS84 = FALSE) {
   }
 
   shp_name <- .settlement_RUIAN_layers() %>%
-    dplyr::filter(alias == layer) %>%
-    dplyr::pull(shpName)
+    dplyr::filter(.data$alias == layer) %>%
+    dplyr::pull(.data$shpName)
 
   if (length(shp_name) == 0) {
     stop(glue::glue(
@@ -179,7 +179,7 @@ load_RUIAN_settlement <- function(id, layer = "obec", WGS84 = FALSE) {
   data
 }
 
-#' @importFrom dplyr tribble
+#' @importFrom tibble tribble
 .settlement_RUIAN_layers <- function(){
   dplyr::tribble(
     ~alias, ~shpName,
