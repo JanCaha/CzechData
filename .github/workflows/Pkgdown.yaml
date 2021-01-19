@@ -40,7 +40,7 @@ jobs:
 
       - name: Install pkgdown
         run: |
-          Rscript -e "remotes::install_dev('pkgdown')"
+          Rscript -e "install.packages(c('pkgdown'))"
 
       - name: Document Package
         run: |
