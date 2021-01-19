@@ -31,7 +31,7 @@ name:
 \enumerate{
 \item \code{"ADRM_B"} (\code{"adresni mista"})
 \item \code{"CO_B"} (\code{"casti obce"})
-\item \code{"KU_P"} (\code{"katastralni uzemi"})
+\item \code{"KATUZE_P"} (\code{"katastralni uzemi"})
 \item \code{"OBEC_P"} (\code{"obec"})
 \item \code{"SO_B"} (\code{"stavebni objekty"})
 \item \code{"UL_L"} (\code{"ulice"})
