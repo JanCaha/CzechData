@@ -35,12 +35,20 @@ jobs:
 
       - name: Install dependencies
         run: |
-          Rscript -e "install.packages(c('remotes', 'rcmdcheck', 'devtools', 'pkgdown'))"
+          Rscript -e "install.packages(c('remotes', 'rcmdcheck', 'devtools'))"
           Rscript -e "remotes::install_deps(dependencies = TRUE)"
+
+      - name: Install pkgdown
+        run: |
+          Rscript -e "remotes::install_dev("pkgdown")"
 
       - name: Document Package
         run: |
           Rscript -e "devtools::document()"
+
+      - name: Install package
+        run: |
+          Rscript -e "devtools::install()"
 
       - uses: EndBug/add-and-commit@v7
         with:
