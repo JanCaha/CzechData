@@ -27,10 +27,9 @@ jobs:
         run: Rscript -e "rcmdcheck::rcmdcheck(args = '--no-manual', error_on = 'error')"
 
       - uses: JasonEtco/create-an-issue@v2
-        # if: ${{ failure() }}
+        if: ${{ failure() }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           WORKFLOW: R-CMD-check
         with:
-          update_existing: true
           filename: .github/workflow-fail-template.md
