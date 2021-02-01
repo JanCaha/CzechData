@@ -6,7 +6,7 @@ on:
       - .github/workflows/R-CMD-check.yaml
       - README.md
   schedule:
-    - cron: "0 0 * * 1"
+    - cron: "0 5 * * 1"
 
 name: R-CMD-check
 
