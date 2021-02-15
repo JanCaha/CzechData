@@ -35,7 +35,7 @@ jobs:
         run: Rscript -e "devtools::test()"
 
       - name: Check
-        run: Rscript -e "rcmdcheck::rcmdcheck(args = '--no-manual', error_on = 'error')"
+        run: Rscript -e "rcmdcheck::rcmdcheck(args = c('--no-manual', '--no-tests'), error_on = 'error')"
 
       - uses: JasonEtco/create-an-issue@v2
         if: ${{ failure() }}
