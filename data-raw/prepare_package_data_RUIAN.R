@@ -5,6 +5,7 @@ library(janitor)
 library(here)
 
 source(here::here("R", "download_RUIAN.R"))
+source(here::here("R", "cache_settings.R"))
 
 # set up directory with ruian -----------------------------------------------------------------
 
