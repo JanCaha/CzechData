@@ -115,7 +115,7 @@ load_Data200 <- function(layer, WGS84 = FALSE) {
       write_zip_file(file_zip)
   }
 
-  utils::unzip(file_zip, exdir = temp_dir)
+  utils::unzip(file_zip, exdir = temp_dir, junkpaths = TRUE)
 
   usethis::ui_done("Data downloaded and unpacked.")
 

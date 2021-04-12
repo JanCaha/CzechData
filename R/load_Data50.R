@@ -118,11 +118,11 @@ load_Data50 <- function(layer, WGS84 = FALSE){
       write_zip_file(file_zip)
   }
 
-  utils::unzip(file_zip, exdir = temp_dir)
+  utils::unzip(file_zip, exdir = temp_dir, junkpaths = TRUE)
 
   usethis::ui_done("Data downloaded and unpacked.")
 
-  shp_file <- file.path(temp_dir, data50_layers$kategorie[index], data50_layers$shpName[index])
+  shp_file <- file.path(temp_dir, data50_layers$shpName[index])
 
   data <- sf::st_read(shp_file,
                       stringsAsFactors = FALSE,
