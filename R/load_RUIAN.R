@@ -157,8 +157,12 @@ load_RUIAN_settlement <- function(id, layer = "obec", WGS84 = FALSE) {
                                        ";",
                                        locale = readr::locale(encoding = "Windows-1250",
                                                               decimal_mark = "."),
-                                       col_types = cols_function) %>%
-      janitor::clean_names() %>%
+                                       col_types = cols_function)
+
+    colnames(adresni_mista) <- c("kod_adm", "kod_obce", "nazev_obce", "kod_momc", "název_momc", "kod_obvodu_prahy", "nazev_obvodu_prahy",
+                                 "kod_casti_obce", "nazev_casti_obce", "kod_ulice", "nazev_ulice", "typ_so", "cislo_domovni",
+                                 "cislo_orientacni", "znak_cisla_orientacniho", "psc", "souradnice_y", "souradnice_x", "plati_od")
+    adresni_mista <- adresni_mista %>%
       dplyr::select(-.data$souradnice_y, -.data$souradnice_x) %>%
       dplyr::mutate(kod_adm = as.character(.data$kod_adm)) %>%
       dplyr::select(-.data$kod_casti_obce, -.data$kod_ulice)
