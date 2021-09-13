@@ -25,6 +25,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install libudunits2-dev libgdal-dev libgeos-dev libproj-dev
           sudo apt-get install libprotobuf-dev protobuf-compiler libjq-dev
+          sudo apt-get install pandoc
 
       - uses: r-lib/actions/setup-r@master
       - name: Install dependencies
