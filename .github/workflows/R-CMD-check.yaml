@@ -27,9 +27,8 @@ jobs:
           sudo apt-get install libprotobuf-dev protobuf-compiler libjq-dev
 
       - uses: r-lib/actions/setup-r@master
-
       - name: Install dependencies
-        run: Rscript -e "install.packages(c('remotes', 'rcmdcheck', 'devtools'))" -e "remotes::install_deps(dependencies = TRUE)"
+        run: Rscript -e "install.packages(c('remotes', 'rcmdcheck', 'devtools', 'rmarkdown'))" -e "remotes::install_deps(dependencies = TRUE)"
 
       - name: Test
         run: Rscript -e "devtools::test()"
