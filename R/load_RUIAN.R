@@ -124,6 +124,11 @@ load_RUIAN_settlement <- function(id, layer = "obec", WGS84 = FALSE) {
   data <- data %>%
     janitor::clean_names()
 
+  if ("adrm_kod" %in% names(data)){
+    data <- data %>%
+      dplyr::rename(kod = adrm_kod)
+  }
+
   if (layer == "adresni mista") {
 
     date <- {lubridate::floor_date(lubridate::today(), unit = "month") - lubridate::days(1)} %>%
