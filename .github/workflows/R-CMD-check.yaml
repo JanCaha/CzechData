@@ -25,9 +25,12 @@ jobs:
           sudo apt-get update
           sudo apt-get install libudunits2-dev libgdal-dev libgeos-dev libproj-dev
           sudo apt-get install libprotobuf-dev protobuf-compiler libjq-dev
-          sudo apt-get install pandoc texlive
+          sudo apt-get install pandoc
 
       - uses: r-lib/actions/setup-r@master
+
+      - uses: r-lib/actions/setup-tinytex@master
+
       - name: Install dependencies
         run: Rscript -e "install.packages(c('remotes', 'rcmdcheck', 'devtools', 'rmarkdown'))" -e "remotes::install_deps(dependencies = TRUE)"
 
@@ -35,7 +38,7 @@ jobs:
         run: Rscript -e "devtools::test()"
 
       - name: Check
-        run: Rscript -e "rcmdcheck::rcmdcheck(args = c('--no-manual', '--no-tests', '--no-build-vignettes' ), error_on = 'error')"
+        run: Rscript -e "rcmdcheck::rcmdcheck(args = c('--no-manual', '--no-tests', '--no-vignettes', '--no-build-vignettes'), build_args = c('--no-build-vignettes', '-no-manual'), error_on = 'error')"
 
       - uses: JasonEtco/create-an-issue@v2
         if: ${{ failure() }}
