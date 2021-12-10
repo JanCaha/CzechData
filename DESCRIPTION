@@ -33,7 +33,8 @@ Imports:
     usethis,
     httr,
     memoise,
-    utils
+    utils,
+    fs
 Suggests: 
     DT (>= 0.5),
     htmltools (>= 0.3.6),
