@@ -53,6 +53,7 @@
 #' @importFrom sf st_read st_transform
 #' @importFrom janitor clean_names
 #' @importFrom usethis ui_done
+#' @importFrom memoise has_cache
 #'
 #' @examples
 #' \dontrun{
@@ -122,7 +123,7 @@ load_cadastral_territory <- function(id, layer = "katastralni uzemi", WGS84 = FA
 
   ku_file <- file.path(dir, glue::glue("{id}.zip"))
 
-  if (!has_cache(m_GET)(url)) {
+  if (!memoise::has_cache(m_GET)(url)) {
     usethis::ui_info("Downloading data.")
   } else {
     usethis::ui_info("Using cached data.")
