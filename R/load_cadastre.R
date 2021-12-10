@@ -122,12 +122,18 @@ load_cadastral_territory <- function(id, layer = "katastralni uzemi", WGS84 = FA
 
   ku_file <- file.path(dir, glue::glue("{id}.zip"))
 
+  if (!has_cache(m_GET)(url)) {
+    usethis::ui_info("Downloading data.")
+  } else {
+    usethis::ui_info("Using cached data.")
+  }
+
   m_GET(url) %>%
     write_zip_file(ku_file)
 
   unzip(ku_file, exdir = dir)
 
-  usethis::ui_done("Data downloaded and unpacked.")
+  usethis::ui_done("Data unpacked.")
 
   data <- sf::st_read(
     file.path(dir, id, shp_name),
