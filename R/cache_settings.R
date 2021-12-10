@@ -3,13 +3,15 @@ package_env <- new.env(parent = emptyenv())
 # default cache_length
 cache_length_default <- 7 * 24 * 60 * 60 # cache time set to 7 days
 
+#' @importFrom fs path path_temp path_norm dir_exists dir_create
 cache_path <- function(){
-  path <- file.path(tempdir(), "..", ".CzechDataPackageCache")
 
-  path <- normalizePath(path)
+  path <- fs::path(fs::path_temp(), "..", ".CzechDataPackageCache")
 
-  if (!dir.exists(path)){
-    dir.create(path)
+  path <- fs::path_norm(path)
+
+  if (!fs::dir_exists(path)){
+    fs::dir_create(path)
   }
 
   path
