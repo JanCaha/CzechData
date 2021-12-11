@@ -90,16 +90,23 @@ load_RUIAN_settlement <- function(id, layer = "obec", WGS84 = FALSE) {
   dir <- tempdir()
 
   url <- glue::glue("http://services.cuzk.cz/shp/obec/epsg-5514/{id}.zip")
+
   ruian_file <- file.path(dir, glue::glue("{id}.zip"))
 
-  if (!file.exists(ruian_file)) {
-    m_GET(url) %>%
-      write_zip_file(ruian_file)
+  if (!memoise::has_cache(m_GET)(url)) {
+    usethis::ui_info(glue::glue(
+      "Downloading data."
+    ))
+  } else {
+    usethis::ui_info("Using cached data.")
   }
+
+  m_GET(url) %>%
+    write_zip_file(ruian_file)
 
   utils::unzip(ruian_file, exdir = dir)
 
-  usethis::ui_done("Data downloaded and unpacked.")
+  usethis::ui_done("Data unpacked.")
 
   shp_file <- file.path(dir, id, shp_name)
 
@@ -139,49 +146,63 @@ load_RUIAN_settlement <- function(id, layer = "obec", WGS84 = FALSE) {
       "http://vdp.cuzk.cz/vymenny_format/csv/{date}_OB_{id}_ADR.csv.zip"
       )
 
+    # TODO change this downloading for httr::GET('http://vdp.cuzk.cz/vymenny_format/csv/20211031_OB_534048_ADR.csv.zip')
+    #  and verify status 200
+
     adresni_mista_file <- file.path(dir, glue::glue("{date}_OB_{id}_ADR.csv.zip"))
 
-    utils::download.file(url_adresni_mista, adresni_mista_file, quiet = TRUE)
+    result_get <- m_GET(url_adresni_mista)
 
-    utils::unzip(adresni_mista_file, exdir = dir)
+    if (result_get$status_code == 200) {
 
-    names_cols <- c("Název obce", "Název MOMC", "Název MOP", "Název části obce", "Název ulice",
-                    "Kód ulice")
+      write_zip_file(result_get, adresni_mista_file)
 
-    cols_types <- purrr::map(rlang::set_names(names_cols),
-                             function(x) rlang::call2("col_character", .ns = "readr"))
+      utils::unzip(adresni_mista_file, exdir = dir)
 
-    cols_types <- purrr::list_modify(cols_types, .default = rlang::call2("col_guess", .ns = "readr"))
+      names_cols <- c("Název obce", "Název MOMC", "Název MOP", "Název části obce", "Název ulice",
+                      "Kód ulice")
 
-    function_call <- rlang::call2("cols", !!!cols_types, .ns = "readr")
+      cols_types <- purrr::map(rlang::set_names(names_cols),
+                               function(x) rlang::call2("col_character", .ns = "readr"))
 
-    cols_function <- rlang::eval_bare(function_call)
+      cols_types <- purrr::list_modify(cols_types, .default = rlang::call2("col_guess", .ns = "readr"))
 
-    adresni_mista <- readr::read_delim(adresni_mista_file %>%
-                                         stringr::str_replace(".zip", ""),
-                                       ";",
-                                       locale = readr::locale(encoding = "Windows-1250",
-                                                              decimal_mark = "."),
-                                       col_types = cols_function)
+      function_call <- rlang::call2("cols", !!!cols_types, .ns = "readr")
 
-    colnames(adresni_mista) <- c("kod_adm", "kod_obce", "nazev_obce", "kod_momc", "název_momc", "kod_obvodu_prahy", "nazev_obvodu_prahy",
-                                 "kod_casti_obce", "nazev_casti_obce", "kod_ulice", "nazev_ulice", "typ_so", "cislo_domovni",
-                                 "cislo_orientacni", "znak_cisla_orientacniho", "psc", "souradnice_y", "souradnice_x", "plati_od")
-    adresni_mista <- adresni_mista %>%
-      dplyr::select(-.data$souradnice_y, -.data$souradnice_x) %>%
-      dplyr::mutate(kod_adm = as.character(.data$kod_adm)) %>%
-      dplyr::select(-.data$kod_casti_obce, -.data$kod_ulice)
+      cols_function <- rlang::eval_bare(function_call)
 
-    if (("psc" %in% names(data))) {
+      adresni_mista <- readr::read_delim(adresni_mista_file %>%
+                                           stringr::str_replace(".zip", ""),
+                                         ";",
+                                         locale = readr::locale(encoding = "Windows-1250",
+                                                                decimal_mark = "."),
+                                         col_types = cols_function)
+
+      colnames(adresni_mista) <- c("kod_adm", "kod_obce", "nazev_obce", "kod_momc", "název_momc", "kod_obvodu_prahy", "nazev_obvodu_prahy",
+                                   "kod_casti_obce", "nazev_casti_obce", "kod_ulice", "nazev_ulice", "typ_so", "cislo_domovni",
+                                   "cislo_orientacni", "znak_cisla_orientacniho", "psc", "souradnice_y", "souradnice_x", "plati_od")
       adresni_mista <- adresni_mista %>%
-        dplyr::select(-.data$psc)
-    }else{
-      adresni_mista <- adresni_mista %>%
-        dplyr::mutate(psc = as.character(.data$psc))
+        dplyr::select(-.data$souradnice_y, -.data$souradnice_x) %>%
+        dplyr::mutate(kod_adm = as.character(.data$kod_adm)) %>%
+        dplyr::select(-.data$kod_casti_obce, -.data$kod_ulice)
+
+      if (("psc" %in% names(data))) {
+        adresni_mista <- adresni_mista %>%
+          dplyr::select(-.data$psc)
+      }else{
+        adresni_mista <- adresni_mista %>%
+          dplyr::mutate(psc = as.character(.data$psc))
+      }
+
+      data <- data %>%
+        dplyr::left_join(adresni_mista, by = c("kod" = "kod_adm"))
+
+    } else {
+
+      usethis::ui_oops(glue::glue("Cannot load external info about address points.
+                                  File '{adresni_mista_file}' is not available."))
+
     }
-
-    data <- data %>%
-      dplyr::left_join(adresni_mista, by = c("kod" = "kod_adm"))
 
   }
 

@@ -108,15 +108,18 @@ load_Data50 <- function(layer, WGS84 = FALSE){
 
   file_zip <- file.path(temp_dir, glue::glue("{data50_layers$kategorie[index]}.zip"))
 
-  if (!file.exists(file_zip)) {
+  url <- data50_layers$url[index]
 
+  if (!memoise::has_cache(m_GET)(url)) {
     usethis::ui_info(glue::glue(
       "Downloading roughly {data50_layers$size[index]}, this can take a while."
-      ))
-
-    m_GET(data50_layers$url[index]) %>%
-      write_zip_file(file_zip)
+    ))
+  } else {
+    usethis::ui_info("Using cached data.")
   }
+
+  m_GET(url) %>%
+    write_zip_file(file_zip)
 
   utils::unzip(file_zip, exdir = temp_dir, junkpaths = TRUE)
 
@@ -192,42 +195,52 @@ save_Data50 <- function(path, layer = NULL, type = NULL){
   }
 
   if (!is.null(type)) {
+
     index <- which(data50_layers$kategorie == type)[1]
+
     url <- data50_layers$url[index]
 
     file_zip <- file.path(path, glue::glue("{data50_layers$kategorie[index]}.zip"))
 
-    if (!file.exists(file_zip)) {
+    url <- data50_layers$url[index]
 
+    if (!memoise::has_cache(m_GET)(url)) {
       usethis::ui_info(glue::glue(
         "Downloading roughly {data50_layers$size[index]}, this can take a while."
-        ))
-
-      m_GET(data50_layers$url[index]) %>%
-        write_zip_file(file_zip)
+      ))
+    } else {
+      usethis::ui_info("Using cached data.")
     }
+
+    m_GET(url) %>%
+      write_zip_file(file_zip)
 
     utils::unzip(file_zip, exdir = path)
 
-    usethis::ui_done("Data downloaded and unpacked.")
+    usethis::ui_done("Data unpacked.")
 
     return(file.path(path, data50_layers$kategorie[index]))
 
   } else {
+
     index <- which(data50_layers$nazev == layer)
+
     url <- data50_layers$url[index]
 
     file_zip <- file.path(path, glue::glue("{data50_layers$kategorie[index]}.zip"))
 
-    if (!file.exists(file_zip)) {
+    url <- data50_layers$url[index]
 
+    if (!memoise::has_cache(m_GET)(url)) {
       usethis::ui_info(glue::glue(
         "Downloading roughly {data50_layers$size[index]}, this can take a while."
-        ))
-
-      m_GET(data50_layers$url[index]) %>%
-        write_zip_file(file_zip)
+      ))
+    } else {
+      usethis::ui_info("Using cached data.")
     }
+
+    m_GET(data50_layers$url[index]) %>%
+      write_zip_file(file_zip)
 
     exts <- list(".cpg", ".dbf", ".prj", ".sbn", ".sbx", ".shp", ".shp.xml", ".shx")
 

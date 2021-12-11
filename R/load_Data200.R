@@ -106,14 +106,18 @@ load_Data200 <- function(layer, WGS84 = FALSE) {
 
   file_zip <- file.path(temp_dir, glue::glue("{data200_layers$slozka[index]}.zip"))
 
-  if (!file.exists(file_zip)) {
+  url <- data200_layers$url[index]
+
+  if (!memoise::has_cache(m_GET)(url)) {
     usethis::ui_info(glue::glue(
       "Downloading roughly {data200_layers$size[index]}, this can take a while."
     ))
-
-    m_GET(data200_layers$url[index]) %>%
-      write_zip_file(file_zip)
+  } else {
+    usethis::ui_info("Using cached data.")
   }
+
+  m_GET(url) %>%
+    write_zip_file(file_zip)
 
   utils::unzip(file_zip, exdir = temp_dir, junkpaths = TRUE)
 
