@@ -7,7 +7,7 @@
     {
       "ref": "deps::.",
       "package": "CzechData-deps",
-      "version": "0.5.6",
+      "version": "0.6.0",
       "type": "deps",
       "direct": true,
       "binary": false,
@@ -18,7 +18,7 @@
         "RemoteType": "deps"
       },
       "sources": [],
-      "target": "src/contrib/CzechData-deps_0.5.6.tar.gz",
+      "target": "src/contrib/CzechData-deps_0.6.0.tar.gz",
       "platform": "source",
       "rversion": "*",
       "directpkg": true,
