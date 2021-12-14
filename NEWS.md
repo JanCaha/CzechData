@@ -1,3 +1,9 @@
+# CzechData 0.6.0
+
+* fix pkgdown build
+
+* fix issues with data caching
+
 # CzechData 0.5.0
 
 * download of files solved using httr::GET

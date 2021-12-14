@@ -1,7 +1,7 @@
 Package: CzechData
 Title: Download various datasets (including spatial data) for
     the Czech Republic
-Version: 0.5.6
+Version: 0.6.0
 Authors@R: 
     person(given = "Jan",
            family = "Caha",
