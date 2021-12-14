@@ -1,7 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://jancaha.github.io/CzechData/404.html</loc>
+  </url>
+  <url>
+    <loc>https://jancaha.github.io/CzechData/LICENSE-text.html</loc>
+  </url>
+  <url>
+    <loc>https://jancaha.github.io/CzechData/LICENSE.html</loc>
+  </url>
+  <url>
+    <loc>https://jancaha.github.io/CzechData/articles/index.html</loc>
+  </url>
+  <url>
+    <loc>https://jancaha.github.io/CzechData/articles/quick-start.html</loc>
+  </url>
+  <url>
+    <loc>https://jancaha.github.io/CzechData/authors.html</loc>
+  </url>
+  <url>
     <loc>https://jancaha.github.io/CzechData/index.html</loc>
+  </url>
+  <url>
+    <loc>https://jancaha.github.io/CzechData/news/index.html</loc>
   </url>
   <url>
     <loc>https://jancaha.github.io/CzechData/reference/cache_functions.html</loc>
@@ -11,6 +32,9 @@
   </url>
   <url>
     <loc>https://jancaha.github.io/CzechData/reference/generate_Data50_citation.html</loc>
+  </url>
+  <url>
+    <loc>https://jancaha.github.io/CzechData/reference/index.html</loc>
   </url>
   <url>
     <loc>https://jancaha.github.io/CzechData/reference/katastralni_uzemi.html</loc>
@@ -62,8 +86,5 @@
   </url>
   <url>
     <loc>https://jancaha.github.io/CzechData/reference/pou.html</loc>
-  </url>
-  <url>
-    <loc>https://jancaha.github.io/CzechData/articles/quick-start.html</loc>
   </url>
 </urlset>

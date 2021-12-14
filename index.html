@@ -20,6 +20,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -32,18 +34,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">CzechData</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.6</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="reference/index.html">Reference</a>
 </li>
@@ -65,7 +61,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/JanCaha/CzechData/">
+  <a href="https://github.com/JanCaha/CzechData/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -82,28 +78,32 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="czechdata" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#czechdata" class="anchor"></a>CzechData</h1></div>
-<p><img src="https://github.com/JanCaha/CzechData/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></p>
-<p><img src="https://github.com/JanCaha/CzechData/workflows/Build%20and%20Publish%20Website/badge.svg" alt="Build and Publish Website"></p>
+<div class="section level1">
+<div class="page-header"><h1 id="czechdata">CzechData<a class="anchor" aria-label="anchor" href="#czechdata"></a>
+</h1></div>
+<div class="figure">
+<img src="https://github.com/JanCaha/CzechData/workflows/R-CMD-check/badge.svg" alt=""><p class="caption">R-CMD-check</p>
+</div>
+<div class="figure">
+<img src="https://github.com/JanCaha/CzechData/workflows/Build%20and%20Publish%20Website/badge.svg" alt=""><p class="caption">Build and Publish Website</p>
+</div>
 <p>The aim of the package is to provide interface from R to download various data relevant to Czech Republic directly into R. The data will be classic tabular as well as other types (e.g. spatial data).</p>
 <p>Unfortunately, it is unlikely that the data will make sense for you, unless you speak Czech or are highly familiar with Czech data sources.</p>
-<div id="installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
 <p>You can install the current version of the package from GitHub using package remotes:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"JanCaha/CzechData"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"JanCaha/CzechData"</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="website" class="section level2">
-<h2 class="hasAnchor">
-<a href="#website" class="anchor"></a>Website</h2>
+<div class="section level2">
+<h2 id="website">Website<a class="anchor" aria-label="anchor" href="#website"></a>
+</h2>
 <p><a href="https://jancaha.github.io/CzechData/index.html">Available here.</a></p>
 </div>
-<div id="example" class="section level2">
-<h2 class="hasAnchor">
-<a href="#example" class="anchor"></a>Example</h2>
+<div class="section level2">
+<h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
+</h2>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># simple RUIAN data for whole state</span>
 <span class="va">obce_CR</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/load_RUIAN_state.html">load_RUIAN_state</a></span><span class="op">(</span>layer <span class="op">=</span> <span class="st">"obce"</span><span class="op">)</span>
@@ -123,28 +123,28 @@
 <span class="va">waterfalls</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/load_Data200.html">load_Data200</a></span><span class="op">(</span>layer <span class="op">=</span> <span class="st">"Vodopad"</span><span class="op">)</span>
 <span class="va">folder_water_objects</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/load_Data200.html">save_Data200</a></span><span class="op">(</span><span class="st">"~/data/water"</span>, type <span class="op">=</span> <span class="st">"Vodopad"</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="data-sources" class="section level2">
-<h2 class="hasAnchor">
-<a href="#data-sources" class="anchor"></a>Data sources</h2>
-<p>Main source of the datasets is portal of Czech open data - <a href="https://data.gov.cz">https://data.gov.cz</a>.</p>
+<div class="section level2">
+<h2 id="data-sources">Data sources<a class="anchor" aria-label="anchor" href="#data-sources"></a>
+</h2>
+<p>Main source of the datasets is portal of Czech open data - <a href="https://data.gov.cz" class="external-link">https://data.gov.cz</a>.</p>
 <p>Currently implemented data sources are:</p>
 <ul>
-<li>RUIAN on the state level <a href="https://data.gov.cz/datov%C3%A1-sada?iri=https%3A%2F%2Fdata.gov.cz%2Fzdroj%2Fdatov%C3%A1-sada%2Fhttp---atom.cuzk.cz-api-3-action-package_show-id-cz-00025712-cuzk_ruian-staty-shp_1">described here</a>
+<li>RUIAN on the state level <a href="https://data.gov.cz/datov%C3%A1-sada?iri=https%3A%2F%2Fdata.gov.cz%2Fzdroj%2Fdatov%C3%A1-sada%2Fhttp---atom.cuzk.cz-api-3-action-package_show-id-cz-00025712-cuzk_ruian-staty-shp_1" class="external-link">described here</a>
 </li>
-<li>RUIAN on settlement level <a href="https://data.gov.cz/datov%C3%A1-sada?iri=https%3A%2F%2Fdata.gov.cz%2Fzdroj%2Fdatov%C3%A1-sada%2Fhttp---atom.cuzk.cz-api-3-action-package_show-id-cz-00025712-cuzk_ruian-obce-shp_554979">example here</a>
+<li>RUIAN on settlement level <a href="https://data.gov.cz/datov%C3%A1-sada?iri=https%3A%2F%2Fdata.gov.cz%2Fzdroj%2Fdatov%C3%A1-sada%2Fhttp---atom.cuzk.cz-api-3-action-package_show-id-cz-00025712-cuzk_ruian-obce-shp_554979" class="external-link">example here</a>
 </li>
-<li>Cadastral map for cadastral territory <a href="https://data.gov.cz/datov%C3%A1-sada?iri=https%3A%2F%2Fdata.gov.cz%2Fzdroj%2Fdatov%C3%A1-sada%2Fhttp---atom.cuzk.cz-api-3-action-package_show-id-cz-00025712-cuzk_km-ku-shp_600016">example here</a>
+<li>Cadastral map for cadastral territory <a href="https://data.gov.cz/datov%C3%A1-sada?iri=https%3A%2F%2Fdata.gov.cz%2Fzdroj%2Fdatov%C3%A1-sada%2Fhttp---atom.cuzk.cz-api-3-action-package_show-id-cz-00025712-cuzk_km-ku-shp_600016" class="external-link">example here</a>
 </li>
-<li>SLDB (census) subsections <a href="https://data.gov.cz/datov%C3%A9-sady?dotaz=SLDB">individual datasets here</a>
+<li>SLDB (census) subsections <a href="https://data.gov.cz/datov%C3%A9-sady?dotaz=SLDB" class="external-link">individual datasets here</a>
 </li>
-<li><a href="https://geoportal.cuzk.cz/(S(2ugpect2xdu0ksih3crtpxd0))/Default.aspx?lng=CZ&amp;mode=TextMeta&amp;text=dSady_mapyData50&amp;side=mapy_data50&amp;menu=2290&amp;head_tab=sekce-02-gp">Data50</a></li>
-<li><a href="https://geoportal.cuzk.cz/(S(ijginumejzilvacbfijkylwj))/Default.aspx?mode=TextMeta&amp;side=mapy_data200&amp;text=dSady_mapyData200&amp;head_tab=sekce-02-gp&amp;menu=229">Data200</a></li>
+<li><a href="https://geoportal.cuzk.cz/(S(2ugpect2xdu0ksih3crtpxd0))/Default.aspx?lng=CZ&amp;mode=TextMeta&amp;text=dSady_mapyData50&amp;side=mapy_data50&amp;menu=2290&amp;head_tab=sekce-02-gp" class="external-link">Data50</a></li>
+<li><a href="https://geoportal.cuzk.cz/(S(ijginumejzilvacbfijkylwj))/Default.aspx?mode=TextMeta&amp;side=mapy_data200&amp;text=dSady_mapyData200&amp;head_tab=sekce-02-gp&amp;menu=229" class="external-link">Data200</a></li>
 </ul>
-<p>For data from Czech Statistical Office it is best to use the <a href="https://github.com/petrbouchal/czso">czso</a> (also available on CRAN) which does much better job than the functions that were implemented here.</p>
-<div id="details-about-datasets" class="section level3">
-<h3 class="hasAnchor">
-<a href="#details-about-datasets" class="anchor"></a>Details about datasets</h3>
-<p>RUIAN is described in detail: <a href="https://www.cuzk.cz/Uvod/Produkty-a-sluzby/RUIAN/2-Poskytovani-udaju-RUIAN-ISUI-VDP/Vymenny-format-RUIAN/Vymenny-format-RUIAN-(VFR)/Struktura-a-popis-VFR-1_8_0.aspx">https://www.cuzk.cz/</a></p>
+<p>For data from Czech Statistical Office it is best to use the <a href="https://github.com/petrbouchal/czso" class="external-link">czso</a> (also available on CRAN) which does much better job than the functions that were implemented here.</p>
+<div class="section level3">
+<h3 id="details-about-datasets">Details about datasets<a class="anchor" aria-label="anchor" href="#details-about-datasets"></a>
+</h3>
+<p>RUIAN is described in detail: <a href="https://www.cuzk.cz/Uvod/Produkty-a-sluzby/RUIAN/2-Poskytovani-udaju-RUIAN-ISUI-VDP/Vymenny-format-RUIAN/Vymenny-format-RUIAN-(VFR)/Struktura-a-popis-VFR-1_8_0.aspx" class="external-link">https://www.cuzk.cz/</a></p>
 </div>
 </div>
 </div>
@@ -152,36 +152,49 @@
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Browse source code at <br><a href="https://github.com/JanCaha/CzechData/">https://​github.com/​JanCaha/​CzechData/​</a>
-</li>
+<li><a href="https://github.com/JanCaha/CzechData/" class="external-link">Browse source code</a></li>
 </ul>
 </div>
+
 <div class="license">
-<h2>License</h2>
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
 <li><a href="LICENSE.html">Full license</a></li>
-<li><small><a href="https://opensource.org/licenses/mit-license.php">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
+<li><small><a href="https://opensource.org/licenses/mit-license.php" class="external-link">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
 </ul>
 </div>
+
+
+<div class="citation">
+<h2 data-toc-skip>Citation</h2>
+<ul class="list-unstyled">
+<li><a href="authors.html#citation">Citing CzechData</a></li>
+</ul>
+</div>
+
 <div class="developers">
-<h2>Developers</h2>
+<h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
 <li>Jan Caha <br><small class="roles"> Author, maintainer </small>  </li>
 </ul>
 </div>
+
+
 
   </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Jan Caha.</p>
+  <p></p>
+<p>Developed by Jan Caha.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
 </div>
 
       </footer>
@@ -189,6 +202,8 @@
 
   
 
+
+  
 
   </body>
 </html>

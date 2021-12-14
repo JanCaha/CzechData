@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,18 +33,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">CzechData</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.6</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
@@ -64,7 +60,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/JanCaha/CzechData/">
+  <a href="https://github.com/JanCaha/CzechData/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -83,66 +79,67 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Quick start</h1>
-                        <h4 class="author">Jan Caha</h4>
+                        <h4 data-toc-skip class="author">Jan Caha</h4>
             
-            <h4 class="date">2021-10-22</h4>
+            <h4 data-toc-skip class="date">2021-12-14</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/JanCaha/CzechData/blob/master/vignettes/quick-start.Rmd"><code>vignettes/quick-start.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/JanCaha/CzechData/blob/HEAD/vignettes/quick-start.Rmd" class="external-link"><code>vignettes/quick-start.Rmd</code></a></small>
       <div class="hidden name"><code>quick-start.Rmd</code></div>
 
     </div>
 
     
     
-<div id="loading-the-package-and-looking-at-prepared-data" class="section level2">
-<h2 class="hasAnchor">
-<a href="#loading-the-package-and-looking-at-prepared-data" class="anchor"></a>Loading the package and looking at prepared data</h2>
+<div class="section level2">
+<h2 id="loading-the-package-and-looking-at-prepared-data">Loading the package and looking at prepared data<a class="anchor" aria-label="anchor" href="#loading-the-package-and-looking-at-prepared-data"></a>
+</h2>
 <p>We start by loading <code>tidyverse</code> package to manipulate with data and then load the package itself.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/">sf</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://jancaha.github.io/CzechData/index.html">CzechData</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rstudio.github.io/leaflet/">leaflet</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">RColorBrewer</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ramnathv/htmlwidgets">htmlwidgets</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ateucher/rmapshaper">rmapshaper</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/" class="external-link">sf</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://jancaha.github.io/CzechData/index.html">CzechData</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rstudio.github.io/leaflet/" class="external-link">leaflet</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">RColorBrewer</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ramnathv/htmlwidgets" class="external-link">htmlwidgets</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ateucher/rmapshaper" class="external-link">rmapshaper</a></span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">obce</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">okresy</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">obce</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">okresy</span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">id_okresy_Brno</span> <span class="op">&lt;-</span> <span class="va">okresy</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="fu">str_detect</span><span class="op">(</span><span class="va">nazev</span>, <span class="st">"Brno"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">pull</span><span class="op">(</span><span class="va">lau1_kod</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">id_okresy_Brno</span> <span class="op">&lt;-</span> <span class="va">okresy</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html" class="external-link">str_detect</a></span><span class="op">(</span><span class="va">nazev</span>, <span class="st">"Brno"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">pull</a></span><span class="op">(</span><span class="va">lau1_kod</span><span class="op">)</span>
 
-<span class="va">obce_obce</span> <span class="op">&lt;-</span> <span class="va">obce</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">lau1_kod</span> <span class="op">%in%</span> <span class="va">id_okresy_Brno</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">datatable</span><span class="op">(</span>options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>scrollX <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>
+<span class="va">obce_obce</span> <span class="op">&lt;-</span> <span class="va">obce</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">lau1_kod</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">id_okresy_Brno</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu">datatable</span><span class="op">(</span>options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>scrollX <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co"># saveWidget(obce_obce, file = "tabulka.html", selfcontained = FALSE)</span></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">id_obec</span> <span class="op">&lt;-</span> <span class="va">obce</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">nazev</span> <span class="op">==</span> <span class="st">"Brno"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">pull</span><span class="op">(</span><span class="va">kod</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">id_obec</span> <span class="op">&lt;-</span> <span class="va">obce</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">nazev</span> <span class="op">==</span> <span class="st">"Brno"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">pull</a></span><span class="op">(</span><span class="va">kod</span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">volebni_okrsky</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/load_RUIAN_settlement.html">load_RUIAN_settlement</a></span><span class="op">(</span><span class="va">id_obec</span>, layer <span class="op">=</span> <span class="st">"volebni okrsky"</span><span class="op">)</span>
-<span class="co">#&gt; ✔ Data downloaded and unpacked.</span>
+<span class="co">#&gt; <span style="color: #BBBB00;">ℹ</span> Downloading data.</span>
+<span class="co">#&gt; <span style="color: #00BB00;">✔</span> Data unpacked.</span>
 
-<span class="va">volebni_okrsky</span> <span class="op">&lt;-</span> <span class="va">volebni_okrsky</span> <span class="op">%&gt;%</span> 
-  <span class="fu">select</span><span class="op">(</span><span class="va">cislo</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html">st_transform</a></span><span class="op">(</span><span class="fl">4326</span><span class="op">)</span> 
+<span class="va">volebni_okrsky</span> <span class="op">&lt;-</span> <span class="va">volebni_okrsky</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">cislo</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html" class="external-link">st_transform</a></span><span class="op">(</span><span class="fl">4326</span><span class="op">)</span> 
 
-<span class="va">volebni_okrsky</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rmapshaper/man/ms_simplify.html">ms_simplify</a></span><span class="op">(</span><span class="va">volebni_okrsky</span>, keep <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span>
+<span class="va">volebni_okrsky</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rmapshaper/man/ms_simplify.html" class="external-link">ms_simplify</a></span><span class="op">(</span><span class="va">volebni_okrsky</span>, keep <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_geometry.html">st_geometry</a></span><span class="op">(</span><span class="va">volebni_okrsky</span><span class="op">)</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="cn">NULL</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_geometry.html" class="external-link">st_geometry</a></span><span class="op">(</span><span class="va">volebni_okrsky</span><span class="op">)</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="cn">NULL</span></code></pre></div>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">labels</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html">sprintf</a></span><span class="op">(</span><span class="st">"&lt;strong&gt;%s&lt;/strong&gt;"</span>, <span class="va">volebni_okrsky</span><span class="op">$</span><span class="va">cislo</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="fu">htmltools</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/htmltools/man/HTML.html">HTML</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">labels</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html" class="external-link">sprintf</a></span><span class="op">(</span><span class="st">"&lt;strong&gt;%s&lt;/strong&gt;"</span>, <span class="va">volebni_okrsky</span><span class="op">$</span><span class="va">cislo</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="fu">htmltools</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/htmltools/man/HTML.html" class="external-link">HTML</a></span><span class="op">)</span>
 
-<span class="va">l</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/leaflet.html">leaflet</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">volebni_okrsky</span>, width <span class="op">=</span> <span class="st">"100%"</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-layers.html">addTiles</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-layers.html">addPolygons</a></span><span class="op">(</span>fillColor <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/RColorBrewer/man/ColorBrewer.html">brewer.pal</a></span><span class="op">(</span><span class="fl">8</span>, <span class="st">"Set2"</span><span class="op">)</span>, fillOpacity <span class="op">=</span> <span class="fl">0.4</span>,
+<span class="va">l</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/leaflet.html" class="external-link">leaflet</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">volebni_okrsky</span>, width <span class="op">=</span> <span class="st">"100%"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-layers.html" class="external-link">addTiles</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-layers.html" class="external-link">addPolygons</a></span><span class="op">(</span>fillColor <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/RColorBrewer/man/ColorBrewer.html" class="external-link">brewer.pal</a></span><span class="op">(</span><span class="fl">8</span>, <span class="st">"Set2"</span><span class="op">)</span>, fillOpacity <span class="op">=</span> <span class="fl">0.4</span>,
               stroke <span class="op">=</span> <span class="cn">TRUE</span>, weight <span class="op">=</span> <span class="fl">0.5</span>, color <span class="op">=</span> <span class="st">"black"</span>,
-              highlight <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-layers.html">highlightOptions</a></span><span class="op">(</span>weight <span class="op">=</span> <span class="fl">3</span>,
+              highlight <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/leaflet/man/map-layers.html" class="external-link">highlightOptions</a></span><span class="op">(</span>weight <span class="op">=</span> <span class="fl">3</span>,
                                            bringToFront <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
               label <span class="op">=</span> <span class="va">labels</span><span class="op">)</span>
 
@@ -161,11 +158,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Jan Caha.</p>
+  <p></p>
+<p>Developed by Jan Caha.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
 </div>
 
       </footer>
@@ -173,6 +172,8 @@
 
   
 
+
+  
 
   </body>
 </html>

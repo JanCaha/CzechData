@@ -1,9 +1,9 @@
 pandoc: 2.7.3
-pkgdown: 1.6.1
+pkgdown: 2.0.1
 pkgdown_sha: ~
 articles:
   quick-start: quick-start.html
-last_built: 2021-10-22T09:26Z
+last_built: 2021-12-14T16:49Z
 urls:
   reference: https://jancaha.github.io/CzechData/reference
   article: https://jancaha.github.io/CzechData/articles
