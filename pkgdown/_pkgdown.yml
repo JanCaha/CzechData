@@ -28,8 +28,12 @@ reference:
     - load_RUIAN_settlement
     - load_RUIAN_state
     - load_cadastral_territory
+  - title: Package cache
+    desc: Function related to package caching
+    contents:
+    - set_cache_length
   - title: ČSÚ
-    desc: Functions related to datasets from Czech Statistical Office.
+    desc: Functions related to datasets from Czech Statistical Office. These are functions are now depreced and use of <a href="https://petrbouchal.xyz/czso/">czso package</a> is recommended.
     contents:
     - load_SLDB_2011
     - load_SLDB_2011_col_explanations
@@ -37,3 +41,5 @@ reference:
     - load_population_age_col_explanations
     - load_population_settlements
     - load_population_settlements_col_explanations
+    - load_average_salary
+    - load_financial_indicators
