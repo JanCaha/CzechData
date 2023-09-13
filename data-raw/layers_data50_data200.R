@@ -102,7 +102,7 @@ layers_popis = dplyr::tibble(
 )
 
 layers_ruzne = dplyr::tibble(
-  nazev = c("NarodniParkPrirodniRezervace", "Produktovod", "Vysilac", "VyznamneObjekty", "ProduktovodVyznamneBody", "Věž", "DulLom", "Budova", "ElektrickeVedeni", "Elektrarna"),
+  nazev = c("NarodniParkPrirodniRezervace", "Produktovod", "Vysilac", "VyznamneObjekty", "ProduktovodVyznamneBody", "Vez", "DulLom", "Budova", "ElektrickeVedeni", "Elektrarna"),
   shpName = c("ParkA.shp", "IndprodP.shp", "CtowerP.shp", "LandmrkP.shp", "IndprodL.shp", "TowerP.shp", "ExtractP.shp", "BuildP.shp", "PowerL.shp", "PowerP.shp"),
   url = "http://geoportal.cuzk.cz/ZAKAZKY/Data200/MISC.zip",
   kategorie = "RuzneObjekty",
