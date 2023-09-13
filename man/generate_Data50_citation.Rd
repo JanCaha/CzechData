@@ -17,11 +17,11 @@ Create citation string as per terms of use (\url{https://geoportal.cuzk.cz/Dokum
 }
 \section{Functions}{
 \itemize{
-\item \code{generate_Data200_citation}: Generate citation for Data200 datasource.
+\item \code{generate_Data200_citation()}: Generate citation for Data200 datasource.
 
-\item \code{generate_Data50_citation}: Generate citation for Data50 datasource.
+\item \code{generate_Data50_citation()}: Generate citation for Data50 datasource.
+
 }}
-
 \examples{
 generate_Data50_citation()
 generate_Data200_citation()

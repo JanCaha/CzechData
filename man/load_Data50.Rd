@@ -105,13 +105,13 @@ The \code{layer} can have values from following set, in the bracket is the name 
 }
 \section{Functions}{
 \itemize{
-\item \code{load_Data50}: Loads single dataset
+\item \code{load_Data50()}: Loads single dataset
 
-\item \code{save_Data50}: Download and store layer (and zipped general category) or complete category
+\item \code{save_Data50()}: Download and store layer (and zipped general category) or complete category
 
-\item \code{load_Data50_info}: Load information about layers in Data50.
+\item \code{load_Data50_info()}: Load information about layers in Data50.
+
 }}
-
 \examples{
 \dontrun{
     rivers <- load_Data50(layer = "VodniTok")

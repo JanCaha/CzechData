@@ -20,8 +20,8 @@ Set and get how long the cache is valid and the files are downloaded only once a
 }
 \section{Functions}{
 \itemize{
-\item \code{set_cache_length}: Set cache length
+\item \code{set_cache_length()}: Set cache length
 
-\item \code{get_cache_length}: Get cache length
+\item \code{get_cache_length()}: Get cache length
+
 }}
-

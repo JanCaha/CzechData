@@ -63,7 +63,7 @@ The \code{layer} can have values from following set, in the bracket is the name 
 \item \code{"Vysilac"} (\code{"RuzneObjekty"})
 \item \code{"VyznamneObjekty"} (\code{"RuzneObjekty"})
 \item \code{"ProduktovodVyznamneBody"} (\code{"RuzneObjekty"})
-\item \code{"Věž"} (\code{"RuzneObjekty"})
+\item \code{"Vez"} (\code{"RuzneObjekty"})
 \item \code{"DulLom"} (\code{"RuzneObjekty"})
 \item \code{"Budova"} (\code{"RuzneObjekty"})
 \item \code{"ElektrickeVedeni"} (\code{"RuzneObjekty"})
@@ -96,13 +96,13 @@ The \code{layer} can have values from following set, in the bracket is the name 
 }
 \section{Functions}{
 \itemize{
-\item \code{load_Data200}: Loads single dataset
+\item \code{load_Data200()}: Loads single dataset
 
-\item \code{save_Data200}: Download and store layer (and zipped general category) or complete category
+\item \code{save_Data200()}: Download and store layer (and zipped general category) or complete category
 
-\item \code{load_Data200_info}: Load information about layers in Data200.
+\item \code{load_Data200_info()}: Load information about layers in Data200.
+
 }}
-
 \examples{
 \dontrun{
 waterfalls <- load_Data200(layer = "Vodopad")

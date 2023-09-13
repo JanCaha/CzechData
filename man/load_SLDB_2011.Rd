@@ -41,11 +41,11 @@ Types of data that can be downloaded, and used as \code{type} parameter in the f
 }
 \section{Functions}{
 \itemize{
-\item \code{load_SLDB_2011}: Load the data
+\item \code{load_SLDB_2011()}: Load the data
 
-\item \code{load_SLDB_2011_col_explanations}: Get names of columns for SLDB of specific type as data.frame
+\item \code{load_SLDB_2011_col_explanations()}: Get names of columns for SLDB of specific type as data.frame
+
 }}
-
 \section{Information about dataset}{
 
 More detailed information about data can be found at the provider's website

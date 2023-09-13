@@ -38,11 +38,11 @@ The \code{area_type} can have values from following set:
 }
 \section{Functions}{
 \itemize{
-\item \code{load_population_age}: Load the data
+\item \code{load_population_age()}: Load the data
 
-\item \code{load_population_age_col_explanations}: Load description for columns
+\item \code{load_population_age_col_explanations()}: Load description for columns
+
 }}
-
 \section{Information about dataset}{
 
 More detailed information about data can be found at the provider's website

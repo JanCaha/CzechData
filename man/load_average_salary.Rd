@@ -23,6 +23,6 @@ description.
 }
 \section{Functions}{
 \itemize{
-\item \code{load_average_salary_col_explanations}: Load description for columns
-}}
+\item \code{load_average_salary_col_explanations()}: Load description for columns
 
+}}
