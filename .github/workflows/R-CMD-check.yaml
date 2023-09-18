@@ -39,8 +39,10 @@ jobs:
 
       - name: Install dependencies
         run: |
-          Rscript -e "install.packages(c('remotes', 'rcmdcheck', 'devtools', 'rmarkdown'))"
-          Rscript -e "remotes::install_deps(dependencies = TRUE)"
+          install.packages("pak", repos = "https://r-lib.github.io/p/pak/stable/")
+          pak::pkg_install(c("deps::.", "any::sessioninfo", "any::rcmdcheck", "any::remotes", "any::progress", "any::devtools", "any::rmarkdown"), upgrade = FALSE,
+                           dependencies = c("Config/Needs/check", "all"))
+        shell: Rscript {0}
 
       - name: Test
         run: Rscript -e "devtools::test()"
